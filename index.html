@@ -12,6 +12,80 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+  <style>
+    .flower {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall linear forwards;
+    }
+    
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+
+<style>
+  /* 白天模式 */
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #0066cc;
+    --header-bg: #f8f9fa;
+    --section-bg: #f1f3f5;
+  }
+  
+  /* 黑夜模式 */
+  .dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --link-color: #4dabf7;
+    --header-bg: #2d2d2d;
+    --section-bg: #333333;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  header {
+    background-color: var(--header-bg);
+  }
+  
+  .section-table, .content-table {
+    background-color: var(--section-bg);
+  }
+  
+  a {
+    color: var(--link-color);
+  }
+  
+  /* 模式切换按钮 */
+  .theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--header-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+</style>
 </head>
 
 
@@ -465,8 +539,59 @@
       header.style.transform = "translateY(0)";
     }
   }
-
   </script>
+
+
+  <script>
+    // 点击页面出现花花效果
+    document.addEventListener('click', function(e) {
+      const colors = ['#ff0000', '#ff8000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#8000ff', '#ff00ff'];
+      const flowers = ['🌸', '🌺', '🌻', '🌼', '🌷', '💐', '🏵️', '🌹'];
+      
+      for (let i = 0; i < 5; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = e.pageX + (Math.random() - 0.5) * 100 + 'px';
+        flower.style.top = e.pageY - 20 + 'px';
+        flower.style.color = colors[Math.floor(Math.random() * colors.length)];
+        flower.style.fontSize = (Math.random() * 20 + 10) + 'px';
+        flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        
+        document.body.appendChild(flower);
+        
+        // 动画结束后移除元素
+        setTimeout(() => {
+          flower.remove();
+        }, 5000);
+      }
+    });
+  </script>
+
+<script>
+  // 白天/黑夜模式切换
+  const themeToggle = document.createElement('div');
+  themeToggle.className = 'theme-toggle';
+  themeToggle.innerHTML = '🌓';
+  document.body.appendChild(themeToggle);
+  
+  themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    
+    // 保存用户偏好
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    // 更新按钮图标
+    themeToggle.innerHTML = isDarkMode ? '☀️' : '🌙';
+  });
+  
+  // 检查本地存储中的用户偏好
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    themeToggle.innerHTML = '☀️';
+  }
+</script>
 
 </body>
 
