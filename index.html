@@ -157,65 +157,28 @@
           <table class="section-table">
             <tbody>
               <tr>
-                <td class="section-heading" id="news-header" style="cursor: pointer;">
-                  News ▼
+                <td class="section-heading">
+                  News
                 </td>
               </tr>
             </tbody>
+
           </table>
-          
-          <div id="news-content" style="display: none;">
-            <table class="content-table">
-              <tbody>
+          <table class="content-table">
+            <tbody>
                 <tr>
-                  <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
-                    <p style="margin-left: 5%; text-align:left">
-                      <strong>[2025.05]</strong> &#x1F389; Begin my intership at Hunyuan, Tencent!
-                      <br>
-                      <strong>[2025.05]</strong> &#x1F389; One paper is accepted by ICML 2025!
-                      <br>
-                      <strong>[2025.04]</strong> &#x1F389; One paper is accepted by IJCAI 2025!
-                    </p>
-                  </td>
+                    <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
+                        <p style="margin-left: 5%; text-align:left">
+                            <strong>[2025.05]</strong> &#x1F389; Begin my intership at Hunyuan, Tencent!
+                            <br>
+                            <strong>[2025.05]</strong> &#x1F389; One paper is accepted by ICML 2025!
+                            <br>
+                            <strong>[2025.04]</strong> &#x1F389; One paper is accepted by IJCAI 2025!
+                        </p>
+                    </td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
-          
-          <style>
-            /* 添加过渡动画效果 */
-            #news-content {
-              overflow: hidden;
-              transition: max-height 0.3s ease-out;
-              max-height: 0;
-            }
-            
-            #news-content.show {
-              display: block;
-              max-height: 500px; /* 根据内容调整这个值 */
-            }
-            
-            #news-header:hover {
-              color: var(--link-color);
-            }
-          </style>
-          
-          <script>
-            // 下滑窗口效果
-            document.getElementById('news-header').addEventListener('click', function() {
-              const content = document.getElementById('news-content');
-              content.classList.toggle('show');
-              
-              // 更新箭头指示
-              this.innerHTML = content.classList.contains('show') ? 'News ▲' : 'News ▼';
-            });
-            
-            // 默认展开
-            window.addEventListener('DOMContentLoaded', function() {
-              document.getElementById('news-content').classList.add('show');
-              document.getElementById('news-header').innerHTML = 'News ▲';
-            });
-          </script>
+            </tbody>
+        </table>
 
           
 
