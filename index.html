@@ -32,60 +32,75 @@
     }
   </style>
 
-<style>
-  /* 白天模式 */
-  :root {
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --link-color: #0066cc;
-    --header-bg: #f8f9fa;
-    --section-bg: #f1f3f5;
-  }
-  
-  /* 黑夜模式 */
-  .dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --link-color: #4dabf7;
-    --header-bg: #2d2d2d;
-    --section-bg: #333333;
-  }
-  
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  header {
-    background-color: var(--header-bg);
-  }
-  
-  .section-table, .content-table {
-    background-color: var(--section-bg);
-  }
-  
-  a {
-    color: var(--link-color);
-  }
-  
-  /* 模式切换按钮 */
-  .theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--header-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-  }
-</style>
+  <style>
+    /* 白天模式 */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --link-color: #0066cc;
+      --header-bg: #f8f9fa;
+      --section-bg: #f1f3f5;
+      --profile-bg: #ffffff;
+      --profile-text: #333333;
+    }
+    
+    /* 修正的黑夜模式 - 提高对比度 */
+    .dark-mode {
+      --bg-color: #121212;  /* 深灰背景 */
+      --text-color: #e0e0e0; /* 亮灰文字 */
+      --link-color: #4dabf7; /* 亮蓝色链接 */
+      --header-bg: #1e1e1e;  /* 稍浅的深灰 */
+      --section-bg: #2d2d2d;  /* 中灰色区块 */
+      --profile-bg: #252525;  /* 个人介绍区块背景 */
+      --profile-text: #f0f0f0; /* 亮白文字 */
+    }
+
+    /* 应用到各个元素 */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    header {
+      background-color: var(--header-bg);
+    }
+    
+    .section-table, .content-table {
+      background-color: var(--section-bg);
+    }
+    
+    a {
+      color: var(--link-color);
+    }
+    
+    /* 特别修正个人介绍区域的显示 */
+    .profile-description {
+      color: var(--profile-text);
+      background-color: var(--profile-bg);
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    /* 模式切换按钮 */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--header-bg);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      font-size: 20px;
+    }
+  </style>
 </head>
 
 
@@ -142,28 +157,65 @@
           <table class="section-table">
             <tbody>
               <tr>
-                <td class="section-heading">
-                  News
+                <td class="section-heading" id="news-header" style="cursor: pointer;">
+                  News ▼
                 </td>
               </tr>
             </tbody>
-
           </table>
-          <table class="content-table">
-            <tbody>
+          
+          <div id="news-content" style="display: none;">
+            <table class="content-table">
+              <tbody>
                 <tr>
-                    <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
-                        <p style="margin-left: 5%; text-align:left">
-                            <strong>[2025.05]</strong> &#x1F389; Begin my intership at Hunyuan, Tencent!
-                            <br>
-                            <strong>[2025.05]</strong> &#x1F389; One paper is accepted by ICML 2025!
-                            <br>
-                            <strong>[2025.04]</strong> &#x1F389; One paper is accepted by IJCAI 2025!
-                        </p>
-                    </td>
+                  <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
+                    <p style="margin-left: 5%; text-align:left">
+                      <strong>[2025.05]</strong> &#x1F389; Begin my intership at Hunyuan, Tencent!
+                      <br>
+                      <strong>[2025.05]</strong> &#x1F389; One paper is accepted by ICML 2025!
+                      <br>
+                      <strong>[2025.04]</strong> &#x1F389; One paper is accepted by IJCAI 2025!
+                    </p>
+                  </td>
                 </tr>
-            </tbody>
-        </table>
+              </tbody>
+            </table>
+          </div>
+          
+          <style>
+            /* 添加过渡动画效果 */
+            #news-content {
+              overflow: hidden;
+              transition: max-height 0.3s ease-out;
+              max-height: 0;
+            }
+            
+            #news-content.show {
+              display: block;
+              max-height: 500px; /* 根据内容调整这个值 */
+            }
+            
+            #news-header:hover {
+              color: var(--link-color);
+            }
+          </style>
+          
+          <script>
+            // 下滑窗口效果
+            document.getElementById('news-header').addEventListener('click', function() {
+              const content = document.getElementById('news-content');
+              content.classList.toggle('show');
+              
+              // 更新箭头指示
+              this.innerHTML = content.classList.contains('show') ? 'News ▲' : 'News ▼';
+            });
+            
+            // 默认展开
+            window.addEventListener('DOMContentLoaded', function() {
+              document.getElementById('news-content').classList.add('show');
+              document.getElementById('news-header').innerHTML = 'News ▲';
+            });
+          </script>
 
           
 
