@@ -149,10 +149,36 @@ span.highlight {
 }
 
 /* color of hyperlinks */
-a:link {color:#0d4ca5;}
-a:visited {color:#0d4ca5;}
-a:hover {color:#f86df8;} 
-a:active {color:#0d4ca5;}
+  a:link {color:#0d4ca5;}
+  a:visited {color:#0d4ca5;}
+  a:hover {color:#f86df8;} 
+  a:active {color:#0d4ca5;}
+  
+  /* 爱情链接特殊样式 */
+  .love-link {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .love-link:hover {
+    color: #ff69b4 !important;
+    transform: scale(1.05);
+  }
+  
+  .love-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+    transition: width 0.3s ease;
+  }
+  
+  .love-link:hover::after {
+    width: 100%;
+  }
 
 /* improved layout with floating, absolute and relative positioning */
 header {
@@ -342,18 +368,64 @@ university {
   position: relative;
 }
 
-.profile-name {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 32px;
-  text-align: center;
-}
+  .profile-name {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 32px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-name::after {
+    content: '✨';
+    position: absolute;
+    right: calc(50% - 80px);
+    top: 0;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  }
 
-.profile-bio {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-  text-align: justify;
-  margin-bottom: 20px;
-}
+  .profile-bio {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: justify;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+  
+  .profile-love {
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1));
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-love:hover {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.2));
+    transform: translateY(-2px);
+  }
+  
+  .profile-love a {
+    color: #ff69b4;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-love a:hover {
+    color: #ff1493;
+    text-decoration: underline;
+  }
 
 .profile-apply {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
@@ -382,11 +454,17 @@ university {
 
   .prof-image {
     max-width: 100%;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 5px #ccc;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     display: block;
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .prof-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   /* for education */
@@ -408,21 +486,33 @@ university {
     margin-left: auto;
     padding: 20px;
     background-color: #f8f8f8;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
     margin-top: 15px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .content-table:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
   }
   
   .section-heading {
-    padding: 5px;
+    padding: 12px 5px;
     font-family: 'Arial', sans-serif;
     font-size: 28px;
     font-weight: bold;
     color: rgba(78, 60, 182, 0.548);
-    background-color: #e8e8e8;
+    background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
     border-radius: 5px 5px 0px 0px;
     text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .section-heading:hover {
+    background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
   }
   
   

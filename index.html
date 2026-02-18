@@ -127,6 +127,155 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+    /* 爱情链接样式 */
+    .love-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .love-link:hover {
+      color: #ff69b4 !important;
+      transform: scale(1.1);
+    }
+    
+    .love-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff69b4, #ff1493);
+      transition: width 0.3s ease;
+    }
+    
+    .love-link:hover::after {
+      width: 100%;
+    }
+
+    /* 火影忍者语录样式 */
+    .naruto-quote {
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(255, 192, 203, 0.05) 100%);
+      border-left: 4px solid #ff69b4;
+      border-radius: 10px;
+      margin: 20px 0;
+      position: relative;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .naruto-quote::before {
+      content: '🔥';
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      font-size: 30px;
+      background: var(--bg-color);
+      padding: 0 10px;
+    }
+    
+    .quote-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 15px;
+      line-height: 1.8;
+      font-style: italic;
+    }
+    
+    .quote-translation {
+      font-size: 16px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+    
+    .quote-meaning {
+      font-size: 15px;
+      color: var(--text-color);
+      line-height: 2;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark-mode .quote-meaning {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .quote-meaning em {
+      color: #ff69b4;
+      font-style: normal;
+      font-weight: 600;
+    }
+    
+    .dark-mode .naruto-quote {
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 192, 203, 0.08) 100%);
+      border-left-color: #ff69b4;
+    }
+    
+    /* 暗色模式下的profile-love样式 */
+    .dark-mode .profile-love {
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 192, 203, 0.08)) !important;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 学术俏皮元素 */
+    .profile-name {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .profile-name::after {
+      content: '✨';
+      position: absolute;
+      right: -30px;
+      top: 0;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* 改进的卡片阴影效果 */
+    .content-table {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .content-table:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 学术风格的装饰 */
+    .section-heading {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-heading::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #ff69b4, #4dabf7);
+    }
   </style>
 </head>
 
@@ -139,6 +288,7 @@
     <nav class="nav">
       <ul>
         <li><a href="https://liu-yang-maker.github.io/yangpage.github.io/">Home</a></li>
+        <li><a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">💕 Our Story</a></li>
         <li><a href="liuyang2020@amss.ac.cn">Contact</a></li>
       </ul>
     </nav>
@@ -163,13 +313,17 @@
                       <p class="profile-now">我是刘洋。我即将入职一家大模型基础团队，担任研究科学家/工程师，专注于后训练和长上下文大模型的研究。同时，我也将加入清华大学担任博士后研究员，从事后训练应用的相关工作。目前，我是中国科学院数学与系统科学研究院的博士研究生，专业方向为图深度学习与组合优化，并主要聚焦于大语言模型的研究。此前，我本科毕业于西安交通大学，并曾在阿尔伯塔大学、密歇根州立大学和北京大学进行学术访问。
                         <!-- 曾先后在Seed@Bytedance, Hunyuan@Tencent, Code@Zhipu, CCL@Baidu实习。 -->
                       </p>
+                      <p class="profile-love" style="text-align: center; margin-top: 15px; padding: 10px; background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1)); border-radius: 8px; font-size: 14px;">
+                        💕 和 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">晓彤</a> 一起探索世界，一起成长 ✨
+                      </p>
                       <!-- <p class="profile-collaboration"><strong>Looking for research collaborators on meaningful projects and feel free to contact with me if you are interested! Also, I'm in job market and actively seeking industry positions.</strong></p> -->
                       <p class="profile-links">
                         <a href="mailto:liuyang2020@amss.ac.cn">Email</a> &nbsp/&nbsp
                         <!-- <a href="13572160700">Wechat</a> &nbsp/&nbsp -->
                         <a href="https://github.com/liu-yang-maker">Github</a> &nbsp/&nbsp
                         <a href="https://github.com/datawhalechina">Datawhale</a> &nbsp/&nbsp
-                        <a href="www.linkedin.com/in/yang-liu-68591b335">Linkedin</a>
+                        <a href="www.linkedin.com/in/yang-liu-68591b335">Linkedin</a> &nbsp/&nbsp
+                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">💝 Our Love Journey</a>
                       </p>
                     </td>
                     <!-- 右侧图片列 -->
@@ -180,7 +334,7 @@
                           <img style="width:100%;max-width:100%" alt="profile photo" src="files/liu_presentation.jpg" class="prof-image">
                         </a>
                         <div style="text-align: center; margin-top: 10px; font-size: 0.9em;">
-                          他正在做报告(欢迎交流)
+                          📊 正在做报告 (欢迎交流)
                         </div>
                       </div>
                       
@@ -189,8 +343,8 @@
                         <a href="files/liu_and_tong.jpeg"> <!-- 请替换为实际图片路径 -->
                           <img style="width:100%;max-width:100%" alt="second photo" src="files/liu_and_tong.jpeg" class="prof-image">
                         </a>
-                        <div style="text-align: center; margin-top: 10px; font-size: 0.9em;">
-                          他和他的女朋友 <!-- 请替换为实际描述 -->
+                        <div style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #ff69b4; font-weight: 500;">
+                          💑 和晓彤在一起
                         </div>
                       </div>
                     </td>
@@ -215,7 +369,7 @@
                 <tr>
                     <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
                         <p style="margin-left: 5%; text-align:left">
-                            <strong>[2025.11]</strong> &#x1F389; Happy Birthday to me, and happy us – I'm in love with you. @Tong
+                            <strong>[2025.11]</strong> &#x1F389; Happy Birthday to me, and happy us – I'm in love with you. @<a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">Tong</a> 💕
                             <br>
                             <strong>[2025.08]</strong> &#x1F389; One paper is accepted by ICDM 2025!
                             <br>
@@ -799,6 +953,39 @@
 
 
         
+          <!-- Naruto Quote Section -->
+          <table class="section-table">
+            <tbody>
+              <tr>
+                <td class="section-heading">
+                  💭 Philosophy
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="content-table">
+            <tbody>
+              <tr>
+                <td style="padding:20px 10px;width:100%;vertical-align:middle;text-align:center">
+                  <div class="naruto-quote">
+                    <p class="quote-text">
+                      "努力は必ず報われる。もし報われない努力があるのならば、それはまだ努力とは呼べない。"
+                    </p>
+                    <p class="quote-translation">
+                      "努力一定会得到回报。如果还有得不到回报的努力，那它还不能被称为努力。"
+                    </p>
+                    <p class="quote-meaning">
+                      <em>—— 火影忍者</em><br>
+                      在学术研究的道路上，我相信持续的努力终会开花结果；<br>
+                      在感情的世界里，我也相信真诚的付出会换来美好的未来。<br>
+                      无论是对待科研还是爱情，我都会全力以赴，永不言弃。
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
   <script>
   // Get the header
   var header = document.querySelector("header");
