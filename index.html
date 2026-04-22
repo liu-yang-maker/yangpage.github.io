@@ -220,6 +220,52 @@
     .dark-mode .profile-love {
       background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 192, 203, 0.08)) !important;
     }
+
+    /* Dark mode: publication list */
+    .dark-mode .pub-year-label {
+      color: rgba(140, 120, 230, 0.9);
+      border-bottom-color: rgba(140, 120, 230, 0.2);
+    }
+
+    .dark-mode .pub-entry {
+      background-color: var(--section-bg);
+    }
+
+    .dark-mode .pub-entry:hover {
+      border-left-color: rgba(140, 120, 230, 0.6);
+      background-color: #353535;
+    }
+
+    .dark-mode .pub-title,
+    .dark-mode .pub-title a {
+      color: #e0e0e0;
+    }
+
+    .dark-mode .pub-title a:hover {
+      color: #4dabf7;
+    }
+
+    .dark-mode .pub-authors {
+      color: #aaa;
+    }
+
+    .dark-mode .pub-authors .self {
+      color: #d0d0d0;
+      text-decoration-color: rgba(140, 120, 230, 0.5);
+    }
+
+    .dark-mode .pub-venue {
+      color: rgba(140, 120, 230, 0.85);
+    }
+
+    .dark-mode .pub-venue .venue-tag {
+      background-color: rgba(140, 120, 230, 0.15);
+      color: rgba(170, 150, 255, 0.9);
+    }
+
+    .dark-mode .pub-links a {
+      color: #4dabf7;
+    }
     
     @keyframes fadeInUp {
       from {
@@ -449,581 +495,177 @@
               </tr>
             </tbody>
           </table>
-          <table
-          class="content-table">
-            <tbody>
+          <div class=”pub-list”>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/icml26.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->Probing How Scalable Table Data Enhances General Long-Context Reasoning
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Huaibing Xie*, Guoliang Zhao*, <u>Yang Liu</u>*, Shihan Dou, Siming Huang, Yanling Xiao, Shaolei Wang, Yiting Liu, Cheng Zhang, Shaofan Liu, Pluto Zhou
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2026
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <!-- ===== 2026 ===== -->
+            <div class=”pub-year-label”>2026</div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/arxiv26v2.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->SafeHarness2.0: Lifecycle-Integrated Security Architecture for Multi-Agent Safety
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>, Yancheng Chen, Xixun Lin, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2026
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Probing How Scalable Table Data Enhances General Long-Context Reasoning</div>
+              <div class=”pub-authors”>Huaibing Xie*, Guoliang Zhao*, <span class=”self”>Yang Liu</span>*, Shihan Dou, Siming Huang, Yanling Xiao, Shaolei Wang, Yiting Liu, Cheng Zhang, Shaofan Liu, Pluto Zhou</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/arxiv26v2.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Xixun Lin*, <u>Yang Liu</u>*, Yancheng Chen*, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2026
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-              
+            <div class=”pub-entry”>
+              <div class=”pub-title”>SafeHarness2.0: Lifecycle-Integrated Security Architecture for Multi-Agent Safety</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Yancheng Chen, Xixun Lin, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment</div>
+              <div class=”pub-authors”>Xixun Lin*, <span class=”self”>Yang Liu</span>*, Yancheng Chen*, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/arxiv26v1.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->Hard Constraints Meet Soft Generation: Guaranteed Feasibility for LLM-based Combinatorial Optimization
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>, Chuan Zhou, Yancheng Chen, Shuai Zhang, Xixun Lin, Xiaoqing Wang
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2026
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Hard Constraints Meet Soft Generation: Guaranteed Feasibility for LLM-based Combinatorial Optimization</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Yancheng Chen, Shuai Zhang, Xixun Lin, Xiaoqing Wang</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/ICLR26.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->With Great Power Comes Great Adaptation: Message Tuning Outshines Prompt Tuning for Graph Foundation Models
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Yancheng Chen, Dun Ma, Shuai Zhang, <u>Yang Liu</u>, Xixun Lin, Wenguo Yang, Chuan Zhou
-                  <!-- conference & date -->
-                  <br>
-                  <em>Submitted to ICLR 2026
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>With Great Power Comes Great Adaptation: Message Tuning Outshines Prompt Tuning for Graph Foundation Models</div>
+              <div class=”pub-authors”>Yancheng Chen, Dun Ma, Shuai Zhang, <span class=”self”>Yang Liu</span>, Xixun Lin, Wenguo Yang, Chuan Zhou</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Submitted to ICLR</span> 2026</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/kdd25.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> FairCDR: Transferring Fairness and User Preferences for Cross-Domain Recommendation
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Yongxuan Wu, <u>Yang Liu</u>, Xixun Lin, Hong Zhou, Yanan Cao, Lixin Zou, Yanmin Shang, Yanbing Liu
-                  <!-- conference & date -->
-                  <br>
-                  <em>KDD 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <!-- ===== 2025 ===== -->
+            <div class=”pub-year-label”>2025</div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>FairCDR: Transferring Fairness and User Preferences for Cross-Domain Recommendation</div>
+              <div class=”pub-authors”>Yongxuan Wu, <span class=”self”>Yang Liu</span>, Xixun Lin, Hong Zhou, Yanan Cao, Lixin Zou, Yanmin Shang, Yanbing Liu</div>
+              <div class=”pub-venue”><span class=”venue-tag”>KDD</span> 2025</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/survey1.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Bridging the Gap Between LLMs and Human Intentions: Progresses and Challenges in Instruction Understanding, Intention Reasoning, and Reliable Generation.
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Zongyu Chang, Feihong Lu, Ziqin Zhu, Qian Li, Cheng Ji, Zhuo Chen, <u>Yang Liu</u>, Ruifeng Xu, Yangqiu Song, Shangguang Wang, and Jianxin Li
-                  <!-- conference & date -->
-                  <br>
-                  <em>LLM Survey, Arxiv 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Bridging the Gap Between LLMs and Human Intentions: Progresses and Challenges in Instruction Understanding, Intention Reasoning, and Reliable Generation</div>
+              <div class=”pub-authors”>Zongyu Chang, Feihong Lu, Ziqin Zhu, Qian Li, Cheng Ji, Zhuo Chen, <span class=”self”>Yang Liu</span>, Ruifeng Xu, Yangqiu Song, Shangguang Wang, and Jianxin Li</div>
+              <div class=”pub-venue”><span class=”venue-tag”>LLM Survey, Arxiv</span> 2025</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Equivariant Hypergraph Diffusion for Crystal Structure Prediction</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Shuai Zhang, Xiaotong Wu, Peng Zhang, Xixun Lin, Zhao Li, Shirui Pan</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2025</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/EH-Diff-motivation.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Equivariant Hypergraph Diffusion for Crystal Structure Prediction.
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Shuai Zhang, Xiaotong Wu, Peng Zhang, Xixun Lin, Zhao Li, Shirui Pan
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Sharpness-aware Zeroth-order Optimization for Graph Transformers</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Yuhan Lin, Shuai Zhang, Yang Gao, Zhao Li, Shirui Pan</div>
+              <div class=”pub-venue”><span class=”venue-tag”>IJCAI</span> 2025</div>
+            </div>
 
-               <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/SZO.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Sharpness-aware Zeroth-order Optimization for Graph Transformers
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Yuhan Lin, Shuai Zhang, Yang Gao, Zhao Li, Shirui Pan
-                  <!-- conference & date -->
-                  <br>
-                  <em>IJCAI 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Contrastive Modality-Disentangled Learning for Multimodal Recommendation</div>
+              <div class=”pub-authors”>Xixun Lin, Rui Liu, Yanan Cao, Lixun Zou, Yongxuan Wu, <span class=”self”>Yang Liu</span>, Dawei Yin, Guandong Xu</div>
+              <div class=”pub-venue”><span class=”venue-tag”>TOIS</span> 2025</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/tois_model.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Contrastive Modality-Disentangled Learning for Multimodal Recommendation
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Xixun Lin, Rui Liu, Yanan Cao, Lixun Zou, Yongxuan Wu, <u>Yang Liu</u>, Dawei Yin, Guandong Xu
-                  <!-- conference & date -->
-                  <br>
-                  <em>TOIS 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>RHGNN: Imposing Relational Inductive Bias for Heterogeneous Graph Neural Network</div>
+              <div class=”pub-authors”>Shichao Zhu, Shuai Zhang, <span class=”self”>Yang Liu</span>, Chuan Zhou, Shirui Pan, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>JMLC</span> 2025</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/jmlc.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> RHGNN: Imposing Relational Inductive Bias for Heterogeneous Graph Neural Network
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Shichao Zhu, Shuai Zhang, <u>Yang Liu</u>, Chuan Zhou, Shirui Pan, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>JMLC 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Node-Centric Meta Structure Search on Heterogeneous Graphs</div>
+              <div class=”pub-authors”>Xiaoou Zhang, Yang Gao, <span class=”self”>Yang Liu</span>, Yujia Zhu, Chuan Zhou, Peng Zhang, Yong Ding, Qingyun Liu, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICASSP</span> 2025</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/icassp25.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Node-Centric Meta Structure Search on Heterogeneous Graphs
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Xiaoou Zhang, Yang Gao, <u>Yang Liu</u>, Yujia Zhu, Chuan Zhou, Peng Zhang, Yong Ding, Qingyun Liu, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICASSP 2025
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <!-- ===== 2024 ===== -->
+            <div class=”pub-year-label”>2024</div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Neural Jump-Diffusion Temp Link Point Processes</div>
+              <div class=”pub-authors”>Shuai Zhang, Chuan Zhou, <span class=”self”>Yang Liu</span>, Peng Zhang, Xixun Lin, Zhiming Ma</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICML</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/icml24.jpg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Neural Jump-Diffusion Temp Link Point Processes
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Shuai Zhang, Chuan Zhou, <u>Yang Liu</u>, Peng Zhang, Xixun Lin, Zhiming Ma
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICML 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>CL4CO: A Curriculum Training Framework for Graph-based Neural Combinatorial Optimization</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Zhao Li, Shuai Zhang, Xixun Lin, Xindong Wu</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2024</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Secure Causal Reasoning on Coarsened Graph for Privacy-Aware Social Web Services</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Huang Fang, Peng Zhang, Yilin Pang, Qingzhao Zhang, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICWS</span> 2024</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Transformer-based Graph Neural Networks for Battery Range Prediction in AIoT Battery-Swap Services</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>*, Zhao Li*, Chuan Zhou, Xuanwu Liu, Xuming Pan, Buqing Cao, Xindong Wu</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICWS</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/CL4CO.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> CL4CO: A Curriculum Training Framework for Graph-based Neural Combinatorial Optimization.
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Zhao Li, Shuai Zhang, Xixun Lin, Xindong Wu
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICDM 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Curriculum Learning for Knowledge Graph Embedding</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Yanan Cao, Yongchao Liu, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>MQuinE: A Cure for “Z-paradox” in Knowledge Graph Embedding</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Huang Fang, Yunfeng Cai, Mingming Sun</div>
+              <div class=”pub-venue”><span class=”venue-tag”>EMNLP</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/FuzzyCE.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Secure Causal Reasoning on Coarsened Graph for Privacy-Aware Social Web Services
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Huang Fang, Peng Zhang, Yilin Pang, Qingzhao Zhang, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICWS 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Combinatorial Optimization with Automated Graph Neural Networks</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Peng Zhang, Yang Gao, Chuan Zhou, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Decision-focused Graph Neural Networks for Combinatorial Optimization</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Shirui Pan, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/aiot.jpeg" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Transformer-based Graph Neural Networks for Battery Range Prediction in AIoT Battery-Swap Services
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>*,
-                  Zhao Li*, Chuan Zhou, Xuanwu Liu, Xuming Pan, Buqing Cao, Xindong Wu
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICWS 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Meta Structure Search for Link Weight Prediction in Heterogeneous Graph</div>
+              <div class=”pub-authors”>Xiaoou Zhang, Yang Gao, <span class=”self”>Yang Liu</span>, Yujia Zhu, Peng Zhang, Chuan Zhou, Qingyun Liu, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICASSP</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/CL-KGX.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Curriculum Learning for Knowledge Graph Embedding
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Peng Zhang, Yanan Cao, Yongchao Liu, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Linked Patterns of Symptoms and Cognition with Functional Brain Controllability in Major Depressive Disorder</div>
+              <div class=”pub-authors”>Qian Li, Youjin Zhao, Yongbo Hu, <span class=”self”>Yang Liu</span>, Yaxuan Wang, Qian Zhang, Fenghua Long, John A. Sweeney, Weihong Kuang, Fei Li, Qiyong Gong</div>
+              <div class=”pub-venue”><span class=”venue-tag”>eBioMedicine</span> 2024</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/MQuinE.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> MQuinE: a cure for “Z-paradox” in knowledge graph embedding
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Huang Fang, Yunfeng Cai, Mingming Sun
-                  <!-- conference & date -->
-                  <br>
-                  <em>EMNLP 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Unsupervised Pre-trained Social Networks for E-commerce Community Detection</div>
+              <div class=”pub-authors”>Ting Li, Chunqi Wu, <span class=”self”>Yang Liu</span>, Zhao Li, Chuan Zhou, Hongyang Chen, Chenhao Qiu, Yongchao Liu, Peng Du, and Chuntao Hong</div>
+              <div class=”pub-venue”><span class=”venue-tag”>HPCC</span> 2024</div>
+            </div>
 
+            <!-- ===== 2023 ===== -->
+            <div class=”pub-year-label”>2023</div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/AutoGNP.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Combinatorial Optimization with Automated Graph Neural Networks
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Peng Zhang, Yang Gao, Chuan Zhou, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Decision-focused Graph Neural Networks for Graph Learning and Optimization</div>
+              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Shuai Zhang, Xiaoou Zhang, Zhao Li, Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2023</div>
+            </div>
 
+            <div class=”pub-entry”>
+              <div class=”pub-title”>Multiple Hypothesis Testing for Anomaly Detection in Multi-type Event Sequences</div>
+              <div class=”pub-authors”>Shuai Zhang, Chuan Zhou, Peng Zhang, <span class=”self”>Yang Liu</span>, Zhao Li, and Hongyang Chen</div>
+              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2023</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/DFL4CO.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Decision-focused Graph Neural Networks for Combinatorial Optimization
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Peng Zhang, Shirui Pan, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>Arxiv 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
+            <div class=”pub-entry”>
+              <div class=”pub-title”>MLN4KB: An Efficient Markov Logic Network Engine for Large-scale Knowledge Bases and Structured Logic Rules</div>
+              <div class=”pub-authors”>Huang Fang, <span class=”self”>Yang Liu</span>, Yunfeng Cai, Mingming Sun</div>
+              <div class=”pub-venue”><span class=”venue-tag”>WWW</span> 2023</div>
+            </div>
 
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/framework5.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Meta Structure Search for Link Weight Prediction in Heterogeneous Graph
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Xiaoou Zhang, Yang Gao, <u>Yang Liu</u>, Yujia Zhu, Peng Zhang, Chuan Zhou, Qingyun Liu, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICASSP 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-
-
-
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/eBioMedicine.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Linked patterns of symptoms and cognition with functional brain controllability in major depressive disorder.
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Qian Li, Youjin Zhao, Yongbo Hu, <u>Yang Liu</u>, Yaxuan Wang, Qian Zhang, Fenghua Long, John A. Sweeney, Weihong Kuang, Fei Li, Qiyong Gong.
-                  <!-- conference & date -->
-                  <br>
-                  <em>eBioMedicine 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-
-
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/hpcc.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Unsupervised Pre-trained Social Networks for E-commerce Community Detection
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Ting Li, Chunqi Wu, <u>Yang Liu</u>, Zhao Li, Chuan Zhou, Hongyang Chen, Chenhao Qiu, Yongchao Liu, Peng Du, and Chuntao Hong
-                  <!-- conference & date -->
-                  <br>
-                  <em>HPCC 2024
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/ZO4Graph.pdf" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Decision-focused Graph Neural Networks for Graph Learning and Optimization
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  <u>Yang Liu</u>,
-                  Chuan Zhou, Peng Zhang, Shuai Zhang, Xiaoou Zhang, Zhao Li, Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICDM 2023
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/multiad.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> Multiple Hypothesis Testing for Anomaly Detection in Multi-type Event Sequences
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Shuai Zhang, Chuan Zhou, Peng Zhang, <u>Yang Liu</u>, Zhao Li, and Hongyang Chen
-                  <!-- conference & date -->
-                  <br>
-                  <em>ICDM 2023
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-
-
-              <tr>
-                <td style="padding:10px 20px;width:40%;vertical-align:middle">
-                  <img src="figs/MLN4KB.png" class="pub-image" height="135">
-                </td>
-                <td width="60%" valign="middle">
-                  <!-- heading -->
-                  <papertitle> MLN4KB: an efficient Markov logic network engine for large-scale knowledge bases and structublue logic rules.
-                  </papertitle>
-                  <!-- authors -->
-                  <br>
-                  Huang Fang, <u>Yang Liu</u>,
-                  Yunfeng Cai, Mingming Sun
-                  <!-- conference & date -->
-                  <br>
-                  <em>WWW 2023
-                  <br>
-                  <!-- links -->
-                  <a href="">Project page</a>
-                  / <a> Link</a>
-                </td>
-              </tr>
-              
-
-              
-            </tbody>
-          </table>
+          </div>
 
 
         

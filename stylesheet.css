@@ -94,11 +94,7 @@ heading {
   font-size: 22px;
 }
 
-papertitle {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 700
-}
+/* papertitle - removed, replaced by .pub-title */
 
 university {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
@@ -334,13 +330,137 @@ university {
   color: #333;
 }
 
-/* Style for publication images */
-.pub-image {
-  max-width: 100%;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 5px #ccc;
-  margin: 0 auto;
-  display: block;
+/* ============================================
+   Publications Section - Academic List Layout
+   ============================================ */
+
+.pub-list {
+  width: 100%;
+  margin: 15px auto 20px;
+  padding: 0;
+}
+
+.pub-year-label {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.7);
+  padding: 12px 0 6px 0;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  border-bottom: 2px solid rgba(78, 60, 182, 0.15);
+  letter-spacing: 0.5px;
+}
+
+.pub-year-label:first-child {
+  margin-top: 0;
+}
+
+.pub-entry {
+  padding: 14px 18px;
+  margin-bottom: 2px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pub-entry:hover {
+  border-left-color: rgba(78, 60, 182, 0.5);
+  background-color: #f2f0fa;
+}
+
+.pub-title {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.pub-title a {
+  color: #222;
+  text-decoration: none;
+}
+
+.pub-title a:hover {
+  color: #1772d0;
+}
+
+.pub-authors {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+.pub-authors .self {
+  font-weight: 600;
+  color: #333;
+  text-decoration: underline;
+  text-decoration-color: rgba(78, 60, 182, 0.4);
+  text-underline-offset: 2px;
+}
+
+.pub-venue {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(78, 60, 182, 0.75);
+  font-weight: 600;
+}
+
+.pub-venue .venue-tag {
+  display: inline-block;
+  background-color: rgba(78, 60, 182, 0.1);
+  color: rgba(78, 60, 182, 0.85);
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.pub-links {
+  font-size: 12.5px;
+  margin-top: 4px;
+}
+
+.pub-links a {
+  color: #1772d0;
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.pub-links a:hover {
+  color: #f09228;
+}
+
+/* Responsive: mobile adjustments for publications */
+@media screen and (max-width: 600px) {
+  .pub-entry {
+    padding: 12px 14px;
+  }
+
+  .pub-title {
+    font-size: 14px;
+  }
+
+  .pub-authors {
+    font-size: 12.5px;
+  }
+
+  .pub-venue {
+    font-size: 12px;
+  }
+
+  .pub-year-label {
+    font-size: 18px;
+  }
 }
 
 /* improved layout with floating, absolute and relative positioning */
