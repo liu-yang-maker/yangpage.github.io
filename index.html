@@ -154,77 +154,162 @@
       width: 100%;
     }
 
-    /* 火影忍者语录样式 */
-    .naruto-quote {
-      padding: 30px;
-      background: linear-gradient(135deg, rgba(255, 182, 193, 0.1) 0%, rgba(255, 192, 203, 0.05) 100%);
-      border-left: 4px solid #ff69b4;
-      border-radius: 10px;
-      margin: 20px 0;
-      position: relative;
+    /* Philosophy Section */
+    .philosophy-card {
+      margin: 12px auto 20px;
+      padding: 32px 36px;
+      background: linear-gradient(135deg, #faf9ff 0%, #f5f3ff 50%, #fdf2f8 100%);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(78, 60, 182, 0.06);
       animation: fadeInUp 0.8s ease-out;
+      text-align: center;
     }
-    
-    .naruto-quote::before {
-      content: '🔥';
-      position: absolute;
-      top: -15px;
-      left: 20px;
-      font-size: 30px;
-      background: var(--bg-color);
-      padding: 0 10px;
+
+    .philosophy-quote-block {
+      position: relative;
     }
-    
-    .quote-text {
-      font-size: 18px;
+
+    .philosophy-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .philosophy-jp {
+      font-size: 17px;
       font-weight: 600;
-      color: var(--text-color);
-      margin-bottom: 15px;
-      line-height: 1.8;
       font-style: italic;
-    }
-    
-    .quote-translation {
-      font-size: 16px;
       color: var(--text-color);
-      margin-bottom: 20px;
-      line-height: 1.8;
-      opacity: 0.9;
+      line-height: 1.9;
+      margin: 0 0 14px 0;
+      padding: 0 10px;
+      border: none;
+      letter-spacing: 0.3px;
     }
-    
-    .quote-meaning {
+
+    .philosophy-cn {
       font-size: 15px;
       color: var(--text-color);
-      line-height: 2;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      opacity: 0.85;
+      line-height: 1.8;
+      margin: 0 0 10px 0;
     }
-    
-    .dark-mode .quote-meaning {
-      border-top-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .quote-meaning em {
-      color: #ff69b4;
-      font-style: normal;
+
+    .philosophy-source {
+      font-size: 13px;
       font-weight: 600;
+      color: rgba(78, 60, 182, 0.6);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .philosophy-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(78, 60, 182, 0.3), rgba(255, 105, 180, 0.3));
+      margin: 24px auto;
+      border-radius: 1px;
+    }
+
+    .philosophy-reflection {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.8;
+      line-height: 2;
+    }
+
+    .philosophy-reflection p {
+      margin: 0 0 4px 0;
+    }
+
+    .philosophy-reflection p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Dark mode: philosophy */
+    .dark-mode .philosophy-card {
+      background: linear-gradient(135deg, #1e1b2e 0%, #221f35 50%, #2a1f2e 100%);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .dark-mode .philosophy-source {
+      color: rgba(140, 120, 230, 0.7);
+    }
+
+    .dark-mode .philosophy-divider {
+      background: linear-gradient(90deg, rgba(140, 120, 230, 0.4), rgba(255, 105, 180, 0.3));
     }
     
-    .dark-mode .naruto-quote {
-      background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 192, 203, 0.08) 100%);
-      border-left-color: #ff69b4;
+    /* Dark mode: Bio section */
+    .dark-mode .bio-section {
+      background: linear-gradient(135deg, #1e1b2e 0%, #221f35 100%);
+      border-color: rgba(140, 120, 230, 0.1);
     }
-    
-    /* 暗色模式下的profile-love样式 */
+
+    .dark-mode .bio-lang {
+      color: rgba(170, 150, 255, 0.9);
+      background-color: rgba(140, 120, 230, 0.15);
+    }
+
+    .dark-mode .bio-text {
+      color: #bbb;
+    }
+
+    .dark-mode .bio-divider {
+      background: linear-gradient(90deg, rgba(140, 120, 230, 0.3), rgba(140, 120, 230, 0.05));
+    }
+
     .dark-mode .profile-love {
       background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 192, 203, 0.08)) !important;
     }
 
+    .dark-mode .profile-links a {
+      color: #4dabf7;
+      background-color: rgba(77, 171, 247, 0.08);
+      border-color: rgba(77, 171, 247, 0.2);
+    }
+
+    .dark-mode .profile-links a:hover {
+      color: #fff;
+      background-color: #4dabf7;
+      border-color: #4dabf7;
+    }
+
+    .dark-mode .profile-links a.love-link {
+      color: #ff69b4;
+      background-color: rgba(255, 105, 180, 0.08);
+      border-color: rgba(255, 105, 180, 0.2);
+    }
+
+    .dark-mode .profile-links a.love-link:hover {
+      color: #fff;
+      background-color: #ff69b4;
+      border-color: #ff69b4;
+    }
+
     /* Dark mode: publication list */
+    .dark-mode .pub-year-nav {
+      background: linear-gradient(135deg, #2a2640 0%, #1e1b30 100%);
+    }
+
+    .dark-mode .pub-year-tag {
+      color: rgba(170, 150, 255, 0.9);
+      background-color: rgba(140, 120, 230, 0.1);
+      border-color: rgba(140, 120, 230, 0.3);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .dark-mode .pub-year-tag:hover {
+      color: #fff;
+      background-color: rgba(140, 120, 230, 0.6);
+      border-color: rgba(140, 120, 230, 0.6);
+      box-shadow: 0 3px 8px rgba(140, 120, 230, 0.3);
+    }
+
     .dark-mode .pub-year-label {
       color: rgba(140, 120, 230, 0.9);
-      border-bottom-color: rgba(140, 120, 230, 0.2);
+      border-left-color: rgba(140, 120, 230, 0.4);
+      background: linear-gradient(90deg, rgba(140, 120, 230, 0.06) 0%, transparent 100%);
     }
 
     .dark-mode .pub-entry {
@@ -250,8 +335,13 @@
     }
 
     .dark-mode .pub-authors .self {
-      color: #d0d0d0;
-      text-decoration-color: rgba(140, 120, 230, 0.5);
+      color: #f0f0f0;
+      text-decoration-color: rgba(140, 120, 230, 0.6);
+      text-decoration-thickness: 2px;
+    }
+
+    .dark-mode .pub-entry {
+      border-bottom-color: rgba(255, 255, 255, 0.04);
     }
 
     .dark-mode .pub-venue {
@@ -265,6 +355,114 @@
 
     .dark-mode .pub-links a {
       color: #4dabf7;
+    }
+
+    /* Dark mode: News */
+    .dark-mode .news-list {
+      background-color: var(--section-bg);
+    }
+
+    .dark-mode .news-list::-webkit-scrollbar-thumb {
+      background-color: rgba(140, 120, 230, 0.25);
+    }
+
+    .dark-mode .news-list::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(140, 120, 230, 0.45);
+    }
+
+    .dark-mode .news-item {
+      border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode .news-date {
+      color: rgba(170, 150, 255, 0.9);
+      background-color: rgba(140, 120, 230, 0.12);
+    }
+
+    .dark-mode .news-text {
+      color: #bbb;
+    }
+
+    /* Dark mode: Intern */
+    .dark-mode .intern-list {
+      background-color: var(--section-bg);
+    }
+
+    .dark-mode .intern-list::-webkit-scrollbar-thumb {
+      background-color: rgba(140, 120, 230, 0.25);
+    }
+
+    .dark-mode .intern-list::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(140, 120, 230, 0.45);
+    }
+
+    .dark-mode .intern-item {
+      background-color: #252525;
+    }
+
+    .dark-mode .intern-item:hover {
+      border-left-color: rgba(140, 120, 230, 0.6);
+      background-color: #353535;
+    }
+
+    .dark-mode .intern-company {
+      color: #e0e0e0;
+    }
+
+    .dark-mode .intern-year {
+      color: rgba(170, 150, 255, 0.9);
+      background-color: rgba(140, 120, 230, 0.12);
+    }
+
+    .dark-mode .intern-desc {
+      color: #999;
+    }
+
+    .dark-mode .intern-tag {
+      color: rgba(170, 150, 255, 0.85);
+      background-color: rgba(140, 120, 230, 0.12);
+    }
+
+    /* Dark mode: Education */
+    .dark-mode .edu-timeline {
+      background-color: var(--section-bg);
+    }
+
+    .dark-mode .edu-timeline::-webkit-scrollbar-thumb {
+      background-color: rgba(140, 120, 230, 0.25);
+    }
+
+    .dark-mode .edu-timeline::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(140, 120, 230, 0.45);
+    }
+
+    .dark-mode .edu-timeline::before {
+      background: linear-gradient(180deg, rgba(140, 120, 230, 0.4), rgba(140, 120, 230, 0.1));
+    }
+
+    .dark-mode .edu-item {
+      background-color: #252525;
+    }
+
+    .dark-mode .edu-item:hover {
+      background-color: #353535;
+    }
+
+    .dark-mode .edu-item::before {
+      background-color: rgba(140, 120, 230, 0.6);
+      border-color: var(--section-bg);
+    }
+
+    .dark-mode .edu-title {
+      color: #e0e0e0;
+    }
+
+    .dark-mode .edu-school {
+      color: rgba(140, 120, 230, 0.8);
+    }
+
+    .dark-mode .edu-year {
+      color: #888;
     }
     
     @keyframes fadeInUp {
@@ -353,22 +551,30 @@
                   <tr>
                     <td class="profile-description">
                       <p class="profile-name">Yang Liu 刘洋</p>
-                      <p class="profile-bio">Hi, I am Yang Liu. I am a Research Scientist/Engineer on Tencent's HY post-training team, focusing on context/social agents and long-context LLMs. I am also a Postdoctoral Researcher at Tsinghua University, working on post-training applications. I received my Ph.D. from the Academy of Mathematics and Systems Science, Chinese Academy of Sciences, specializing in graph and combinatorial optimization, large language models, and reasoning. I received my Bachelor's degree from Xi'an Jiaotong University and have conducted research visits at the University of Alberta, Michigan State University, and Peking University. I have also interned at Seed@Bytedance, Hunyuan@Tencent, Code@Zhipu, and CCL@Baidu.
+
+                      <div class="bio-section">
+                        <div class="bio-block">
+                          <span class="bio-lang">EN</span>
+                          <p class="bio-text">Hi, I am Yang Liu. I am a Research Scientist/Engineer on Tencent's HY post-training team, focusing on context/social agents and long-context LLMs. I am also a Postdoctoral Researcher at Tsinghua University, working on post-training applications. I received my Ph.D. from the Academy of Mathematics and Systems Science, Chinese Academy of Sciences, specializing in graph and combinatorial optimization, large language models, and reasoning. I received my Bachelor's degree from Xi'an Jiaotong University and have conducted research visits at the University of Alberta, Michigan State University, and Peking University. I have also interned at Seed@Bytedance, Hunyuan@Tencent, Code@Zhipu, and CCL@Baidu.</p>
+                        </div>
+                        <div class="bio-divider"></div>
+                        <div class="bio-block">
+                          <span class="bio-lang">中</span>
+                          <p class="bio-text">我是刘洋。我在腾讯混元后训练团队担任研究科学家/工程师。同时，我也在清华大学担任博士后研究员，从事后训练应用相关研究。我于中国科学院数学与系统科学研究院获得博士学位，研究方向为图与组合优化、大语言模型及推理。我本科毕业于西安交通大学，并曾在阿尔伯塔大学、密歇根州立大学和北京大学进行学术访问；此外，我曾在 Seed@Bytedance、Hunyuan@Tencent、Code@Zhipu、CCL@Baidu 实习。</p>
+                        </div>
+                      </div>
+
+                      <p class="profile-love">
+                        💕 和 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长 ✨
                       </p>
-                      <p class="profile-now">我是刘洋。我在腾讯混元后训练团队担任研究科学家/工程师。同时，我也在清华大学担任博士后研究员，从事后训练应用相关研究。我于中国科学院数学与系统科学研究院获得博士学位，研究方向为图与组合优化、大语言模型及推理。我本科毕业于西安交通大学，并曾在阿尔伯塔大学、密歇根州立大学和北京大学进行学术访问；此外，我曾在 Seed@Bytedance、Hunyuan@Tencent、Code@Zhipu、CCL@Baidu 实习。
-                      </p>
-                      <p class="profile-love" style="text-align: center; margin-top: 15px; padding: 10px; background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1)); border-radius: 8px; font-size: 14px;">
-                        💕 和 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">彤彤</a> 一起探索世界，一起成长 ✨
-                      </p>
-                      <!-- <p class="profile-collaboration"><strong>Looking for research collaborators on meaningful projects and feel free to contact with me if you are interested! Also, I'm in job market and actively seeking industry positions.</strong></p> -->
-                      <p class="profile-links">
-                        <a href="mailto:liuyang2020@amss.ac.cn">Email</a> &nbsp/&nbsp
-                        <!-- <a href="13572160700">Wechat</a> &nbsp/&nbsp -->
-                        <a href="https://github.com/liu-yang-maker">Github</a> &nbsp/&nbsp
-                        <a href="https://github.com/datawhalechina">Datawhale</a> &nbsp/&nbsp
-                        <a href="www.linkedin.com/in/yang-liu-68591b335">Linkedin</a> &nbsp/&nbsp
-                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">💝 Our Love Journey</a>
-                      </p>
+
+                      <div class="profile-links">
+                        <a href="mailto:liuyang2020@amss.ac.cn">Email</a>
+                        <a href="https://github.com/liu-yang-maker">Github</a>
+                        <a href="https://github.com/datawhalechina">Datawhale</a>
+                        <a href="www.linkedin.com/in/yang-liu-68591b335">Linkedin</a>
+                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">Our Love Journey</a>
+                      </div>
                     </td>
                     <!-- 右侧图片列 -->
                     <td style="padding:2.5%;width:40%;max-width:40%">
@@ -408,80 +614,161 @@
             </tbody>
 
           </table>
-          <table class="content-table">
-            <tbody>
-                <tr>
-                    <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
-                        <p style="margin-left: 5%; text-align:left">
-                            <strong>[2025.11]</strong> &#x1F389; Happy Birthday to me, and happy us – I'm in love with you. @<a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">Tong</a> 💕
-                            <br>
-                            <strong>[2025.08]</strong> &#x1F389; One paper is accepted by ICDM 2025!
-                            <br>
-                            <strong>[2025.06]</strong> &#x1F389; One paper is accepted by IEEE Transactions on Emerging Topics in Computational Intelligence!
-                            <br>
-                            <strong>[2025.05]</strong> &#x1F389; One paper is accepted by KDD 2025!
-                            <br>
-                            <strong>[2025.05]</strong> &#x1F389; Begin my intership at Hunyuan <a href="https://join.qq.com/qingyun.html?activity=998339352544759808&activityLink=999025524921159680">[青云计划]</a>, Tencent!
-                            <br>
-                            <strong>[2025.05]</strong> &#x1F389; One paper is accepted by ICML 2025!
-                            <br>
-                            <strong>[2025.04]</strong> &#x1F389; One paper is accepted by IJCAI 2025!
-                            <br>
-                            <strong>[2024.09]</strong> &#x1F389; One paper is accepted by ICDM 2024!
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+          <div class="news-list">
+            <div class="news-item">
+              <span class="news-date">2025.11</span>
+              <span class="news-text">Happy Birthday to me, and happy us -- I'm in love with you. @<a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">Tong</a> 💕</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.08</span>
+              <span class="news-text">One paper is accepted by <strong>ICDM 2025</strong>!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.06</span>
+              <span class="news-text">One paper is accepted by <strong>IEEE Transactions on Emerging Topics in Computational Intelligence</strong>!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.05</span>
+              <span class="news-text">One paper is accepted by <strong>KDD 2025</strong>!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.05</span>
+              <span class="news-text">Begin my internship at Hunyuan <a href="https://join.qq.com/qingyun.html?activity=998339352544759808&activityLink=999025524921159680">[青云计划]</a>, Tencent!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.05</span>
+              <span class="news-text">One paper is accepted by <strong>ICML 2025</strong>!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2025.04</span>
+              <span class="news-text">One paper is accepted by <strong>IJCAI 2025</strong>!</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">2024.09</span>
+              <span class="news-text">One paper is accepted by <strong>ICDM 2024</strong>!</span>
+            </div>
+          </div>
 
-        <table class="section-table">
-          <tbody>
-            <tr>
-              <td class="section-heading">
-                Intern Experience
-              </td>
-            </tr>
-          </tbody>
-
-          <table class="content-table">
+          <table class="section-table">
             <tbody>
               <tr>
-                <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
-                  <ul style="margin-left: 5%; text-align:left;">
-                    <li>腾讯混元<a href="https://join.qq.com/qingyun.html?activity=998339352544759808&activityLink=999025524921159680">[青云计划]</a>，后训练组，2025. 模型长记忆，复杂指令遵循。</li>
-                    <li>宇谷科技，2024. 大模型，网络运筹。</li>
-                    <li>百度研究院，认知计算实验室(CCL)，2022. 推理，知识图谱</li>
-                  </ul>
+                <td class="section-heading">
+                  Work Experience
                 </td>
               </tr>
             </tbody>
           </table>
 
+          <div class="intern-list">
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">腾讯</span>
+                <span class="intern-badges">
+                  <span class="intern-year">2026</span>
+                </span>
+              </div>
+              <div class="intern-desc">混元后训练 · 研究科学家/工程师</div>
+            </div>
 
-        <table class="section-table">
-          <tbody>
-            <tr>
-              <td class="section-heading">
-                Education
-              </td>
-            </tr>
-          </tbody>
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">字节</span>
+                <span class="intern-badges">
+                  <span class="intern-year">2025</span>
+                  <span class="intern-tag">Intern</span>
+                </span>
+              </div>
+              <div class="intern-desc">Seed · 大模型，多模态，机器人</div>
+            </div>
 
-          <table class="content-table">
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">腾讯 <a href="https://join.qq.com/qingyun.html?activity=998339352544759808&activityLink=999025524921159680">[青云计划]</a></span>
+                <span class="intern-badges">
+                  <span class="intern-year">2025</span>
+                  <span class="intern-tag">Intern</span>
+                </span>
+              </div>
+              <div class="intern-desc">混元 · 模型长记忆，复杂指令遵循，多轮对话</div>
+            </div>
+
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">智谱</span>
+                <span class="intern-badges">
+                  <span class="intern-year">2024</span>
+                  <span class="intern-tag">Intern</span>
+                </span>
+              </div>
+              <div class="intern-desc">代码组 · 大模型，智能体</div>
+            </div>
+
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">宇谷科技</span>
+                <span class="intern-badges">
+                  <span class="intern-year">2024</span>
+                  <span class="intern-tag">Intern</span>
+                </span>
+              </div>
+              <div class="intern-desc">算法模型组 · 大模型，网络运筹</div>
+            </div>
+
+            <div class="intern-item">
+              <div class="intern-header">
+                <span class="intern-company">百度研究院</span>
+                <span class="intern-badges">
+                  <span class="intern-year">2022</span>
+                  <span class="intern-tag">Intern</span>
+                </span>
+              </div>
+              <div class="intern-desc">认知计算实验室CCL · 推理，知识图谱</div>
+            </div>
+          </div>
+
+
+          <table class="section-table">
             <tbody>
               <tr>
-                <td style="padding:10px 10px;width:100%;vertical-align:middle;text-align:justify">
-                  <ul style="margin-left: 5%; text-align:left;">
-                    <li>Ph.D. student, Chinese Academy of Sciences (CAS), 2022 - 2026 (expected).</li>
-                    <li>Bachelor in Mathematics and Applied Mathematics (Honors Program), Xi'an Jiaotong University, 2016 - 2020.</li>
-                    <li>Summer Visiting Student, Peking University, 2020.7&2024.7.</li>
-                    <li>Exchange Student, Michigan State University, 2019.</li>
-                    <li>Visiting Student, University of Alberta, 2018.</li>
-                  </ul>
+                <td class="section-heading">
+                  Education
                 </td>
               </tr>
             </tbody>
           </table>
+
+          <div class="edu-timeline">
+            <div class="edu-item">
+              <div class="edu-title">Postdoctoral Researcher</div>
+              <div class="edu-school">Tsinghua University</div>
+              <div class="edu-year">2026 - present</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Ph.D.</div>
+              <div class="edu-school">Chinese Academy of Sciences (CAS)</div>
+              <div class="edu-year">2022 - 2026</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Bachelor in Mathematics and Applied Mathematics (Honors Program)</div>
+              <div class="edu-school">Xi'an Jiaotong University</div>
+              <div class="edu-year">2016 - 2020</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Summer Visiting Student</div>
+              <div class="edu-school">Peking University</div>
+              <div class="edu-year">2020.7 & 2024.7</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Exchange Student</div>
+              <div class="edu-school">Michigan State University</div>
+              <div class="edu-year">2019</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-title">Visiting Student</div>
+              <div class="edu-school">University of Alberta</div>
+              <div class="edu-year">2018</div>
+            </div>
+          </div>
 
 
           <!-- Publications -->
@@ -495,212 +782,224 @@
               </tr>
             </tbody>
           </table>
-          <div class=”pub-list”>
+          <div class="pub-year-nav">
+            <a href="#pub-2026" class="pub-year-tag">2026</a>
+            <a href="#pub-2025" class="pub-year-tag">2025</a>
+            <a href="#pub-2024" class="pub-year-tag">2024</a>
+            <a href="#pub-2023" class="pub-year-tag">2023</a>
+          </div>
+
+          <div class="pub-list">
 
             <!-- ===== 2026 ===== -->
-            <div class=”pub-year-label”>2026</div>
+            <div class="pub-year-group">
+              <div class="pub-year-label" id="pub-2026">2026</div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Probing How Scalable Table Data Enhances General Long-Context Reasoning</div>
-              <div class=”pub-authors”>Huaibing Xie*, Guoliang Zhao*, <span class=”self”>Yang Liu</span>*, Shihan Dou, Siming Huang, Yanling Xiao, Shaolei Wang, Yiting Liu, Cheng Zhang, Shaofan Liu, Pluto Zhou</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Probing How Scalable Table Data Enhances General Long-Context Reasoning</div>
+                <div class="pub-authors">Huaibing Xie*, Guoliang Zhao*, <span class="self">Yang Liu</span>*, Shihan Dou, Siming Huang, Yanling Xiao, Shaolei Wang, Yiting Liu, Cheng Zhang, Shaofan Liu, Pluto Zhou</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>SafeHarness2.0: Lifecycle-Integrated Security Architecture for Multi-Agent Safety</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Yancheng Chen, Xixun Lin, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">SafeHarness2.0: Lifecycle-Integrated Security Architecture for Multi-Agent Safety</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Yancheng Chen, Xixun Lin, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment</div>
-              <div class=”pub-authors”>Xixun Lin*, <span class=”self”>Yang Liu</span>*, Yancheng Chen*, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment</div>
+                <div class="pub-authors">Xixun Lin*, <span class="self">Yang Liu</span>*, Yancheng Chen*, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Hard Constraints Meet Soft Generation: Guaranteed Feasibility for LLM-based Combinatorial Optimization</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Yancheng Chen, Shuai Zhang, Xixun Lin, Xiaoqing Wang</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2026</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Hard Constraints Meet Soft Generation: Guaranteed Feasibility for LLM-based Combinatorial Optimization</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Yancheng Chen, Shuai Zhang, Xixun Lin, Xiaoqing Wang</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>With Great Power Comes Great Adaptation: Message Tuning Outshines Prompt Tuning for Graph Foundation Models</div>
-              <div class=”pub-authors”>Yancheng Chen, Dun Ma, Shuai Zhang, <span class=”self”>Yang Liu</span>, Xixun Lin, Wenguo Yang, Chuan Zhou</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Submitted to ICLR</span> 2026</div>
+              <div class="pub-entry">
+                <div class="pub-title">With Great Power Comes Great Adaptation: Message Tuning Outshines Prompt Tuning for Graph Foundation Models</div>
+                <div class="pub-authors">Yancheng Chen, Dun Ma, Shuai Zhang, <span class="self">Yang Liu</span>, Xixun Lin, Wenguo Yang, Chuan Zhou</div>
+                <div class="pub-venue"><span class="venue-tag">Submitted to ICLR</span> 2026</div>
+              </div>
             </div>
 
             <!-- ===== 2025 ===== -->
-            <div class=”pub-year-label”>2025</div>
+            <div class="pub-year-group">
+              <div class="pub-year-label" id="pub-2025">2025</div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>FairCDR: Transferring Fairness and User Preferences for Cross-Domain Recommendation</div>
-              <div class=”pub-authors”>Yongxuan Wu, <span class=”self”>Yang Liu</span>, Xixun Lin, Hong Zhou, Yanan Cao, Lixin Zou, Yanmin Shang, Yanbing Liu</div>
-              <div class=”pub-venue”><span class=”venue-tag”>KDD</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">FairCDR: Transferring Fairness and User Preferences for Cross-Domain Recommendation</div>
+                <div class="pub-authors">Yongxuan Wu, <span class="self">Yang Liu</span>, Xixun Lin, Hong Zhou, Yanan Cao, Lixin Zou, Yanmin Shang, Yanbing Liu</div>
+                <div class="pub-venue"><span class="venue-tag">KDD</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Bridging the Gap Between LLMs and Human Intentions: Progresses and Challenges in Instruction Understanding, Intention Reasoning, and Reliable Generation</div>
-              <div class=”pub-authors”>Zongyu Chang, Feihong Lu, Ziqin Zhu, Qian Li, Cheng Ji, Zhuo Chen, <span class=”self”>Yang Liu</span>, Ruifeng Xu, Yangqiu Song, Shangguang Wang, and Jianxin Li</div>
-              <div class=”pub-venue”><span class=”venue-tag”>LLM Survey, Arxiv</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Bridging the Gap Between LLMs and Human Intentions: Progresses and Challenges in Instruction Understanding, Intention Reasoning, and Reliable Generation</div>
+                <div class="pub-authors">Zongyu Chang, Feihong Lu, Ziqin Zhu, Qian Li, Cheng Ji, Zhuo Chen, <span class="self">Yang Liu</span>, Ruifeng Xu, Yangqiu Song, Shangguang Wang, and Jianxin Li</div>
+                <div class="pub-venue"><span class="venue-tag">LLM Survey, Arxiv</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Equivariant Hypergraph Diffusion for Crystal Structure Prediction</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Shuai Zhang, Xiaotong Wu, Peng Zhang, Xixun Lin, Zhao Li, Shirui Pan</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Equivariant Hypergraph Diffusion for Crystal Structure Prediction</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Shuai Zhang, Xiaotong Wu, Peng Zhang, Xixun Lin, Zhao Li, Shirui Pan</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Sharpness-aware Zeroth-order Optimization for Graph Transformers</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Yuhan Lin, Shuai Zhang, Yang Gao, Zhao Li, Shirui Pan</div>
-              <div class=”pub-venue”><span class=”venue-tag”>IJCAI</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Sharpness-aware Zeroth-order Optimization for Graph Transformers</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Yuhan Lin, Shuai Zhang, Yang Gao, Zhao Li, Shirui Pan</div>
+                <div class="pub-venue"><span class="venue-tag">IJCAI</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Contrastive Modality-Disentangled Learning for Multimodal Recommendation</div>
-              <div class=”pub-authors”>Xixun Lin, Rui Liu, Yanan Cao, Lixun Zou, Yongxuan Wu, <span class=”self”>Yang Liu</span>, Dawei Yin, Guandong Xu</div>
-              <div class=”pub-venue”><span class=”venue-tag”>TOIS</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Contrastive Modality-Disentangled Learning for Multimodal Recommendation</div>
+                <div class="pub-authors">Xixun Lin, Rui Liu, Yanan Cao, Lixun Zou, Yongxuan Wu, <span class="self">Yang Liu</span>, Dawei Yin, Guandong Xu</div>
+                <div class="pub-venue"><span class="venue-tag">TOIS</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>RHGNN: Imposing Relational Inductive Bias for Heterogeneous Graph Neural Network</div>
-              <div class=”pub-authors”>Shichao Zhu, Shuai Zhang, <span class=”self”>Yang Liu</span>, Chuan Zhou, Shirui Pan, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>JMLC</span> 2025</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">RHGNN: Imposing Relational Inductive Bias for Heterogeneous Graph Neural Network</div>
+                <div class="pub-authors">Shichao Zhu, Shuai Zhang, <span class="self">Yang Liu</span>, Chuan Zhou, Shirui Pan, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">JMLC</span> 2025</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Node-Centric Meta Structure Search on Heterogeneous Graphs</div>
-              <div class=”pub-authors”>Xiaoou Zhang, Yang Gao, <span class=”self”>Yang Liu</span>, Yujia Zhu, Chuan Zhou, Peng Zhang, Yong Ding, Qingyun Liu, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICASSP</span> 2025</div>
+              <div class="pub-entry">
+                <div class="pub-title">Node-Centric Meta Structure Search on Heterogeneous Graphs</div>
+                <div class="pub-authors">Xiaoou Zhang, Yang Gao, <span class="self">Yang Liu</span>, Yujia Zhu, Chuan Zhou, Peng Zhang, Yong Ding, Qingyun Liu, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">ICASSP</span> 2025</div>
+              </div>
             </div>
 
             <!-- ===== 2024 ===== -->
-            <div class=”pub-year-label”>2024</div>
+            <div class="pub-year-group">
+              <div class="pub-year-label" id="pub-2024">2024</div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Neural Jump-Diffusion Temp Link Point Processes</div>
-              <div class=”pub-authors”>Shuai Zhang, Chuan Zhou, <span class=”self”>Yang Liu</span>, Peng Zhang, Xixun Lin, Zhiming Ma</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICML</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Neural Jump-Diffusion Temp Link Point Processes</div>
+                <div class="pub-authors">Shuai Zhang, Chuan Zhou, <span class="self">Yang Liu</span>, Peng Zhang, Xixun Lin, Zhiming Ma</div>
+                <div class="pub-venue"><span class="venue-tag">ICML</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>CL4CO: A Curriculum Training Framework for Graph-based Neural Combinatorial Optimization</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Zhao Li, Shuai Zhang, Xixun Lin, Xindong Wu</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">CL4CO: A Curriculum Training Framework for Graph-based Neural Combinatorial Optimization</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Zhao Li, Shuai Zhang, Xixun Lin, Xindong Wu</div>
+                <div class="pub-venue"><span class="venue-tag">ICDM</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Secure Causal Reasoning on Coarsened Graph for Privacy-Aware Social Web Services</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Huang Fang, Peng Zhang, Yilin Pang, Qingzhao Zhang, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICWS</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Secure Causal Reasoning on Coarsened Graph for Privacy-Aware Social Web Services</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Huang Fang, Peng Zhang, Yilin Pang, Qingzhao Zhang, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">ICWS</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Transformer-based Graph Neural Networks for Battery Range Prediction in AIoT Battery-Swap Services</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>*, Zhao Li*, Chuan Zhou, Xuanwu Liu, Xuming Pan, Buqing Cao, Xindong Wu</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICWS</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Transformer-based Graph Neural Networks for Battery Range Prediction in AIoT Battery-Swap Services</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>*, Zhao Li*, Chuan Zhou, Xuanwu Liu, Xuming Pan, Buqing Cao, Xindong Wu</div>
+                <div class="pub-venue"><span class="venue-tag">ICWS</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Curriculum Learning for Knowledge Graph Embedding</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Yanan Cao, Yongchao Liu, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Curriculum Learning for Knowledge Graph Embedding</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Yanan Cao, Yongchao Liu, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>MQuinE: A Cure for “Z-paradox” in Knowledge Graph Embedding</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Huang Fang, Yunfeng Cai, Mingming Sun</div>
-              <div class=”pub-venue”><span class=”venue-tag”>EMNLP</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">MQuinE: A Cure for "Z-paradox" in Knowledge Graph Embedding</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Huang Fang, Yunfeng Cai, Mingming Sun</div>
+                <div class="pub-venue"><span class="venue-tag">EMNLP</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Combinatorial Optimization with Automated Graph Neural Networks</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Peng Zhang, Yang Gao, Chuan Zhou, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Combinatorial Optimization with Automated Graph Neural Networks</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Peng Zhang, Yang Gao, Chuan Zhou, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Decision-focused Graph Neural Networks for Combinatorial Optimization</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Shirui Pan, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>Arxiv</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Decision-focused Graph Neural Networks for Combinatorial Optimization</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Shirui Pan, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Meta Structure Search for Link Weight Prediction in Heterogeneous Graph</div>
-              <div class=”pub-authors”>Xiaoou Zhang, Yang Gao, <span class=”self”>Yang Liu</span>, Yujia Zhu, Peng Zhang, Chuan Zhou, Qingyun Liu, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICASSP</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Meta Structure Search for Link Weight Prediction in Heterogeneous Graph</div>
+                <div class="pub-authors">Xiaoou Zhang, Yang Gao, <span class="self">Yang Liu</span>, Yujia Zhu, Peng Zhang, Chuan Zhou, Qingyun Liu, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">ICASSP</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Linked Patterns of Symptoms and Cognition with Functional Brain Controllability in Major Depressive Disorder</div>
-              <div class=”pub-authors”>Qian Li, Youjin Zhao, Yongbo Hu, <span class=”self”>Yang Liu</span>, Yaxuan Wang, Qian Zhang, Fenghua Long, John A. Sweeney, Weihong Kuang, Fei Li, Qiyong Gong</div>
-              <div class=”pub-venue”><span class=”venue-tag”>eBioMedicine</span> 2024</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Linked Patterns of Symptoms and Cognition with Functional Brain Controllability in Major Depressive Disorder</div>
+                <div class="pub-authors">Qian Li, Youjin Zhao, Yongbo Hu, <span class="self">Yang Liu</span>, Yaxuan Wang, Qian Zhang, Fenghua Long, John A. Sweeney, Weihong Kuang, Fei Li, Qiyong Gong</div>
+                <div class="pub-venue"><span class="venue-tag">eBioMedicine</span> 2024</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Unsupervised Pre-trained Social Networks for E-commerce Community Detection</div>
-              <div class=”pub-authors”>Ting Li, Chunqi Wu, <span class=”self”>Yang Liu</span>, Zhao Li, Chuan Zhou, Hongyang Chen, Chenhao Qiu, Yongchao Liu, Peng Du, and Chuntao Hong</div>
-              <div class=”pub-venue”><span class=”venue-tag”>HPCC</span> 2024</div>
+              <div class="pub-entry">
+                <div class="pub-title">Unsupervised Pre-trained Social Networks for E-commerce Community Detection</div>
+                <div class="pub-authors">Ting Li, Chunqi Wu, <span class="self">Yang Liu</span>, Zhao Li, Chuan Zhou, Hongyang Chen, Chenhao Qiu, Yongchao Liu, Peng Du, and Chuntao Hong</div>
+                <div class="pub-venue"><span class="venue-tag">HPCC</span> 2024</div>
+              </div>
             </div>
 
             <!-- ===== 2023 ===== -->
-            <div class=”pub-year-label”>2023</div>
+            <div class="pub-year-group">
+              <div class="pub-year-label" id="pub-2023">2023</div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Decision-focused Graph Neural Networks for Graph Learning and Optimization</div>
-              <div class=”pub-authors”><span class=”self”>Yang Liu</span>, Chuan Zhou, Peng Zhang, Shuai Zhang, Xiaoou Zhang, Zhao Li, Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2023</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Decision-focused Graph Neural Networks for Graph Learning and Optimization</div>
+                <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Shuai Zhang, Xiaoou Zhang, Zhao Li, Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">ICDM</span> 2023</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>Multiple Hypothesis Testing for Anomaly Detection in Multi-type Event Sequences</div>
-              <div class=”pub-authors”>Shuai Zhang, Chuan Zhou, Peng Zhang, <span class=”self”>Yang Liu</span>, Zhao Li, and Hongyang Chen</div>
-              <div class=”pub-venue”><span class=”venue-tag”>ICDM</span> 2023</div>
-            </div>
+              <div class="pub-entry">
+                <div class="pub-title">Multiple Hypothesis Testing for Anomaly Detection in Multi-type Event Sequences</div>
+                <div class="pub-authors">Shuai Zhang, Chuan Zhou, Peng Zhang, <span class="self">Yang Liu</span>, Zhao Li, and Hongyang Chen</div>
+                <div class="pub-venue"><span class="venue-tag">ICDM</span> 2023</div>
+              </div>
 
-            <div class=”pub-entry”>
-              <div class=”pub-title”>MLN4KB: An Efficient Markov Logic Network Engine for Large-scale Knowledge Bases and Structured Logic Rules</div>
-              <div class=”pub-authors”>Huang Fang, <span class=”self”>Yang Liu</span>, Yunfeng Cai, Mingming Sun</div>
-              <div class=”pub-venue”><span class=”venue-tag”>WWW</span> 2023</div>
+              <div class="pub-entry">
+                <div class="pub-title">MLN4KB: An Efficient Markov Logic Network Engine for Large-scale Knowledge Bases and Structured Logic Rules</div>
+                <div class="pub-authors">Huang Fang, <span class="self">Yang Liu</span>, Yunfeng Cai, Mingming Sun</div>
+                <div class="pub-venue"><span class="venue-tag">WWW</span> 2023</div>
+              </div>
             </div>
 
           </div>
 
 
         
-          <!-- Naruto Quote Section -->
+          <!-- Philosophy Section -->
           <table class="section-table">
             <tbody>
               <tr>
                 <td class="section-heading">
-                  💭 Philosophy
+                  Philosophy
                 </td>
               </tr>
             </tbody>
           </table>
-          <table class="content-table">
-            <tbody>
-              <tr>
-                <td style="padding:20px 10px;width:100%;vertical-align:middle;text-align:center">
-                  <div class="naruto-quote">
-                    <p class="quote-text">
-                      "努力は必ず報われる。もし報われない努力があるのならば、それはまだ努力とは呼べない。"
-                    </p>
-                    <p class="quote-translation">
-                      "努力一定会得到回报。如果还有得不到回报的努力，那它还不能被称为努力。"
-                    </p>
-                    <p class="quote-meaning">
-                      <em>—— 火影忍者</em><br>
-                      在学术研究的道路上，我相信持续的努力终会开花结果；<br>
-                      在感情的世界里，我也相信真诚的付出会换来美好的未来。<br>
-                      无论是对待科研还是爱情，我都会全力以赴，永不言弃。
-                    </p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+
+          <div class="philosophy-card">
+            <div class="philosophy-quote-block">
+              <div class="philosophy-icon">💭</div>
+              <blockquote class="philosophy-jp">
+                "努力は必ず報われる。もし報われない努力があるのならば、それはまだ努力とは呼べない。"
+              </blockquote>
+              <p class="philosophy-cn">
+                "努力一定会得到回报。如果还有得不到回报的努力，那它还不能被称为努力。"
+              </p>
+              <p class="philosophy-source">—— 火影忍者</p>
+            </div>
+            <div class="philosophy-divider"></div>
+            <div class="philosophy-reflection">
+              <p>在学术研究的道路上，我相信持续的努力终会开花结果；</p>
+              <p>在感情的世界里，我也相信真诚的付出会换来美好的未来。</p>
+              <p>无论是对待科研还是爱情，我都会全力以赴，永不言弃。</p>
+            </div>
+          </div>
 
   <script>
   // Get the header
@@ -790,6 +1089,17 @@
   // 初始与滚动时更新返回顶部按钮可见性
   updateBackToTopVisibility();
   window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+
+  // 年份标签平滑滚动
+  document.querySelectorAll('.pub-year-tag').forEach(function(tag) {
+    tag.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 </script>
 
 </body>

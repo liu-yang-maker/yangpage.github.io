@@ -334,35 +334,92 @@ university {
    Publications Section - Academic List Layout
    ============================================ */
 
+/* Year navigation tags bar */
+.pub-year-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  margin: 12px auto 6px;
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  border-radius: 10px;
+}
+
+.pub-year-tag {
+  display: inline-block;
+  padding: 6px 20px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.8);
+  background-color: #fff;
+  border: 1.5px solid rgba(78, 60, 182, 0.2);
+  border-radius: 20px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(78, 60, 182, 0.08);
+}
+
+.pub-year-tag:hover {
+  color: #fff;
+  background-color: rgba(78, 60, 182, 0.7);
+  border-color: rgba(78, 60, 182, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(78, 60, 182, 0.2);
+}
+
+.pub-year-tag:active {
+  transform: translateY(0);
+}
+
 .pub-list {
   width: 100%;
   margin: 15px auto 20px;
   padding: 0;
 }
 
-.pub-year-label {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: rgba(78, 60, 182, 0.7);
-  padding: 12px 0 6px 0;
-  margin-top: 20px;
-  margin-bottom: 4px;
-  border-bottom: 2px solid rgba(78, 60, 182, 0.15);
-  letter-spacing: 0.5px;
+/* Year group wrapper */
+.pub-year-group {
+  margin-bottom: 28px;
+  padding-bottom: 8px;
 }
 
-.pub-year-label:first-child {
+.pub-year-group:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pub-year-label {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.75);
+  padding: 10px 0 8px 12px;
   margin-top: 0;
+  margin-bottom: 8px;
+  border-bottom: none;
+  border-left: 4px solid rgba(78, 60, 182, 0.4);
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, rgba(78, 60, 182, 0.04) 0%, transparent 100%);
+  scroll-margin-top: 90px;
 }
 
 .pub-entry {
   padding: 14px 18px;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
   background-color: #f8f8f8;
   border-radius: 6px;
   border-left: 3px solid transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   transition: border-left-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pub-entry:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .pub-entry:hover {
@@ -398,10 +455,11 @@ university {
 }
 
 .pub-authors .self {
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #111;
   text-decoration: underline;
-  text-decoration-color: rgba(78, 60, 182, 0.4);
+  text-decoration-color: rgba(78, 60, 182, 0.5);
+  text-decoration-thickness: 2px;
   text-underline-offset: 2px;
 }
 
@@ -440,8 +498,308 @@ university {
   color: #f09228;
 }
 
-/* Responsive: mobile adjustments for publications */
+/* ============================================
+   News Section - Timeline Style
+   ============================================ */
+
+.news-list {
+  margin: 12px auto 20px;
+  padding: 18px 24px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  max-height: 155px;
+  overflow-y: auto;
+}
+
+/* Thin scrollbar for news */
+.news-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.news-list::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 60, 182, 0.2);
+  border-radius: 2px;
+}
+
+.news-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(78, 60, 182, 0.4);
+}
+
+.news-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.news-item:first-child {
+  padding-top: 0;
+}
+
+.news-date {
+  flex-shrink: 0;
+  display: inline-block;
+  min-width: 68px;
+  padding: 3px 10px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.85);
+  background-color: rgba(78, 60, 182, 0.08);
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.news-text {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.news-text a {
+  font-weight: 600;
+}
+
+/* ============================================
+   Intern Experience Section - Card Rows
+   ============================================ */
+
+.intern-list {
+  margin: 12px auto 20px;
+  padding: 10px 14px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  max-height: 175px;
+  overflow-y: auto;
+}
+
+.intern-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.intern-list::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.intern-list::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 60, 182, 0.2);
+  border-radius: 2px;
+}
+
+.intern-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(78, 60, 182, 0.4);
+}
+
+.intern-item {
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  background-color: #fff;
+  border-radius: 8px;
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intern-item:last-child {
+  margin-bottom: 0;
+}
+
+.intern-item:hover {
+  border-left-color: rgba(78, 60, 182, 0.5);
+  background-color: #f2f0fa;
+  box-shadow: 0 2px 8px rgba(78, 60, 182, 0.06);
+}
+
+.intern-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.intern-company {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+}
+
+.intern-company a {
+  color: #1772d0;
+  font-weight: 600;
+}
+
+.intern-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.intern-year {
+  display: inline-block;
+  padding: 2px 12px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.8);
+  background-color: rgba(78, 60, 182, 0.08);
+  border-radius: 12px;
+  letter-spacing: 0.3px;
+}
+
+.intern-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(78, 60, 182, 0.7);
+  background-color: rgba(78, 60, 182, 0.08);
+  border-radius: 12px;
+  letter-spacing: 0.3px;
+}
+
+.intern-desc {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Education Section - Vertical Timeline
+   ============================================ */
+
+.edu-timeline {
+  margin: 12px auto 20px;
+  padding: 14px 14px 14px 36px;
+  position: relative;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  max-height: 185px;
+  overflow-y: auto;
+}
+
+.edu-timeline::-webkit-scrollbar {
+  width: 4px;
+}
+
+.edu-timeline::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+.edu-timeline::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 60, 182, 0.2);
+  border-radius: 2px;
+}
+
+.edu-timeline::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(78, 60, 182, 0.4);
+}
+
+/* vertical line */
+.edu-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(78, 60, 182, 0.3), rgba(78, 60, 182, 0.08));
+  border-radius: 1px;
+}
+
+.edu-item {
+  position: relative;
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  background-color: #fff;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.edu-item:last-child {
+  margin-bottom: 0;
+}
+
+.edu-item:hover {
+  background-color: #f2f0fa;
+}
+
+/* dot on the timeline */
+.edu-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 16px;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(78, 60, 182, 0.5);
+  border: 2px solid #f8f8f8;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.edu-title {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.edu-school {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(78, 60, 182, 0.7);
+  margin-bottom: 2px;
+}
+
+.edu-year {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 12.5px;
+  font-style: italic;
+  color: #888;
+}
+
+/* ============================================
+   Responsive: mobile adjustments
+   ============================================ */
 @media screen and (max-width: 600px) {
+  /* Publications */
+  .pub-year-nav {
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  .pub-year-tag {
+    padding: 5px 14px;
+    font-size: 13px;
+  }
+
+  .pub-year-group {
+    margin-bottom: 20px;
+  }
+
   .pub-entry {
     padding: 12px 14px;
   }
@@ -460,6 +818,47 @@ university {
 
   .pub-year-label {
     font-size: 18px;
+  }
+
+  /* News */
+  .news-list {
+    padding: 14px 16px;
+  }
+
+  .news-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .news-date {
+    align-self: flex-start;
+  }
+
+  /* Intern */
+  .intern-list {
+    padding: 8px 10px;
+  }
+
+  .intern-item {
+    padding: 10px 12px;
+  }
+
+  .intern-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Education */
+  .edu-timeline {
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+
+  .edu-item::before {
+    left: -20px;
+    width: 8px;
+    height: 8px;
   }
 }
 
@@ -495,7 +894,7 @@ university {
     position: relative;
     display: inline-block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
   
   .profile-name::after {
@@ -511,64 +910,126 @@ university {
     50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
   }
 
-  .profile-bio {
+  /* Bio Section */
+  .bio-section {
+    background: linear-gradient(135deg, #f9f8ff 0%, #f5f3ff 100%);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(78, 60, 182, 0.06);
+  }
+
+  .bio-block {
+    position: relative;
+    padding-left: 36px;
+  }
+
+  .bio-lang {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(78, 60, 182, 0.7);
+    background-color: rgba(78, 60, 182, 0.08);
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .bio-text {
     font-family: 'Lato', Verdana, Helvetica, sans-serif;
     font-size: 14px;
     text-align: justify;
-    margin-bottom: 20px;
-    line-height: 1.8;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
   }
-  
+
+  .bio-divider {
+    width: 50px;
+    height: 1.5px;
+    background: linear-gradient(90deg, rgba(78, 60, 182, 0.2), rgba(78, 60, 182, 0.05));
+    margin: 10px 0 10px 36px;
+    border-radius: 1px;
+  }
+
   .profile-love {
     font-family: 'Lato', Verdana, Helvetica, sans-serif;
     font-size: 14px;
     text-align: center;
-    margin-top: 15px;
-    padding: 12px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px;
     background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1));
     border-radius: 8px;
     transition: all 0.3s ease;
   }
-  
+
   .profile-love:hover {
     background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.2));
     transform: translateY(-2px);
   }
-  
+
   .profile-love a {
     color: #ff69b4;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
   }
-  
+
   .profile-love a:hover {
     color: #ff1493;
     text-decoration: underline;
   }
 
-.profile-apply {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
+  /* Profile Links - Pill Buttons */
+  .profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 0;
+  }
 
-.profile-links {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
-  text-align: center;
-  margin-top: 20px;
-  }
-  
   .profile-links a {
-  display: inline-block;
-  margin: 0 10px;
-  color: #1772d0;
-  text-decoration: none;
+    display: inline-block;
+    padding: 5px 14px;
+    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1772d0;
+    background-color: rgba(23, 114, 208, 0.06);
+    border: 1px solid rgba(23, 114, 208, 0.15);
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
-  
+
   .profile-links a:hover {
-  color: #f09228;
+    color: #fff;
+    background-color: #1772d0;
+    border-color: #1772d0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(23, 114, 208, 0.2);
+  }
+
+  .profile-links a.love-link {
+    color: #ff69b4;
+    background-color: rgba(255, 105, 180, 0.06);
+    border-color: rgba(255, 105, 180, 0.2);
+  }
+
+  .profile-links a.love-link:hover {
+    color: #fff;
+    background-color: #ff69b4;
+    border-color: #ff69b4;
+    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
   }
   
 
