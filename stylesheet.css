@@ -860,6 +860,56 @@ university {
     width: 8px;
     height: 8px;
   }
+
+  /* Nindo / Philosophy */
+  .nindo-header {
+    padding: 16px 18px 14px;
+    gap: 10px;
+  }
+
+  .nindo-konoha-svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nindo-title {
+    font-size: 17px;
+  }
+
+  .nindo-subtitle {
+    font-size: 11px;
+  }
+
+  .nindo-quotes {
+    padding: 18px 18px 6px;
+  }
+
+  .nindo-quote {
+    padding: 14px 14px 14px 18px;
+    margin-bottom: 16px;
+  }
+
+  .nindo-quote-jp {
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  .nindo-quote-cn {
+    font-size: 13px;
+  }
+
+  .nindo-scroll-divider {
+    padding: 0 18px;
+  }
+
+  .nindo-reflection {
+    padding: 16px 18px 22px;
+  }
+
+  .nindo-reflection p {
+    font-size: 13px;
+    line-height: 1.9;
+  }
 }
 
 /* improved layout with floating, absolute and relative positioning */
