@@ -131,95 +131,8 @@
       display: none;
     }
 
-    /* Philosophy Section */
-    .nindo-card {
-      margin: 10px auto 20px;
-      padding: 0;
-      background: #f7f8fa;
-      border-radius: 6px;
-      border: 1px solid rgba(26, 54, 93, 0.06);
-      overflow: hidden;
-      position: relative;
-      text-align: left;
-    }
-
-    .nindo-header {
-      padding: 14px 20px 10px;
-      border-bottom: 1px solid rgba(26, 54, 93, 0.08);
-    }
-
-    .nindo-title-block {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .nindo-title {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: #1a365d;
-      letter-spacing: 0;
-      line-height: 1.3;
-    }
-
-    .nindo-subtitle {
-      display: none;
-    }
-
-    .nindo-quotes {
-      display: none;
-    }
-
-    .nindo-quote { display: none; }
-    .nindo-scroll-divider { display: none; }
-
-    .nindo-reflection {
-      padding: 14px 20px 18px;
-    }
-
-    .nindo-reflection-label {
-      display: none;
-    }
-
-    .nindo-reflection p {
-      font-size: 13.5px;
-      color: #4a5568;
-      line-height: 1.8;
-      margin: 0 0 4px 0;
-      text-align: left;
-    }
-
-    .nindo-reflection p:last-child {
-      margin-bottom: 0;
-    }
-
-    .nindo-emphasis {
-      font-weight: 600;
-      color: #1a365d;
-    }
 
     /* Dark mode */
-    .dark-mode .nindo-card {
-      background: #1a202c;
-      border-color: rgba(99, 179, 237, 0.1);
-    }
-
-    .dark-mode .nindo-header {
-      border-bottom-color: rgba(99, 179, 237, 0.1);
-    }
-
-    .dark-mode .nindo-title {
-      color: #e2e8f0;
-    }
-
-    .dark-mode .nindo-emphasis {
-      color: #63b3ed;
-    }
-
-    .dark-mode .nindo-reflection p {
-      color: #a0aec0;
-    }
-
     .dark-mode .bio-section {
       background: #1a202c;
       border-color: rgba(99, 179, 237, 0.1);
@@ -986,29 +899,35 @@
 
 
         
-          <!-- Research Philosophy Section -->
+          <!-- Philosophy Section -->
           <table class="section-table">
             <tbody>
               <tr>
                 <td class="section-heading">
-                  Research Philosophy
+                  Philosophy
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <div class="nindo-card">
-            <div class="nindo-header">
-              <div class="nindo-title-block">
-                <div class="nindo-title">My Research Philosophy</div>
-              </div>
+          <div class="philosophy-grid">
+            <div class="philosophy-card">
+              <div class="philosophy-card-title">Research</div>
+              <p class="philosophy-card-text">科研之路如同修行——看似孤独的探索背后，是对信念的坚守。真正的强大不在于天赋，而在于永不言弃的意志。</p>
+              <p class="philosophy-card-text philosophy-card-emphasis">这就是我的信念。</p>
             </div>
-            <div class="nindo-reflection">
-              <p>科研之路如同修行——看似孤独的探索背后，是对信念的坚守；</p>
-              <p>每一篇论文、每一次实验，都是一场不确定结局的任务；</p>
-              <p>真正的强大不在于天赋，而在于永不言弃的意志；</p>
-              <p>无论是面对学术中的迷雾，还是生活里的风雨，我都选择向前奔跑——</p>
-              <p class="nindo-emphasis">这就是我的信念。</p>
+
+            <div class="philosophy-card">
+              <div class="philosophy-card-title">Love</div>
+              <p class="philosophy-card-text">与 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长。</p>
+              <p class="philosophy-card-text">最好的时光，是并肩走过的每一步。</p>
+            </div>
+
+            <div class="philosophy-card">
+              <div class="philosophy-card-title">Nindo</div>
+              <img src="figs/naruto.webp" alt="Naruto" class="philosophy-naruto-img">
+              <p class="philosophy-card-quote">まっすぐ自分の言葉は曲げねぇ、それが俺の忍道だ！</p>
+              <p class="philosophy-card-translation">我绝不违背自己的誓言，这就是我的忍道。</p>
             </div>
           </div>
 
