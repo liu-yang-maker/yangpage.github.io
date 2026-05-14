@@ -778,9 +778,129 @@ university {
 }
 
 /* ============================================
+   Philosophy Section - Three Column Cards
+   ============================================ */
+
+.philosophy-grid {
+  display: flex;
+  gap: 16px;
+  margin: 10px auto 20px;
+}
+
+.philosophy-card {
+  flex: 1;
+  padding: 18px 20px;
+  background: #f7f8fa;
+  border: 1px solid rgba(26, 54, 93, 0.06);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.philosophy-card:hover {
+  border-color: rgba(26, 54, 93, 0.15);
+}
+
+.philosophy-card-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1a365d;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(26, 54, 93, 0.08);
+}
+
+.philosophy-card-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a5568;
+  margin: 0;
+}
+
+.philosophy-card-text a {
+  color: #1a56a8;
+  font-weight: 500;
+}
+
+.philosophy-card-text a:hover {
+  color: #2b6cb0;
+}
+
+.philosophy-card-emphasis {
+  font-weight: 600;
+  color: #1a365d;
+}
+
+.philosophy-naruto-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid rgba(26, 54, 93, 0.1);
+}
+
+.philosophy-card-quote {
+  font-size: 12.5px;
+  font-style: italic;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0 0 6px 0;
+}
+
+.philosophy-card-translation {
+  font-size: 12px;
+  color: #718096;
+  margin: 0;
+}
+
+/* Dark mode: Philosophy */
+.dark-mode .philosophy-card {
+  background: #1a202c;
+  border-color: rgba(99, 179, 237, 0.1);
+}
+
+.dark-mode .philosophy-card:hover {
+  border-color: rgba(99, 179, 237, 0.2);
+}
+
+.dark-mode .philosophy-card-title {
+  color: #63b3ed;
+  border-bottom-color: rgba(99, 179, 237, 0.1);
+}
+
+.dark-mode .philosophy-card-text {
+  color: #a0aec0;
+}
+
+.dark-mode .philosophy-card-emphasis {
+  color: #63b3ed;
+}
+
+.dark-mode .philosophy-card-quote {
+  color: #a0aec0;
+}
+
+.dark-mode .philosophy-card-translation {
+  color: #718096;
+}
+
+.dark-mode .philosophy-naruto-img {
+  border-color: rgba(99, 179, 237, 0.2);
+}
+
+/* ============================================
    Responsive: mobile adjustments
    ============================================ */
 @media screen and (max-width: 600px) {
+  .philosophy-grid {
+    flex-direction: column;
+  }
+
   /* Publications */
   .pub-year-nav {
     gap: 8px;
