@@ -9,50 +9,36 @@
   <meta name="author" content="Yang Liu">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
   <style>
-    .flower {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: fall linear forwards;
-    }
-    
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
-
-  <style>
-    /* 白天模式 */
     :root {
-      --bg-color: #ffffff;
-      --text-color: #333333;
-      --link-color: #0066cc;
-      --header-bg: #f8f9fa;
-      --section-bg: #f1f3f5;
+      --bg-color: #fafafa;
+      --text-color: #2d3748;
+      --link-color: #1a56a8;
+      --header-bg: #ffffff;
+      --section-bg: #f7f8fa;
       --profile-bg: #ffffff;
-      --profile-text: #333333;
+      --profile-text: #2d3748;
+      --accent: #1a365d;
+      --accent-light: rgba(26, 54, 93, 0.08);
     }
-    
-    /* 修正的黑夜模式 - 提高对比度 */
+
     .dark-mode {
-      --bg-color: #121212;  /* 深灰背景 */
-      --text-color: #e0e0e0; /* 亮灰文字 */
-      --link-color: #4dabf7; /* 亮蓝色链接 */
-      --header-bg: #1e1e1e;  /* 稍浅的深灰 */
-      --section-bg: #2d2d2d;  /* 中灰色区块 */
-      --profile-bg: #252525;  /* 个人介绍区块背景 */
-      --profile-text: #f0f0f0; /* 亮白文字 */
+      --bg-color: #0f1419;
+      --text-color: #e2e8f0;
+      --link-color: #63b3ed;
+      --header-bg: #1a202c;
+      --section-bg: #2d3748;
+      --profile-bg: #1a202c;
+      --profile-text: #e2e8f0;
+      --accent: #63b3ed;
+      --accent-light: rgba(99, 179, 237, 0.1);
     }
 
     /* 应用到各个元素 */
@@ -66,7 +52,10 @@
       background-color: var(--header-bg);
     }
     
-    .section-table, .content-table {
+    .section-table {
+      background-color: transparent;
+    }
+    .content-table {
       background-color: var(--section-bg);
     }
     
@@ -128,84 +117,35 @@
       pointer-events: auto;
     }
 
-    /* 爱情链接样式 */
     .love-link {
       position: relative;
-      transition: all 0.3s ease;
+      transition: color 0.2s ease;
     }
-    
+
     .love-link:hover {
-      color: #ff69b4 !important;
-      transform: scale(1.1);
+      color: #2b6cb0 !important;
+      transform: none;
     }
-    
+
     .love-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #ff69b4, #ff1493);
-      transition: width 0.3s ease;
-    }
-    
-    .love-link:hover::after {
-      width: 100%;
+      display: none;
     }
 
-    /* ============================================
-       Philosophy / Nindo Section
-       ============================================ */
-
-    @keyframes nindoSlideIn {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes nindoPulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes nindoStrokeIn {
-      from { stroke-dashoffset: 200; }
-      to { stroke-dashoffset: 0; }
-    }
-
+    /* Philosophy Section */
     .nindo-card {
-      margin: 12px auto 20px;
+      margin: 10px auto 20px;
       padding: 0;
-      background: linear-gradient(160deg, #faf9ff 0%, #f5f3ff 40%, #fff8f0 70%, #fdf2f8 100%);
-      border-radius: 14px;
-      box-shadow: 0 3px 18px rgba(78, 60, 182, 0.08), 0 1px 4px rgba(255, 102, 0, 0.04);
-      animation: fadeInUp 0.8s ease-out;
+      background: #f7f8fa;
+      border-radius: 6px;
+      border: 1px solid rgba(26, 54, 93, 0.06);
       overflow: hidden;
       position: relative;
       text-align: left;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' opacity='0.03'%3E%3Cpath d='M30 30 C30 22,22 18,18 22 C14 26,18 34,26 34 C34 34,38 26,34 20 C30 14,20 12,16 18' fill='none' stroke='%234E3CB6' stroke-width='1.5'/%3E%3C/svg%3E");
     }
 
     .nindo-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 20px 28px 16px;
-      background: linear-gradient(135deg, rgba(78, 60, 182, 0.06) 0%, rgba(255, 102, 0, 0.04) 100%);
-      border-bottom: 2px solid rgba(78, 60, 182, 0.08);
-    }
-
-    .nindo-konoha-svg {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      opacity: 0.7;
-      animation: nindoPulse 3s ease-in-out infinite;
-    }
-
-    .nindo-konoha-svg path {
-      stroke-dasharray: 200;
-      animation: nindoStrokeIn 2s ease-out forwards;
+      padding: 14px 20px 10px;
+      border-bottom: 1px solid rgba(26, 54, 93, 0.08);
     }
 
     .nindo-title-block {
@@ -214,134 +154,37 @@
     }
 
     .nindo-title {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-color);
-      letter-spacing: 1px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a365d;
+      letter-spacing: 0;
       line-height: 1.3;
     }
 
     .nindo-subtitle {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(78, 60, 182, 0.55);
-      letter-spacing: 2px;
-      margin-top: 2px;
+      display: none;
     }
 
     .nindo-quotes {
-      padding: 24px 28px 8px;
+      display: none;
     }
 
-    .nindo-quote {
-      position: relative;
-      padding: 18px 20px 18px 24px;
-      margin-bottom: 20px;
-      border-left: 3px solid rgba(255, 102, 0, 0.35);
-      background: linear-gradient(135deg, rgba(255, 102, 0, 0.03) 0%, transparent 100%);
-      border-radius: 0 10px 10px 0;
-      animation: nindoSlideIn 0.6s ease-out both;
-    }
-
-    .nindo-quote:nth-child(1) { animation-delay: 0.1s; }
-    .nindo-quote:nth-child(2) {
-      animation-delay: 0.25s;
-      border-left-color: rgba(78, 60, 182, 0.4);
-      background: linear-gradient(135deg, rgba(78, 60, 182, 0.03) 0%, transparent 100%);
-    }
-    .nindo-quote:nth-child(3) {
-      animation-delay: 0.4s;
-      border-left-color: rgba(255, 105, 180, 0.35);
-      background: linear-gradient(135deg, rgba(255, 105, 180, 0.03) 0%, transparent 100%);
-    }
-
-    .nindo-quote-char {
-      display: inline-block;
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      padding: 2px 10px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .nindo-quote-char--naruto {
-      color: #d45500;
-      background-color: rgba(255, 102, 0, 0.1);
-    }
-
-    .nindo-quote-char--effort {
-      color: rgba(78, 60, 182, 0.7);
-      background-color: rgba(78, 60, 182, 0.08);
-    }
-
-    .nindo-quote-char--jiraiya {
-      color: #c0457b;
-      background-color: rgba(255, 105, 180, 0.1);
-    }
-
-    .nindo-quote-jp {
-      font-size: 16px;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--text-color);
-      line-height: 1.9;
-      margin: 0 0 8px 0;
-      letter-spacing: 0.3px;
-    }
-
-    .nindo-quote-cn {
-      font-size: 14px;
-      color: var(--text-color);
-      opacity: 0.75;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    .nindo-scroll-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 28px;
-      margin: 8px 0 4px;
-    }
-
-    .nindo-scroll-divider-line {
-      flex: 1;
-      height: 1.5px;
-      background: linear-gradient(90deg, rgba(255, 102, 0, 0.2), rgba(78, 60, 182, 0.2), rgba(255, 105, 180, 0.2));
-      border-radius: 1px;
-    }
-
-    .nindo-scroll-divider-symbol {
-      font-size: 14px;
-      color: rgba(78, 60, 182, 0.4);
-      flex-shrink: 0;
-    }
+    .nindo-quote { display: none; }
+    .nindo-scroll-divider { display: none; }
 
     .nindo-reflection {
-      padding: 20px 28px 28px;
-      animation: nindoSlideIn 0.6s ease-out 0.55s both;
+      padding: 14px 20px 18px;
     }
 
     .nindo-reflection-label {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(78, 60, 182, 0.45);
-      margin-bottom: 10px;
+      display: none;
     }
 
     .nindo-reflection p {
-      font-size: 14px;
-      color: var(--text-color);
-      opacity: 0.8;
-      line-height: 2;
+      font-size: 13.5px;
+      color: #4a5568;
+      line-height: 1.8;
       margin: 0 0 4px 0;
       text-align: left;
     }
@@ -352,204 +195,148 @@
 
     .nindo-emphasis {
       font-weight: 600;
-      opacity: 1 !important;
-      color: #d45500;
+      color: #1a365d;
     }
 
-    /* Dark mode: Nindo */
+    /* Dark mode */
     .dark-mode .nindo-card {
-      background: linear-gradient(160deg, #1e1b2e 0%, #221f35 40%, #2a2218 70%, #2a1f2e 100%);
-      box-shadow: 0 3px 18px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(255, 102, 0, 0.06);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' opacity='0.04'%3E%3Cpath d='M30 30 C30 22,22 18,18 22 C14 26,18 34,26 34 C34 34,38 26,34 20 C30 14,20 12,16 18' fill='none' stroke='%238C78E6' stroke-width='1.5'/%3E%3C/svg%3E");
+      background: #1a202c;
+      border-color: rgba(99, 179, 237, 0.1);
     }
 
     .dark-mode .nindo-header {
-      background: linear-gradient(135deg, rgba(140, 120, 230, 0.08) 0%, rgba(255, 102, 0, 0.05) 100%);
-      border-bottom-color: rgba(140, 120, 230, 0.1);
+      border-bottom-color: rgba(99, 179, 237, 0.1);
     }
 
-    .dark-mode .nindo-konoha-svg path {
-      stroke: #8C78E6;
-    }
-
-    .dark-mode .nindo-subtitle {
-      color: rgba(140, 120, 230, 0.6);
-    }
-
-    .dark-mode .nindo-quote:nth-child(1) {
-      border-left-color: rgba(255, 140, 0, 0.4);
-      background: linear-gradient(135deg, rgba(255, 140, 0, 0.05) 0%, transparent 100%);
-    }
-
-    .dark-mode .nindo-quote:nth-child(2) {
-      border-left-color: rgba(140, 120, 230, 0.4);
-      background: linear-gradient(135deg, rgba(140, 120, 230, 0.05) 0%, transparent 100%);
-    }
-
-    .dark-mode .nindo-quote:nth-child(3) {
-      border-left-color: rgba(255, 105, 180, 0.4);
-      background: linear-gradient(135deg, rgba(255, 105, 180, 0.05) 0%, transparent 100%);
-    }
-
-    .dark-mode .nindo-quote-char--naruto {
-      color: #ff8c00;
-      background-color: rgba(255, 140, 0, 0.12);
-    }
-
-    .dark-mode .nindo-quote-char--effort {
-      color: rgba(170, 150, 255, 0.9);
-      background-color: rgba(140, 120, 230, 0.15);
-    }
-
-    .dark-mode .nindo-quote-char--jiraiya {
-      color: #ff69b4;
-      background-color: rgba(255, 105, 180, 0.12);
-    }
-
-    .dark-mode .nindo-scroll-divider-line {
-      background: linear-gradient(90deg, rgba(255, 140, 0, 0.25), rgba(140, 120, 230, 0.25), rgba(255, 105, 180, 0.25));
-    }
-
-    .dark-mode .nindo-scroll-divider-symbol {
-      color: rgba(140, 120, 230, 0.5);
-    }
-
-    .dark-mode .nindo-reflection-label {
-      color: rgba(140, 120, 230, 0.5);
+    .dark-mode .nindo-title {
+      color: #e2e8f0;
     }
 
     .dark-mode .nindo-emphasis {
-      color: #ff8c00;
+      color: #63b3ed;
     }
-    
-    /* Dark mode: Bio section */
+
+    .dark-mode .nindo-reflection p {
+      color: #a0aec0;
+    }
+
     .dark-mode .bio-section {
-      background: linear-gradient(135deg, #1e1b2e 0%, #221f35 100%);
-      border-color: rgba(140, 120, 230, 0.1);
+      background: #1a202c;
+      border-color: rgba(99, 179, 237, 0.1);
     }
 
     .dark-mode .bio-lang {
-      color: rgba(170, 150, 255, 0.9);
-      background-color: rgba(140, 120, 230, 0.15);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.12);
     }
 
     .dark-mode .bio-text {
-      color: #bbb;
+      color: #a0aec0;
     }
 
     .dark-mode .bio-divider {
-      background: linear-gradient(90deg, rgba(140, 120, 230, 0.3), rgba(140, 120, 230, 0.05));
+      background: linear-gradient(90deg, rgba(99, 179, 237, 0.25), rgba(99, 179, 237, 0.05));
     }
 
     .dark-mode .profile-love {
-      background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 192, 203, 0.08)) !important;
+      background: rgba(99, 179, 237, 0.05);
+      border-left-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .profile-links a {
-      color: #4dabf7;
-      background-color: rgba(77, 171, 247, 0.08);
-      border-color: rgba(77, 171, 247, 0.2);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.08);
+      border-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .profile-links a:hover {
       color: #fff;
-      background-color: #4dabf7;
-      border-color: #4dabf7;
+      background-color: #63b3ed;
+      border-color: #63b3ed;
     }
 
     .dark-mode .profile-links a.love-link {
-      color: #ff69b4;
-      background-color: rgba(255, 105, 180, 0.08);
-      border-color: rgba(255, 105, 180, 0.2);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.08);
+      border-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .profile-links a.love-link:hover {
       color: #fff;
-      background-color: #ff69b4;
-      border-color: #ff69b4;
+      background-color: #63b3ed;
+      border-color: #63b3ed;
     }
 
-    /* Dark mode: publication list */
     .dark-mode .pub-year-nav {
-      background: linear-gradient(135deg, #2a2640 0%, #1e1b30 100%);
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
     }
 
     .dark-mode .pub-year-tag {
-      color: rgba(170, 150, 255, 0.9);
-      background-color: rgba(140, 120, 230, 0.1);
-      border-color: rgba(140, 120, 230, 0.3);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.08);
+      border-color: rgba(99, 179, 237, 0.25);
     }
 
     .dark-mode .pub-year-tag:hover {
       color: #fff;
-      background-color: rgba(140, 120, 230, 0.6);
-      border-color: rgba(140, 120, 230, 0.6);
-      box-shadow: 0 3px 8px rgba(140, 120, 230, 0.3);
+      background-color: rgba(99, 179, 237, 0.6);
+      border-color: rgba(99, 179, 237, 0.6);
     }
 
     .dark-mode .pub-year-label {
-      color: rgba(140, 120, 230, 0.9);
-      border-left-color: rgba(140, 120, 230, 0.4);
-      background: linear-gradient(90deg, rgba(140, 120, 230, 0.06) 0%, transparent 100%);
+      color: #63b3ed;
+      border-left-color: rgba(99, 179, 237, 0.4);
+      background: linear-gradient(90deg, rgba(99, 179, 237, 0.05) 0%, transparent 100%);
     }
 
     .dark-mode .pub-entry {
       background-color: var(--section-bg);
+      border-bottom-color: rgba(255, 255, 255, 0.04);
     }
 
     .dark-mode .pub-entry:hover {
-      border-left-color: rgba(140, 120, 230, 0.6);
-      background-color: #353535;
+      border-left-color: rgba(99, 179, 237, 0.6);
+      background-color: #353d4a;
     }
 
     .dark-mode .pub-title,
     .dark-mode .pub-title a {
-      color: #e0e0e0;
+      color: #e2e8f0;
     }
 
     .dark-mode .pub-title a:hover {
-      color: #4dabf7;
+      color: #63b3ed;
     }
 
     .dark-mode .pub-authors {
-      color: #aaa;
+      color: #a0aec0;
     }
 
     .dark-mode .pub-authors .self {
-      color: #f0f0f0;
-      text-decoration-color: rgba(140, 120, 230, 0.6);
-      text-decoration-thickness: 2px;
-    }
-
-    .dark-mode .pub-entry {
-      border-bottom-color: rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+      text-decoration-color: rgba(99, 179, 237, 0.5);
     }
 
     .dark-mode .pub-venue {
-      color: rgba(140, 120, 230, 0.85);
+      color: rgba(99, 179, 237, 0.85);
     }
 
     .dark-mode .pub-venue .venue-tag {
-      background-color: rgba(140, 120, 230, 0.15);
-      color: rgba(170, 150, 255, 0.9);
+      background-color: rgba(99, 179, 237, 0.12);
+      color: #63b3ed;
     }
 
     .dark-mode .pub-links a {
-      color: #4dabf7;
+      color: #63b3ed;
     }
 
-    /* Dark mode: News */
     .dark-mode .news-list {
       background-color: var(--section-bg);
+      border-color: rgba(99, 179, 237, 0.08);
     }
 
     .dark-mode .news-list::-webkit-scrollbar-thumb {
-      background-color: rgba(140, 120, 230, 0.25);
-    }
-
-    .dark-mode .news-list::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(140, 120, 230, 0.45);
+      background-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .news-item {
@@ -557,150 +344,107 @@
     }
 
     .dark-mode .news-date {
-      color: rgba(170, 150, 255, 0.9);
-      background-color: rgba(140, 120, 230, 0.12);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.1);
     }
 
     .dark-mode .news-text {
-      color: #bbb;
+      color: #a0aec0;
     }
 
-    /* Dark mode: Intern */
     .dark-mode .intern-list {
       background-color: var(--section-bg);
+      border-color: rgba(99, 179, 237, 0.08);
     }
 
     .dark-mode .intern-list::-webkit-scrollbar-thumb {
-      background-color: rgba(140, 120, 230, 0.25);
-    }
-
-    .dark-mode .intern-list::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(140, 120, 230, 0.45);
+      background-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .intern-item {
-      background-color: #252525;
+      background-color: #1a202c;
     }
 
     .dark-mode .intern-item:hover {
-      border-left-color: rgba(140, 120, 230, 0.6);
-      background-color: #353535;
+      border-left-color: rgba(99, 179, 237, 0.5);
+      background-color: #353d4a;
     }
 
     .dark-mode .intern-company {
-      color: #e0e0e0;
+      color: #e2e8f0;
     }
 
     .dark-mode .intern-year {
-      color: rgba(170, 150, 255, 0.9);
-      background-color: rgba(140, 120, 230, 0.12);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.1);
     }
 
     .dark-mode .intern-desc {
-      color: #999;
+      color: #a0aec0;
     }
 
     .dark-mode .intern-tag {
-      color: rgba(170, 150, 255, 0.85);
-      background-color: rgba(140, 120, 230, 0.12);
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.1);
     }
 
-    /* Dark mode: Education */
     .dark-mode .edu-timeline {
       background-color: var(--section-bg);
+      border-color: rgba(99, 179, 237, 0.08);
     }
 
     .dark-mode .edu-timeline::-webkit-scrollbar-thumb {
-      background-color: rgba(140, 120, 230, 0.25);
-    }
-
-    .dark-mode .edu-timeline::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(140, 120, 230, 0.45);
+      background-color: rgba(99, 179, 237, 0.2);
     }
 
     .dark-mode .edu-timeline::before {
-      background: linear-gradient(180deg, rgba(140, 120, 230, 0.4), rgba(140, 120, 230, 0.1));
+      background: linear-gradient(180deg, rgba(99, 179, 237, 0.4), rgba(99, 179, 237, 0.1));
     }
 
     .dark-mode .edu-item {
-      background-color: #252525;
+      background-color: #1a202c;
     }
 
     .dark-mode .edu-item:hover {
-      background-color: #353535;
+      background-color: #353d4a;
     }
 
     .dark-mode .edu-item::before {
-      background-color: rgba(140, 120, 230, 0.6);
+      background-color: rgba(99, 179, 237, 0.5);
       border-color: var(--section-bg);
     }
 
     .dark-mode .edu-title {
-      color: #e0e0e0;
+      color: #e2e8f0;
     }
 
     .dark-mode .edu-school {
-      color: rgba(140, 120, 230, 0.8);
+      color: #63b3ed;
     }
 
     .dark-mode .edu-year {
-      color: #888;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      color: #718096;
     }
 
-    /* 学术俏皮元素 */
-    .profile-name {
-      position: relative;
-      display: inline-block;
-    }
-    
-    .profile-name::after {
-      content: '✨';
-      position: absolute;
-      right: -30px;
-      top: 0;
-      animation: sparkle 2s ease-in-out infinite;
-    }
-    
-    @keyframes sparkle {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.2); }
+    .dark-mode .section-heading {
+      color: #63b3ed;
+      border-bottom-color: rgba(99, 179, 237, 0.15);
     }
 
-    /* 改进的卡片阴影效果 */
-    .content-table {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .content-table:hover {
-      transform: translateY(-2px);
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    .dark-mode header {
+      border-bottom-color: rgba(255, 255, 255, 0.06);
     }
 
-    /* 学术风格的装饰 */
-    .section-heading {
-      position: relative;
-      overflow: hidden;
+    .dark-mode .logo a {
+      color: #e2e8f0;
     }
-    
-    .section-heading::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #ff69b4, #4dabf7);
+
+    .dark-mode .nav a {
+      color: #a0aec0;
+    }
+
+    .dark-mode .nav a:hover {
+      color: #63b3ed;
     }
   </style>
 </head>
@@ -714,14 +458,14 @@
     <nav class="nav">
       <ul>
         <li><a href="https://liu-yang-maker.github.io/yangpage.github.io/">Home</a></li>
-        <li><a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">💕 Our Story</a></li>
-        <li><a href="liuyang2020@amss.ac.cn">Contact</a></li>
+        <li><a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Gallery</a></li>
+        <li><a href="mailto:liuyang2020@amss.ac.cn">Contact</a></li>
       </ul>
     </nav>
   </header>
   
   <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:75px;">
+    style="width:100%;max-width:1060px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:66px;">
     <tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -747,25 +491,25 @@
                       </div>
 
                       <p class="profile-love">
-                        💕 和 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长 ✨
+                        与 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长
                       </p>
 
                       <div class="profile-links">
                         <a href="mailto:liuyang2020@amss.ac.cn">Email</a>
                         <a href="https://github.com/liu-yang-maker">Github</a>
                         <a href="https://github.com/datawhalechina">Datawhale</a>
-                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" class="love-link">Our Love Journey</a>
+                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Personal</a>
                       </div>
                     </td>
                     <!-- 右侧图片列 -->
-                    <td style="padding:2.5%;width:40%;max-width:40%">
+                    <td style="padding:2.5%;width:32%;max-width:32%">
                       <!-- 第一张图片 -->
                       <div style="margin-bottom: 20px;">
                         <a href="files/liu_presentation.jpg">
                           <img style="width:100%;max-width:100%" alt="profile photo" src="files/liu_presentation.jpg" class="prof-image">
                         </a>
-                        <div style="text-align: center; margin-top: 10px; font-size: 0.9em;">
-                          📊 正在做报告 (欢迎交流)
+                        <div style="text-align: center; margin-top: 8px; font-size: 12px; color: #718096;">
+                          Presenting at a conference
                         </div>
                       </div>
                       
@@ -774,8 +518,8 @@
                         <a href="files/liu_and_tong.jpeg"> <!-- 请替换为实际图片路径 -->
                           <img style="width:100%;max-width:100%" alt="second photo" src="files/liu_and_tong.jpeg" class="prof-image">
                         </a>
-                        <div style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #ff69b4; font-weight: 500;">
-                          💑 他和他的女朋友
+                        <div style="text-align: center; margin-top: 8px; font-size: 12px; color: #718096;">
+                          With Tong
                         </div>
                       </div>
                     </td>
@@ -822,7 +566,7 @@
             </div>
             <div class="news-item">
               <span class="news-date">2025.11</span>
-              <span class="news-text">Happy Birthday to me, and happy us, I'm in love with you. @<a href="https://liu-yang-maker.github.io/PhotoWall_TY_/" style="color: #ff69b4; font-weight: 600;">Tong</a> 💕</span>
+              <span class="news-text">Birthday and anniversary celebration with <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Tong</a>.</span>
             </div>
             <div class="news-item">
               <span class="news-date">2025.08</span>
@@ -1242,82 +986,29 @@
 
 
         
-          <!-- Philosophy Section -->
+          <!-- Research Philosophy Section -->
           <table class="section-table">
             <tbody>
               <tr>
                 <td class="section-heading">
-                  Philosophy
+                  Research Philosophy
                 </td>
               </tr>
             </tbody>
           </table>
 
           <div class="nindo-card">
-            <!-- Header with Konoha Symbol -->
             <div class="nindo-header">
-              <svg class="nindo-konoha-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 10 C50 10, 75 25, 70 50 C65 75, 40 80, 30 65 C20 50, 30 30, 50 30 C70 30, 72 50, 62 58 C52 66, 40 60, 42 50 C44 40, 52 38, 55 45 C58 52, 52 56, 50 52"
-                      fill="none" stroke="#4E3CB6" stroke-width="3" stroke-linecap="round"/>
-                <path d="M50 10 L47 3 L53 3 Z" fill="#4E3CB6" opacity="0.6"/>
-              </svg>
               <div class="nindo-title-block">
-                <div class="nindo-title">忍道 My Ninja Way</div>
-                <div class="nindo-subtitle">NINDO / 信念の道</div>
+                <div class="nindo-title">My Research Philosophy</div>
               </div>
             </div>
-
-            <!-- Quotes Section -->
-            <div class="nindo-quotes">
-              <!-- Quote 1: Naruto -->
-              <div class="nindo-quote">
-                <div class="nindo-quote-char nindo-quote-char--naruto">うずまきナルト</div>
-                <blockquote class="nindo-quote-jp">
-                  "まっすぐ自分の言葉は曲げねぇ、それが俺の忍道だ！"
-                </blockquote>
-                <p class="nindo-quote-cn">
-                  "我绝不违背自己的誓言，这就是我的忍道！"
-                </p>
-              </div>
-
-              <!-- Quote 2: Effort -->
-              <div class="nindo-quote">
-                <div class="nindo-quote-char nindo-quote-char--effort">火影忍者</div>
-                <blockquote class="nindo-quote-jp">
-                  "努力は必ず報われる。もし報われない努力があるのならば、それはまだ努力とは呼べない。"
-                </blockquote>
-                <p class="nindo-quote-cn">
-                  "努力一定会得到回报。如果还有得不到回报的努力，那它还不能被称为努力。"
-                </p>
-              </div>
-
-              <!-- Quote 3: Jiraiya -->
-              <div class="nindo-quote">
-                <div class="nindo-quote-char nindo-quote-char--jiraiya">自来也</div>
-                <blockquote class="nindo-quote-jp">
-                  "忍者とは忍び耐える者のことだ。だが本当に大切なのは、諦めない根性だ。"
-                </blockquote>
-                <p class="nindo-quote-cn">
-                  "忍者是能够忍耐的人。但真正重要的，是永不放弃的决心。"
-                </p>
-              </div>
-            </div>
-
-            <!-- Scroll Divider -->
-            <div class="nindo-scroll-divider">
-              <span class="nindo-scroll-divider-line"></span>
-              <span class="nindo-scroll-divider-symbol">巻</span>
-              <span class="nindo-scroll-divider-line"></span>
-            </div>
-
-            <!-- Personal Reflection -->
             <div class="nindo-reflection">
-              <div class="nindo-reflection-label">My Reflection / 我的忍道</div>
               <p>科研之路如同修行——看似孤独的探索背后，是对信念的坚守；</p>
               <p>每一篇论文、每一次实验，都是一场不确定结局的任务；</p>
-              <p>但正如鸣人所说，真正的强大不在于天赋，而在于永不言弃的意志；</p>
-              <p>无论是面对学术中的迷雾，还是生活里的风雨，我都选择向前奔跑，因为——</p>
-              <p class="nindo-emphasis">这就是我的忍道。</p>
+              <p>真正的强大不在于天赋，而在于永不言弃的意志；</p>
+              <p>无论是面对学术中的迷雾，还是生活里的风雨，我都选择向前奔跑——</p>
+              <p class="nindo-emphasis">这就是我的信念。</p>
             </div>
           </div>
 
@@ -1336,31 +1027,6 @@
   </script>
 
 
-  <script>
-    // 点击页面出现花花效果
-    document.addEventListener('click', function(e) {
-      const colors = ['#ff0000', '#ff8000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#8000ff', '#ff00ff'];
-      const flowers = ['🌸', '🌺', '🌻', '🌼', '🌷', '💐', '🏵️', '🌹'];
-      
-      for (let i = 0; i < 5; i++) {
-        const flower = document.createElement('div');
-        flower.className = 'flower';
-        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-        flower.style.left = e.pageX + (Math.random() - 0.5) * 100 + 'px';
-        flower.style.top = e.pageY - 20 + 'px';
-        flower.style.color = colors[Math.floor(Math.random() * colors.length)];
-        flower.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        
-        document.body.appendChild(flower);
-        
-        // 动画结束后移除元素
-        setTimeout(() => {
-          flower.remove();
-        }, 5000);
-      }
-    });
-  </script>
 
 <script>
   // 白天/黑夜模式切换
