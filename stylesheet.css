@@ -64,13 +64,13 @@
 }
 
 a {
-  color: #1772d0;
+  color: #1a56a8;
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  color: #f09228;
+  color: #2b6cb0;
   text-decoration: none;
 }
 
@@ -80,43 +80,43 @@ th,
 tr,
 p,
 a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px
 }
 
 strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
 }
 
 heading {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 22px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
 }
 
 /* papertitle - removed, replaced by .pub-title */
 
 university {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 18px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
   font-weight: 700
 }
 
 honor {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   font-weight: 700
 }
 
 honor_strong {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
   font-weight: 900
 }
 
 name {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 32px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 26px;
 }
 
 .one {
@@ -145,41 +145,29 @@ span.highlight {
 }
 
 /* color of hyperlinks */
-  a:link {color:#0d4ca5;}
-  a:visited {color:#0d4ca5;}
-  a:hover {color:#f86df8;} 
-  a:active {color:#0d4ca5;}
+  a:link {color:#1a56a8;}
+  a:visited {color:#1a56a8;}
+  a:hover {color:#2b6cb0;}
+  a:active {color:#1a56a8;}
   
-  /* 爱情链接特殊样式 */
   .love-link {
     position: relative;
-    transition: all 0.3s ease;
+    transition: color 0.2s ease;
   }
-  
+
   .love-link:hover {
-    color: #ff69b4 !important;
-    transform: scale(1.05);
+    color: #2b6cb0 !important;
+    transform: none;
   }
-  
+
   .love-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #ff69b4, #ff1493);
-    transition: width 0.3s ease;
-  }
-  
-  .love-link:hover::after {
-    width: 100%;
+    display: none;
   }
 
 /* improved layout with floating, absolute and relative positioning */
 header {
   width: 100%;
-  height: 70px;
+  height: 56px;
   background-color: #fff;
   position: fixed;
   top: 0;
@@ -188,8 +176,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 100px;
+  padding: 0 60px;
   transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 body.scrolled header {
@@ -197,14 +186,15 @@ body.scrolled header {
 }
 
 .logo a {
-  font-size: 24px;
-  font-weight: bold;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
   text-decoration: none;
-  color: #555;
+  color: #1a365d;
 }
 
 .nav {
-  margin-right: 200px;
+  margin-right: 60px;
   min-width: 200px;
 }
 
@@ -218,14 +208,20 @@ body.scrolled header {
 }
 
 .nav li {
-  margin-left: 20px;
+  margin-left: 24px;
 }
 
 .nav a {
-  font-size: 22px;
-  font-weight: bold;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
-  color: #555;
+  color: #4a5568;
+  letter-spacing: 0.2px;
+}
+
+.nav a:hover {
+  color: #1a365d;
 }
 
 .hidden-header {
@@ -241,72 +237,72 @@ body.scrolled header {
   tr,
   p,
   a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2d3748;
   }
-  
+
   strong {
   font-weight: 700;
   }
-  
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Source Serif 4', Georgia, serif;
   font-weight: 700;
   margin: 0;
-  color: #000;
+  color: #1a202c;
   }
-  
+
   h1 {
-  font-size: 36px;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  }
-  
-  h2 {
   font-size: 28px;
-  line-height: 1.3;
-  margin-bottom: 15px;
+  line-height: 1.2;
+  margin-bottom: 16px;
   }
-  
-  h3 {
+
+  h2 {
   font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  }
+
+  h3 {
+  font-size: 18px;
   line-height: 1.4;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   }
-  
+
   p {
-  margin: 0 0 15px 0;
+  margin: 0 0 12px 0;
   }
-  
+
   a {
-  color: #1772d0;
+  color: #1a56a8;
   text-decoration: none;
   }
-  
+
   a:hover {
-  color: #f09228;
+  color: #2b6cb0;
   }
 
   /* Body */
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  color: #333;
-  background-color: #f2f2f2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  color: #2d3748;
+  background-color: #fafafa;
 }
 
 /* Sub Headings */
 sub-heading {
-  font-family: 'Arial', sans-serif;
-  font-size: 20px;
-  color: rgba(78, 60, 182, 0.534);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  color: rgba(26, 54, 93, 0.7);
 }
 
 /* Profile Image Hover Effect */
@@ -316,18 +312,18 @@ sub-heading {
 
 /* Name */
 name {
-  font-family: 'Georgia', serif;
-  font-size: 32px;
-  font-weight: bold;
-  color: #333;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a202c;
 }
 
 /* University */
 university {
-  font-family: 'Times New Roman', serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
 }
 
 /* ============================================
@@ -340,35 +336,35 @@ university {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 14px 20px;
+  padding: 12px 20px;
   margin: 12px auto 6px;
-  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #f7f8fa 0%, #edf2f7 100%);
+  border-radius: 8px;
 }
 
 .pub-year-tag {
   display: inline-block;
-  padding: 6px 20px;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: rgba(78, 60, 182, 0.8);
+  padding: 5px 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(26, 54, 93, 0.85);
   background-color: #fff;
-  border: 1.5px solid rgba(78, 60, 182, 0.2);
+  border: 1.5px solid rgba(26, 54, 93, 0.15);
   border-radius: 20px;
   text-decoration: none;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 1px 3px rgba(78, 60, 182, 0.08);
+  box-shadow: 0 1px 3px rgba(26, 54, 93, 0.08);
 }
 
 .pub-year-tag:hover {
   color: #fff;
-  background-color: rgba(78, 60, 182, 0.7);
-  border-color: rgba(78, 60, 182, 0.7);
+  background-color: #1a365d;
+  border-color: #1a365d;
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(78, 60, 182, 0.2);
+  box-shadow: 0 3px 8px rgba(26, 54, 93, 0.2);
 }
 
 .pub-year-tag:active {
@@ -393,18 +389,18 @@ university {
 }
 
 .pub-year-label {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: rgba(78, 60, 182, 0.75);
-  padding: 10px 0 8px 12px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a365d;
+  padding: 8px 0 6px 12px;
   margin-top: 0;
   margin-bottom: 8px;
   border-bottom: none;
-  border-left: 4px solid rgba(78, 60, 182, 0.4);
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, rgba(78, 60, 182, 0.04) 0%, transparent 100%);
-  scroll-margin-top: 90px;
+  border-left: 3px solid rgba(26, 54, 93, 0.35);
+  letter-spacing: 0.3px;
+  background: linear-gradient(90deg, rgba(26, 54, 93, 0.03) 0%, transparent 100%);
+  scroll-margin-top: 80px;
 }
 
 .pub-entry {
@@ -423,17 +419,17 @@ university {
 }
 
 .pub-entry:hover {
-  border-left-color: rgba(78, 60, 182, 0.5);
-  background-color: #f2f0fa;
+  border-left-color: rgba(26, 54, 93, 0.5);
+  background-color: #f0f4f8;
 }
 
 .pub-title {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.4;
-  margin-bottom: 4px;
-  color: #222;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 3px;
+  color: #1a202c;
 }
 
 .pub-title a {
@@ -442,42 +438,42 @@ university {
 }
 
 .pub-title a:hover {
-  color: #1772d0;
+  color: #1a56a8;
 }
 
 .pub-authors {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 13.5px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12.5px;
   font-weight: 400;
   line-height: 1.5;
-  color: #555;
+  color: #4a5568;
   margin-bottom: 3px;
 }
 
 .pub-authors .self {
-  font-weight: 700;
-  color: #111;
+  font-weight: 600;
+  color: #1a202c;
   text-decoration: underline;
-  text-decoration-color: rgba(78, 60, 182, 0.5);
-  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(26, 54, 93, 0.4);
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 2px;
 }
 
 .pub-venue {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 13px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
   font-style: italic;
-  color: rgba(78, 60, 182, 0.75);
-  font-weight: 600;
+  color: rgba(26, 54, 93, 0.75);
+  font-weight: 500;
 }
 
 .pub-venue .venue-tag {
   display: inline-block;
-  background-color: rgba(78, 60, 182, 0.1);
-  color: rgba(78, 60, 182, 0.85);
-  padding: 1px 8px;
+  background-color: rgba(26, 54, 93, 0.07);
+  color: #1a365d;
+  padding: 1px 7px;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 600;
   letter-spacing: 0.3px;
@@ -489,13 +485,13 @@ university {
 }
 
 .pub-links a {
-  color: #1772d0;
+  color: #1a56a8;
   margin-right: 10px;
   font-weight: 500;
 }
 
 .pub-links a:hover {
-  color: #f09228;
+  color: #2b6cb0;
 }
 
 /* ============================================
@@ -503,12 +499,12 @@ university {
    ============================================ */
 
 .news-list {
-  margin: 12px auto 20px;
-  padding: 18px 24px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  max-height: 155px;
+  margin: 10px auto 20px;
+  padding: 14px 20px;
+  background-color: #f7f8fa;
+  border-radius: 6px;
+  border: 1px solid rgba(26, 54, 93, 0.06);
+  max-height: 180px;
   overflow-y: auto;
 }
 
@@ -523,12 +519,12 @@ university {
 }
 
 .news-list::-webkit-scrollbar-thumb {
-  background-color: rgba(78, 60, 182, 0.2);
+  background-color: rgba(26, 54, 93, 0.15);
   border-radius: 2px;
 }
 
 .news-list::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(78, 60, 182, 0.4);
+  background-color: rgba(26, 54, 93, 0.35);
 }
 
 .news-item {
@@ -551,23 +547,23 @@ university {
 .news-date {
   flex-shrink: 0;
   display: inline-block;
-  min-width: 68px;
-  padding: 3px 10px;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: rgba(78, 60, 182, 0.85);
-  background-color: rgba(78, 60, 182, 0.08);
-  border-radius: 4px;
+  min-width: 60px;
+  padding: 2px 8px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1a365d;
+  background-color: rgba(26, 54, 93, 0.06);
+  border-radius: 3px;
   text-align: center;
   letter-spacing: 0.3px;
 }
 
 .news-text {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
   line-height: 1.6;
-  color: #444;
+  color: #4a5568;
 }
 
 .news-text a {
@@ -579,12 +575,12 @@ university {
    ============================================ */
 
 .intern-list {
-  margin: 12px auto 20px;
+  margin: 10px auto 20px;
   padding: 10px 14px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  max-height: 175px;
+  background-color: #f7f8fa;
+  border-radius: 6px;
+  border: 1px solid rgba(26, 54, 93, 0.06);
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -598,12 +594,12 @@ university {
 }
 
 .intern-list::-webkit-scrollbar-thumb {
-  background-color: rgba(78, 60, 182, 0.2);
+  background-color: rgba(26, 54, 93, 0.15);
   border-radius: 2px;
 }
 
 .intern-list::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(78, 60, 182, 0.4);
+  background-color: rgba(26, 54, 93, 0.35);
 }
 
 .intern-item {
@@ -620,9 +616,9 @@ university {
 }
 
 .intern-item:hover {
-  border-left-color: rgba(78, 60, 182, 0.5);
-  background-color: #f2f0fa;
-  box-shadow: 0 2px 8px rgba(78, 60, 182, 0.06);
+  border-left-color: rgba(26, 54, 93, 0.5);
+  background-color: #f0f4f8;
+  box-shadow: 0 2px 8px rgba(26, 54, 93, 0.06);
 }
 
 .intern-header {
@@ -633,14 +629,14 @@ university {
 }
 
 .intern-company {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: #222;
 }
 
 .intern-company a {
-  color: #1772d0;
+  color: #1a56a8;
   font-weight: 600;
 }
 
@@ -654,11 +650,11 @@ university {
 .intern-year {
   display: inline-block;
   padding: 2px 12px;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: rgba(78, 60, 182, 0.8);
-  background-color: rgba(78, 60, 182, 0.08);
+  color: rgba(26, 54, 93, 0.85);
+  background-color: rgba(26, 54, 93, 0.08);
   border-radius: 12px;
   letter-spacing: 0.3px;
 }
@@ -666,17 +662,17 @@ university {
 .intern-tag {
   display: inline-block;
   padding: 2px 10px;
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   font-weight: 700;
-  color: rgba(78, 60, 182, 0.7);
-  background-color: rgba(78, 60, 182, 0.08);
+  color: rgba(26, 54, 93, 0.75);
+  background-color: rgba(26, 54, 93, 0.08);
   border-radius: 12px;
   letter-spacing: 0.3px;
 }
 
 .intern-desc {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   color: #777;
   line-height: 1.5;
@@ -687,13 +683,13 @@ university {
    ============================================ */
 
 .edu-timeline {
-  margin: 12px auto 20px;
+  margin: 10px auto 20px;
   padding: 14px 14px 14px 36px;
   position: relative;
-  background-color: #f8f8f8;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  max-height: 185px;
+  background-color: #f7f8fa;
+  border-radius: 6px;
+  border: 1px solid rgba(26, 54, 93, 0.06);
+  max-height: 210px;
   overflow-y: auto;
 }
 
@@ -707,12 +703,12 @@ university {
 }
 
 .edu-timeline::-webkit-scrollbar-thumb {
-  background-color: rgba(78, 60, 182, 0.2);
+  background-color: rgba(26, 54, 93, 0.15);
   border-radius: 2px;
 }
 
 .edu-timeline::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(78, 60, 182, 0.4);
+  background-color: rgba(26, 54, 93, 0.35);
 }
 
 /* vertical line */
@@ -723,7 +719,7 @@ university {
   top: 22px;
   bottom: 22px;
   width: 2px;
-  background: linear-gradient(180deg, rgba(78, 60, 182, 0.3), rgba(78, 60, 182, 0.08));
+  background: linear-gradient(180deg, rgba(26, 54, 93, 0.25), rgba(26, 54, 93, 0.08));
   border-radius: 1px;
 }
 
@@ -741,7 +737,7 @@ university {
 }
 
 .edu-item:hover {
-  background-color: #f2f0fa;
+  background-color: #f0f4f8;
 }
 
 /* dot on the timeline */
@@ -752,14 +748,14 @@ university {
   top: 16px;
   width: 10px;
   height: 10px;
-  background-color: rgba(78, 60, 182, 0.5);
+  background-color: rgba(26, 54, 93, 0.5);
   border: 2px solid #f8f8f8;
   border-radius: 50%;
   z-index: 1;
 }
 
 .edu-title {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 700;
   color: #222;
@@ -767,15 +763,15 @@ university {
 }
 
 .edu-school {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(78, 60, 182, 0.7);
+  color: rgba(26, 54, 93, 0.75);
   margin-bottom: 2px;
 }
 
 .edu-year {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 12.5px;
   font-style: italic;
   color: #888;
@@ -924,7 +920,7 @@ university {
 }
 
 .profile-news {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   margin-top: 10px;
   text-align: justify;
@@ -938,35 +934,28 @@ university {
 }
 
   .profile-name {
-    font-family: 'Lato', Verdana, Helvetica, sans-serif;
-    font-size: 32px;
-    text-align: center;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: left;
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    color: #1a202c;
   }
-  
+
   .profile-name::after {
-    content: '✨';
-    position: absolute;
-    right: calc(50% - 80px);
-    top: 0;
-    animation: sparkle 2s ease-in-out infinite;
-  }
-  
-  @keyframes sparkle {
-    0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); }
-    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+    display: none;
   }
 
   /* Bio Section */
   .bio-section {
-    background: linear-gradient(135deg, #f9f8ff 0%, #f5f3ff 100%);
-    border-radius: 10px;
+    background: #f7f8fa;
+    border-radius: 6px;
     padding: 14px 18px;
     margin-bottom: 12px;
-    border: 1px solid rgba(78, 60, 182, 0.06);
+    border: 1px solid rgba(26, 54, 93, 0.06);
   }
 
   .bio-block {
@@ -983,58 +972,59 @@ university {
     height: 26px;
     line-height: 26px;
     text-align: center;
-    font-family: 'Lato', Verdana, Helvetica, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 11px;
     font-weight: 700;
-    color: rgba(78, 60, 182, 0.7);
-    background-color: rgba(78, 60, 182, 0.08);
+    color: rgba(26, 54, 93, 0.75);
+    background-color: rgba(26, 54, 93, 0.08);
     border-radius: 6px;
     letter-spacing: 0.3px;
   }
 
   .bio-text {
-    font-family: 'Lato', Verdana, Helvetica, sans-serif;
-    font-size: 14px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13.5px;
     text-align: justify;
-    line-height: 1.6;
-    color: #444;
+    line-height: 1.7;
+    color: #4a5568;
     margin: 0;
   }
 
   .bio-divider {
     width: 50px;
     height: 1.5px;
-    background: linear-gradient(90deg, rgba(78, 60, 182, 0.2), rgba(78, 60, 182, 0.05));
+    background: linear-gradient(90deg, rgba(26, 54, 93, 0.15), rgba(26, 54, 93, 0.04));
     margin: 10px 0 10px 36px;
     border-radius: 1px;
   }
 
   .profile-love {
-    font-family: 'Lato', Verdana, Helvetica, sans-serif;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    text-align: left;
+    margin-top: 8px;
     margin-bottom: 10px;
-    padding: 10px;
-    background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1));
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    padding: 8px 12px;
+    background: rgba(26, 54, 93, 0.03);
+    border-radius: 5px;
+    border-left: 2px solid rgba(26, 54, 93, 0.12);
+    color: #4a5568;
+    transition: none;
   }
 
   .profile-love:hover {
-    background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.2));
-    transform: translateY(-2px);
+    background: rgba(26, 54, 93, 0.05);
+    transform: none;
   }
 
   .profile-love a {
-    color: #ff69b4;
+    color: #1a56a8;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
   }
 
   .profile-love a:hover {
-    color: #ff1493;
+    color: #2b6cb0;
     text-decoration: underline;
   }
 
@@ -1042,60 +1032,59 @@ university {
   .profile-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8px;
     margin-top: 0;
   }
 
   .profile-links a {
     display: inline-block;
-    padding: 5px 14px;
-    font-family: 'Lato', Verdana, Helvetica, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #1772d0;
-    background-color: rgba(23, 114, 208, 0.06);
-    border: 1px solid rgba(23, 114, 208, 0.15);
-    border-radius: 16px;
+    padding: 4px 12px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #1a56a8;
+    background-color: rgba(26, 54, 93, 0.04);
+    border: 1px solid rgba(26, 54, 93, 0.12);
+    border-radius: 14px;
     text-decoration: none;
     transition: all 0.2s ease;
   }
 
   .profile-links a:hover {
     color: #fff;
-    background-color: #1772d0;
-    border-color: #1772d0;
+    background-color: #1a365d;
+    border-color: #1a365d;
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(23, 114, 208, 0.2);
+    box-shadow: 0 2px 6px rgba(26, 54, 93, 0.2);
   }
 
   .profile-links a.love-link {
-    color: #ff69b4;
-    background-color: rgba(255, 105, 180, 0.06);
-    border-color: rgba(255, 105, 180, 0.2);
+    color: #1a56a8;
+    background-color: rgba(26, 54, 93, 0.04);
+    border-color: rgba(26, 54, 93, 0.12);
   }
 
   .profile-links a.love-link:hover {
     color: #fff;
-    background-color: #ff69b4;
-    border-color: #ff69b4;
-    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+    background-color: #1a365d;
+    border-color: #1a365d;
+    box-shadow: 0 2px 6px rgba(26, 54, 93, 0.2);
   }
   
 
   .prof-image {
     max-width: 100%;
-    border: 2px solid #e0e0e0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
     display: block;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 6px;
+    transition: box-shadow 0.2s ease;
   }
   
   .prof-image:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
   }
 
   /* for education */
@@ -1130,20 +1119,22 @@ university {
   }
   
   .section-heading {
-    padding: 12px 5px;
-    font-family: 'Arial', sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    color: rgba(78, 60, 182, 0.548);
-    background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
-    border-radius: 5px 5px 0px 0px;
-    text-align: center;
+    padding: 10px 0 8px 0;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a365d;
+    background: none;
+    border-radius: 0;
+    text-align: left;
     position: relative;
-    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(26, 54, 93, 0.12);
+    margin-bottom: 4px;
+    transition: none;
   }
-  
+
   .section-heading:hover {
-    background: linear-gradient(135deg, #e0e0e0 0%, #f0f0f0 100%);
+    background: none;
   }
   
   
