@@ -339,6 +339,47 @@
       color: #718096;
     }
 
+    .pub-filter-toggle {
+      display: inline-block;
+      margin-left: 12px;
+      padding: 3px 12px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(26, 54, 93, 0.85);
+      background-color: #fff;
+      border: 1.5px solid rgba(26, 54, 93, 0.15);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      vertical-align: middle;
+    }
+
+    .pub-filter-toggle:hover {
+      color: #fff;
+      background-color: #1a365d;
+      border-color: #1a365d;
+    }
+
+    .pub-filter-toggle.active {
+      color: #fff;
+      background-color: #1a365d;
+      border-color: #1a365d;
+    }
+
+    .dark-mode .pub-filter-toggle {
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.08);
+      border-color: rgba(99, 179, 237, 0.25);
+    }
+
+    .dark-mode .pub-filter-toggle:hover,
+    .dark-mode .pub-filter-toggle.active {
+      color: #fff;
+      background-color: #63b3ed;
+      border-color: #63b3ed;
+    }
+
     .dark-mode .section-heading {
       color: #63b3ed;
       border-bottom-color: rgba(99, 179, 237, 0.15);
@@ -669,6 +710,7 @@
               <tr>
                 <td class="section-heading">
                   Selected Publications
+                  <span id="pub-filter-btn" class="pub-filter-toggle">First Author</span>
                 </td>
               </tr>
             </tbody>
@@ -1028,6 +1070,32 @@
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    });
+  });
+
+  // 一作/共一筛选
+  var filterBtn = document.getElementById('pub-filter-btn');
+  var filterActive = false;
+
+  filterBtn.addEventListener('click', function() {
+    filterActive = !filterActive;
+    filterBtn.classList.toggle('active', filterActive);
+    filterBtn.textContent = filterActive ? 'All Papers' : 'First Author';
+
+    document.querySelectorAll('.pub-entry').forEach(function(entry) {
+      if (!filterActive) {
+        entry.style.display = '';
+        return;
+      }
+      var authors = entry.querySelector('.pub-authors').innerHTML;
+      var isFirst = authors.trimStart().startsWith('<span class="self">');
+      var isCoFirst = authors.includes('Yang Liu</span>*');
+      entry.style.display = (isFirst || isCoFirst) ? '' : 'none';
+    });
+
+    document.querySelectorAll('.pub-year-group').forEach(function(group) {
+      var visibleEntries = group.querySelectorAll('.pub-entry:not([style*="display: none"])');
+      group.style.display = visibleEntries.length > 0 ? '' : 'none';
     });
   });
 </script>
