@@ -451,32 +451,34 @@
       background-color: rgba(99, 179, 237, 0.2);
     }
 
-    /* ===== Year header (year + paper count + keyword chips inline) ===== */
+    /* ===== Year header (year on left, paper count + chips on right) ===== */
     .pub-year-header {
       display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px 12px;
-      padding: 6px 14px 8px 0;
-      margin-top: 6px;
-      margin-bottom: 12px;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 0 12px 10px 0;
+      margin-top: 8px;
+      margin-bottom: 14px;
       border-bottom: 1px solid rgba(26, 54, 93, 0.08);
     }
 
     .pub-year-header .pub-year-label {
+      flex: 0 0 auto;
       margin: 0;
-      padding: 2px 0 2px 12px;
+      padding: 4px 0 4px 12px;
+      min-width: 60px;
+      white-space: nowrap;
     }
 
     .pub-year-summary {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
       flex: 1 1 auto;
+      min-width: 0;
+      padding-top: 6px;
       background: transparent;
       border: none;
-      padding: 0;
       margin: 0;
       border-radius: 0;
     }
@@ -487,23 +489,78 @@
 
     .pub-year-count {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       color: #1a365d;
-      background-color: rgba(26, 54, 93, 0.08);
+      background-color: rgba(26, 54, 93, 0.09);
       padding: 3px 10px;
       border-radius: 11px;
       letter-spacing: 0.2px;
       white-space: nowrap;
-      margin-right: 4px;
+      flex: 0 0 auto;
     }
 
-    .pub-year-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
+    .pub-year-scroll-wrap {
+      position: relative;
       flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .pub-year-scroll-wrap::before,
+    .pub-year-scroll-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 4px;
+      width: 28px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 2;
+    }
+
+    .pub-year-scroll-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-color, #fafafa) 0%, transparent 100%);
+    }
+
+    .pub-year-scroll-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-color, #fafafa) 0%, transparent 100%);
+    }
+
+    .pub-year-scroll-wrap[data-can-left="1"]::before { opacity: 1; }
+    .pub-year-scroll-wrap[data-can-right="1"]::after { opacity: 1; }
+
+    .pub-year-chip-scroll {
+      display: flex;
+      flex-wrap: nowrap;
       align-items: center;
+      gap: 5px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(26, 54, 93, 0.22) transparent;
+      padding: 4px 0 6px 0;
+    }
+
+    .pub-year-chip-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .pub-year-chip-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .pub-year-chip-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(26, 54, 93, 0.22);
+      border-radius: 2px;
+    }
+
+    .pub-year-chip-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(26, 54, 93, 0.4);
     }
 
     .pub-year-chip {
@@ -513,15 +570,17 @@
       padding: 2px 3px 2px 8px;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 10.5px;
-      font-weight: 600;
-      color: #1a365d;
-      background-color: #fff;
-      border: 1px solid rgba(26, 54, 93, 0.15);
+      font-weight: 500;
+      color: rgba(26, 54, 93, 0.85);
+      background-color: transparent;
+      border: 1px solid rgba(26, 54, 93, 0.13);
       border-radius: 11px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.18s ease;
       user-select: none;
       letter-spacing: 0.1px;
+      flex: 0 0 auto;
+      white-space: nowrap;
     }
 
     .pub-year-chip:hover {
@@ -613,6 +672,18 @@
       background-color: rgba(99, 179, 237, 0.08);
     }
 
+    .dark-mode .pub-year-chip-scroll {
+      scrollbar-color: rgba(99, 179, 237, 0.3) transparent;
+    }
+
+    .dark-mode .pub-year-chip-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(99, 179, 237, 0.3);
+    }
+
+    .dark-mode .pub-year-chip-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(99, 179, 237, 0.55);
+    }
+
     @media (max-width: 640px) {
       .pub-entry {
         flex-direction: column;
@@ -625,7 +696,13 @@
         padding-top: 0;
       }
       .pub-year-header {
-        gap: 6px 10px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding-bottom: 10px;
+      }
+      .pub-year-summary {
+        padding-top: 0;
       }
       .pub-year-chip {
         font-size: 10px;
@@ -1366,6 +1443,46 @@
     });
   }
 
+  function enableHorizontalWheelScroll(el) {
+    if (el._wheelBound) return;
+    el._wheelBound = true;
+    el.addEventListener('wheel', function(e) {
+      var hasHorizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      if (hasHorizontalIntent) return;
+      var max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      var atStart = el.scrollLeft <= 0 && e.deltaY < 0;
+      var atEnd = el.scrollLeft >= max && e.deltaY > 0;
+      if (atStart || atEnd) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    }, { passive: false });
+  }
+
+  function bindScrollFadeIndicators(outer, inner) {
+    function update() {
+      var max = inner.scrollWidth - inner.clientWidth;
+      var canScroll = max > 1;
+      outer.dataset.canLeft = canScroll && inner.scrollLeft > 1 ? '1' : '0';
+      outer.dataset.canRight = canScroll && inner.scrollLeft < max - 1 ? '1' : '0';
+    }
+    inner.addEventListener('scroll', update, { passive: true });
+    if (!window._pubResizeBound) {
+      window._pubResizeBound = true;
+      window.addEventListener('resize', function() {
+        document.querySelectorAll('.pub-year-scroll-wrap').forEach(function(w) {
+          var i = w.querySelector('.pub-year-chip-scroll');
+          if (!i) return;
+          var max = i.scrollWidth - i.clientWidth;
+          var canScroll = max > 1;
+          w.dataset.canLeft = canScroll && i.scrollLeft > 1 ? '1' : '0';
+          w.dataset.canRight = canScroll && i.scrollLeft < max - 1 ? '1' : '0';
+        });
+      });
+    }
+    requestAnimationFrame(update);
+  }
+
   function renderPubTags() {
     document.querySelectorAll('.pub-entry').forEach(function(entry) {
       if (!entry.querySelector('.pub-entry-main')) {
@@ -1426,8 +1543,11 @@
       countEl.textContent = entries.length + (entries.length === 1 ? ' paper' : ' papers');
       summary.appendChild(countEl);
 
-      var chipsBox = document.createElement('div');
-      chipsBox.className = 'pub-year-chips';
+      var scrollOuter = document.createElement('div');
+      scrollOuter.className = 'pub-year-scroll-wrap';
+
+      var scrollInner = document.createElement('div');
+      scrollInner.className = 'pub-year-chip-scroll';
 
       var sorted = Array.from(counter.entries()).sort(function(a, b) {
         if (b[1] !== a[1]) return b[1] - a[1];
@@ -1460,10 +1580,13 @@
           handleChipClick(group, tag);
         });
 
-        chipsBox.appendChild(chip);
+        scrollInner.appendChild(chip);
       });
 
-      summary.appendChild(chipsBox);
+      scrollOuter.appendChild(scrollInner);
+      summary.appendChild(scrollOuter);
+      enableHorizontalWheelScroll(scrollInner);
+      bindScrollFadeIndicators(scrollOuter, scrollInner);
     });
 
     reapplyHighlights();
