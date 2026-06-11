@@ -400,6 +400,196 @@
     .dark-mode .nav a:hover {
       color: #63b3ed;
     }
+
+    /* ===== Publication tags ===== */
+    .pub-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pub-tag {
+      display: inline-block;
+      padding: 2px 9px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: #1a365d;
+      background-color: rgba(26, 54, 93, 0.07);
+      border-radius: 10px;
+      letter-spacing: 0.2px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .pub-tag:hover {
+      background-color: rgba(26, 54, 93, 0.14);
+    }
+
+    .dark-mode .pub-tag {
+      color: #90cdf4;
+      background-color: rgba(99, 179, 237, 0.1);
+    }
+
+    .dark-mode .pub-tag:hover {
+      background-color: rgba(99, 179, 237, 0.2);
+    }
+
+    /* ===== Year summary bar (count + keyword chips) ===== */
+    .pub-year-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      margin: 4px 0 14px 16px;
+      background-color: rgba(26, 54, 93, 0.04);
+      border-radius: 8px;
+      border-left: 2px solid rgba(26, 54, 93, 0.18);
+    }
+
+    .pub-year-summary:empty {
+      display: none;
+    }
+
+    .pub-year-count {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a365d;
+      letter-spacing: 0.3px;
+      padding-right: 10px;
+      border-right: 1px solid rgba(26, 54, 93, 0.15);
+      white-space: nowrap;
+    }
+
+    .pub-year-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .pub-year-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 4px 3px 10px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #1a365d;
+      background-color: #fff;
+      border: 1px solid rgba(26, 54, 93, 0.15);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .pub-year-chip:hover {
+      color: #fff;
+      background-color: #1a365d;
+      border-color: #1a365d;
+    }
+
+    .pub-year-chip:hover .pub-year-chip-count {
+      color: #1a365d;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pub-year-chip.active {
+      color: #fff;
+      background-color: #1a365d;
+      border-color: #1a365d;
+      box-shadow: 0 1px 4px rgba(26, 54, 93, 0.25);
+    }
+
+    .pub-year-chip.active .pub-year-chip-count {
+      color: #1a365d;
+      background-color: rgba(255, 255, 255, 0.92);
+    }
+
+    .pub-year-chip-count {
+      display: inline-block;
+      min-width: 18px;
+      padding: 1px 6px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #1a365d;
+      background-color: rgba(26, 54, 93, 0.1);
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.4;
+      transition: all 0.2s ease;
+    }
+
+    /* Dim / highlight states for filtered entries */
+    .pub-entry.is-dim {
+      opacity: 0.32;
+      filter: grayscale(0.45);
+      transition: opacity 0.25s ease, filter 0.25s ease;
+    }
+
+    .pub-entry.is-hit {
+      border-left: 3px solid #1a365d;
+      background-color: rgba(26, 54, 93, 0.05);
+    }
+
+    /* Dark mode overrides for summary / chips / states */
+    .dark-mode .pub-year-summary {
+      background-color: rgba(99, 179, 237, 0.06);
+      border-left-color: rgba(99, 179, 237, 0.3);
+    }
+
+    .dark-mode .pub-year-count {
+      color: #63b3ed;
+      border-right-color: rgba(99, 179, 237, 0.2);
+    }
+
+    .dark-mode .pub-year-chip {
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.05);
+      border-color: rgba(99, 179, 237, 0.25);
+    }
+
+    .dark-mode .pub-year-chip:hover,
+    .dark-mode .pub-year-chip.active {
+      color: #fff;
+      background-color: #63b3ed;
+      border-color: #63b3ed;
+      box-shadow: 0 1px 4px rgba(99, 179, 237, 0.35);
+    }
+
+    .dark-mode .pub-year-chip-count {
+      color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.15);
+    }
+
+    .dark-mode .pub-year-chip:hover .pub-year-chip-count,
+    .dark-mode .pub-year-chip.active .pub-year-chip-count {
+      color: #1a202c;
+      background-color: rgba(255, 255, 255, 0.92);
+    }
+
+    .dark-mode .pub-entry.is-hit {
+      border-left-color: #63b3ed;
+      background-color: rgba(99, 179, 237, 0.08);
+    }
+
+    @media (max-width: 640px) {
+      .pub-year-summary {
+        margin-left: 8px;
+        padding: 8px 10px;
+      }
+      .pub-year-count {
+        padding-right: 8px;
+      }
+      .pub-year-chip {
+        font-size: 11px;
+        padding: 2px 4px 2px 8px;
+      }
+    }
   </style>
 </head>
 
@@ -727,80 +917,81 @@
             <!-- ===== 2026 ===== -->
             <div class="pub-year-group">
               <div class="pub-year-label" id="pub-2026">2026</div>
+              <div class="pub-year-summary"></div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,LLM,Combinatorial Optimization">
                 <div class="pub-title">基于图神经网络与大语言模型的组合优化求解方法研究</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span></div>
                 <div class="pub-venue"><span class="venue-tag">PhD Thesis</span></div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,LongContext,Reasoning">
                 <div class="pub-title">Probing How Scalable Table Data Enhances General Long-Context Reasoning</div>
                 <div class="pub-authors">Huaibing Xie*, Guoliang Zhao*, <span class="self">Yang Liu</span>*, Shihan Dou, Siming Huang, Yanling Xiao, Shaolei Wang, Yiting Liu, Cheng Zhang, Shaofan Liu, Pluto Zhou</div>
                 <div class="pub-venue"><span class="venue-tag">ICML</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GFM">
                 <div class="pub-title">Message Tuning Outshines Graph Prompt Tuning: A Prismatic Space Perspective</div>
                 <div class="pub-authors">Yancheng Chen, Dun Ma, Shuai Zhang, <span class="self">Yang Liu</span>, Xixun Lin, Xiangyu Zhao, Wenguo Yang, Wei Chen, Chuan Zhou</div>
                 <div class="pub-venue"><span class="venue-tag">ICML</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Context">
                 <div class="pub-title">CL-bench Life: Can Language Models Learn from Real-Life Context?</div>
                 <div class="pub-authors">Shihan Dou, Yujiong Shen, Chenhao Huang, Junjie Ye, Jiayi Chen, Junzhe Wang, Qianyu He, Shichun Liu, Changze Lv, Jiahang Lin, Jiazheng Zhang, Ming Zhang, Shaofan Liu, Tao Ji, Zhangyue Yin, Cheng Zhang, Huaibing Xie, Jianglu Hu, Jingcheng Deng, Lincheng Li, Minda Hu, Shaolei Wang, Syrus Zhao, Weichao Wang, Yan Lei, <span class="self">Yang Liu</span>, Yanling Xiao, Yiting Liu, Zenan Xu, Zhen Guo, Ziliang Zhao, Pluto Zhou, Tao Gui, Qi Zhang, Xuanjing Huang, Yu-Gang Jiang, Di Wang, Shunyu Yao</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Agent,DeepResearch">
                 <div class="pub-title">Learning Query-Specific Rubrics from Human Preferences for DeepResearch Report Generation</div>
                 <div class="pub-authors">Changze Lv, Jie Zhou, Wentao Zhao, Jingwen Xu, Shihan Dou, Zisu Huang, Muzhao Tian, Xiaohua Wang, <span class="self">Yang Liu</span>, Pluto Zhou, Tao Gui, Le Tian, Xiao Zhou, Xiaoqing Zheng, Xuanjing Huang, Jie Zhou</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,AI4Science">
                 <div class="pub-title">Beyond Pairwise Interactions: Equivariant Hypergraph Diffusion for Crystal Structure Prediction</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Shuai Zhang, Xiaotong Wu, Peng Zhang, Xixun Lin, Shirui Pan, Zhao Li</div>
                 <div class="pub-venue"><span class="venue-tag">KDD</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Reasoning">
                 <div class="pub-title">Thought-Aware KV Cache Compaction for Reasoning via Adaptive Attention Matching</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Bin Chong, Chongyang Zhang, Hao Zheng, Jiayu Liang, Kefu Xu</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,LongContext">
                 <div class="pub-title">Reducing Detail Hallucinations in Long-Context Regulatory Understanding via Targeted Preference Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Bin Chong, Yuhan Lin, Chongyang Zhang, Hao Zheng, Ziyi Zhang, Jiayu Liang, Ran Ran, Qian Li, Kefu Xu</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Alignment,Survey">
                 <div class="pub-title">A Survey of LLM Alignment: Instruction Understanding, Intention Reasoning, and Reliable Generation</div>
                 <div class="pub-authors">Zongyu Chang*, Feihong Lu*, Ziqin Zhu, Qian Li, Cheng Ji, Tao Yang, Zhuo Chen, Hao Peng, <span class="self">Yang Liu</span>, Ruifeng Xu, Yangqiu Song, Jianxin Li, Shangguang Wang</div>
                 <div class="pub-venue"><span class="venue-tag">NEUCOM</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Harness">
                 <div class="pub-title">FinHarness: An Inline Lifecycle Safety Harness for Finance LLM Agents</div>
                 <div class="pub-authors">Haoxuan Jia*, <span class="self">Yang Liu</span>*, Bin Chong, Yingguang Yang, Yancheng Chen, Jiayu Liang, Qian Li, Hanning Lu, Kefu Xu, Hao Zheng, Chongyang Zhang, Hao Peng, Philip S. Yu</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Safety">
                 <div class="pub-title">ExTax: Explainable Disinformation Detection via Persuasion, Emotion, and Narrative Role Taxonomies</div>
                 <div class="pub-authors">Shang Luo, Yingguang Yang, Zhenchen Sun, <span class="self">Yang Liu</span>, Bin Chong, Jingru Chen, Yancheng Chen, Jiayu Liang, Kefu Xu, Hao Peng, Philip S. Yu</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Harness,Safety">
                 <div class="pub-title">SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment</div>
                 <div class="pub-authors">Xixun Lin*, <span class="self">Yang Liu</span>*, Yancheng Chen*, Yongxuan Wu, Yucheng Ning, Yilong Liu, Nan Sun, Shun Zhang, Bin Chong, Chuan Zhou, Yanan Cao, Li Guo</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Combinatorial Optimization">
                 <div class="pub-title">Hard Constraints Meet Soft Generation: Guaranteed Feasibility for LLM-based Combinatorial Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Yancheng Chen, Shuai Zhang, Xixun Lin, Xiaoqing Wang</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2026</div>
@@ -811,51 +1002,52 @@
             <!-- ===== 2025 ===== -->
             <div class="pub-year-group">
               <div class="pub-year-label" id="pub-2025">2025</div>
+              <div class="pub-year-summary"></div>
 
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,NAS,Combinatorial Optimization">
                 <div class="pub-title">Meta-heuristics Graph Neural Architecture Search for Combinatorial Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Yang Gao, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">IEEE Transactions on Emerging Topics in Computational Intelligence</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Anomaly Detection,Point Process">
                 <div class="pub-title">Conformal Anomaly Detection in Event Sequences</div>
                 <div class="pub-authors">Shuai Zhang, Chuan Zhou, <span class="self">Yang Liu</span>, Peng Zhang, Xixun Lin, and Shirui Pan.</div>
                 <div class="pub-venue"><span class="venue-tag">ICML</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Recommendation,Fairness">
                 <div class="pub-title">FairCDR: Transferring Fairness and User Preferences for Cross-Domain Recommendation</div>
                 <div class="pub-authors">Yongxuan Wu, <span class="self">Yang Liu</span>, Xixun Lin, Hong Zhou, Yanan Cao, Lixin Zou, Yanmin Shang, Yanbing Liu</div>
                 <div class="pub-venue"><span class="venue-tag">KDD</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Alignment">
                 <div class="pub-title">Bridging the Gap Between LLMs and Human Intentions: Progresses and Challenges in Instruction Understanding, Intention Reasoning, and Reliable Generation</div>
                 <div class="pub-authors">Zongyu Chang, Feihong Lu, Ziqin Zhu, Qian Li, Cheng Ji, Zhuo Chen, <span class="self">Yang Liu</span>, Ruifeng Xu, Yangqiu Song, Shangguang Wang, and Jianxin Li</div>
                 <div class="pub-venue"><span class="venue-tag">LLM Survey, Arxiv</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,Optimization">
                 <div class="pub-title">Sharpness-aware Zeroth-order Optimization for Graph Transformers</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Yuhan Lin, Shuai Zhang, Yang Gao, Zhao Li, Shirui Pan</div>
                 <div class="pub-venue"><span class="venue-tag">IJCAI</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Recommendation,Multimodal">
                 <div class="pub-title">Contrastive Modality-Disentangled Learning for Multimodal Recommendation</div>
                 <div class="pub-authors">Xixun Lin, Rui Liu, Yanan Cao, Lixun Zou, Yongxuan Wu, <span class="self">Yang Liu</span>, Dawei Yin, Guandong Xu</div>
                 <div class="pub-venue"><span class="venue-tag">TOIS</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN">
                 <div class="pub-title">RHGNN: Imposing Relational Inductive Bias for Heterogeneous Graph Neural Network</div>
                 <div class="pub-authors">Shichao Zhu, Shuai Zhang, <span class="self">Yang Liu</span>, Chuan Zhou, Shirui Pan, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">JMLC</span> 2025</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,NAS">
                 <div class="pub-title">Node-Centric Meta Structure Search on Heterogeneous Graphs</div>
                 <div class="pub-authors">Xiaoou Zhang, Yang Gao, <span class="self">Yang Liu</span>, Yujia Zhu, Chuan Zhou, Peng Zhang, Yong Ding, Qingyun Liu, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">ICASSP</span> 2025</div>
@@ -865,80 +1057,81 @@
             <!-- ===== 2024 ===== -->
             <div class="pub-year-group">
               <div class="pub-year-label" id="pub-2024">2024</div>
+              <div class="pub-year-summary"></div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Point Process">
                 <div class="pub-title">Neural Jump-Diffusion Temporal Point Processes</div>
                 <div class="pub-authors">Shuai Zhang, Chuan Zhou, <span class="self">Yang Liu</span>, Peng Zhang, Xixun Lin, Zhiming Ma</div>
                 <div class="pub-venue"><span class="venue-tag">ICML</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,Combinatorial Optimization,Curriculum Learning">
                 <div class="pub-title">CL4CO: A Curriculum Training Framework for Graph-based Neural Combinatorial Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Zhao Li, Shuai Zhang, Xixun Lin, Xindong Wu</div>
                 <div class="pub-venue"><span class="venue-tag">ICDM</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,Privacy">
                 <div class="pub-title">Secure Causal Reasoning on Coarsened Graph for Privacy-Aware Social Web Services</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Huang Fang, Peng Zhang, Yilin Pang, Qingzhao Zhang, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">ICWS</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN">
                 <div class="pub-title">Transformer-based Graph Neural Networks for Battery Range Prediction in AIoT Battery-Swap Services</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>*, Zhao Li*, Chuan Zhou, Xuanwu Liu, Xuming Pan, Buqing Cao, Xindong Wu</div>
                 <div class="pub-venue"><span class="venue-tag">ICWS</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Knowledge Graph,Curriculum Learning">
                 <div class="pub-title">Curriculum Learning for Knowledge Graph Embedding</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Yanan Cao, Yongchao Liu, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Knowledge Graph">
                 <div class="pub-title">MQuinE: A Cure for "Z-paradox" in Knowledge Graph Embedding</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Huang Fang, Yunfeng Cai, Mingming Sun</div>
                 <div class="pub-venue"><span class="venue-tag">EMNLP</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,NAS,Combinatorial Optimization">
                 <div class="pub-title">Combinatorial Optimization with Automated Graph Neural Networks</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Peng Zhang, Yang Gao, Chuan Zhou, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,Combinatorial Optimization">
                 <div class="pub-title">Decision-focused Graph Neural Networks for Combinatorial Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Shirui Pan, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,NAS">
                 <div class="pub-title">Meta Structure Search for Link Weight Prediction in Heterogeneous Graph</div>
                 <div class="pub-authors">Xiaoou Zhang, Yang Gao, <span class="self">Yang Liu</span>, Yujia Zhu, Peng Zhang, Chuan Zhou, Qingyun Liu, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">ICASSP</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="AI4Science">
                 <div class="pub-title">Linked Patterns of Symptoms and Cognition with Functional Brain Controllability in Major Depressive Disorder</div>
                 <div class="pub-authors">Qian Li, Youjin Zhao, Yongbo Hu, <span class="self">Yang Liu</span>, Yaxuan Wang, Qian Zhang, Fenghua Long, John A. Sweeney, Weihong Kuang, Fei Li, Qiyong Gong</div>
                 <div class="pub-venue"><span class="venue-tag">eBioMedicine</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN">
                 <div class="pub-title">Unsupervised Pre-trained Social Networks for E-commerce Community Detection</div>
                 <div class="pub-authors">Ting Li, Chunqi Wu, <span class="self">Yang Liu</span>, Zhao Li, Chuan Zhou, Hongyang Chen, Chenhao Qiu, Yongchao Liu, Peng Du, and Chuntao Hong</div>
                 <div class="pub-venue"><span class="venue-tag">HPCC</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM">
                 <div class="pub-title">Do Large Language Models Possess Sensitive to Sentiment?</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Xichou Zhu, Zhou Shen, Yi Liu, Min Li, Yujun Chen, Benzi John, Zhenzhen Ma, Tao Hu, Zhi Li, Zhiyang Xu, Wei Luo, Junhui Wang</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="LLM,Privacy">
                 <div class="pub-title">How Privacy-Savvy Are Large Language Models? A Case Study on Compliance and Privacy Technical Review</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Xichou Zhu, Zhou Shen, Yi Liu, Min Li, Yujun Chen, Benzi John, Zhenzhen Ma, Tao Hu, Zhi Li, Bolong Yang, Manman Wang, Zongxing Xie, Peng Liu, Dan Cai, Junhui Wang</div>
                 <div class="pub-venue"><span class="venue-tag">Arxiv</span> 2024</div>
@@ -948,20 +1141,21 @@
             <!-- ===== 2023 ===== -->
             <div class="pub-year-group">
               <div class="pub-year-label" id="pub-2023">2023</div>
+              <div class="pub-year-summary"></div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="GNN,Combinatorial Optimization">
                 <div class="pub-title">Decision-focused Graph Neural Networks for Graph Learning and Optimization</div>
                 <div class="pub-authors"><span class="self">Yang Liu</span>, Chuan Zhou, Peng Zhang, Shuai Zhang, Xiaoou Zhang, Zhao Li, Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">ICDM</span> 2023</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Anomaly Detection,Point Process">
                 <div class="pub-title">Multiple Hypothesis Testing for Anomaly Detection in Multi-type Event Sequences</div>
                 <div class="pub-authors">Shuai Zhang, Chuan Zhou, Peng Zhang, <span class="self">Yang Liu</span>, Zhao Li, and Hongyang Chen</div>
                 <div class="pub-venue"><span class="venue-tag">ICDM</span> 2023</div>
               </div>
 
-              <div class="pub-entry">
+              <div class="pub-entry" data-tags="Knowledge Graph">
                 <div class="pub-title">MLN4KB: An Efficient Markov Logic Network Engine for Large-scale Knowledge Bases and Structured Logic Rules</div>
                 <div class="pub-authors">Huang Fang, <span class="self">Yang Liu</span>, Yunfeng Cai, Mingming Sun</div>
                 <div class="pub-venue"><span class="venue-tag">WWW</span> 2023</div>
@@ -1103,7 +1297,170 @@
       var visibleEntries = group.querySelectorAll('.pub-entry:not([style*="display: none"])');
       group.style.display = visibleEntries.length > 0 ? '' : 'none';
     });
+
+    clearAllChipHighlights();
+    recomputeYearSummaries();
   });
+
+  // ===== Publication tags & per-year keyword summary =====
+
+  function parseTags(entry) {
+    return (entry.dataset.tags || '')
+      .split(',')
+      .map(function(s) { return s.trim(); })
+      .filter(Boolean);
+  }
+
+  function renderPubTags() {
+    document.querySelectorAll('.pub-entry').forEach(function(entry) {
+      if (entry.querySelector('.pub-tags')) return;
+      var tags = parseTags(entry);
+      if (!tags.length) return;
+      var box = document.createElement('div');
+      box.className = 'pub-tags';
+      tags.forEach(function(t) {
+        var el = document.createElement('span');
+        el.className = 'pub-tag';
+        el.textContent = t;
+        box.appendChild(el);
+      });
+      entry.appendChild(box);
+    });
+  }
+
+  function isVisibleEntry(entry) {
+    return entry.style.display !== 'none';
+  }
+
+  function recomputeYearSummaries() {
+    document.querySelectorAll('.pub-year-group').forEach(function(group) {
+      var summary = group.querySelector('.pub-year-summary');
+      if (!summary) return;
+
+      var entries = Array.prototype.filter.call(
+        group.querySelectorAll('.pub-entry'),
+        isVisibleEntry
+      );
+
+      summary.innerHTML = '';
+
+      if (entries.length === 0) {
+        return;
+      }
+
+      var counter = new Map();
+      entries.forEach(function(entry) {
+        parseTags(entry).forEach(function(tag) {
+          counter.set(tag, (counter.get(tag) || 0) + 1);
+        });
+      });
+
+      var countEl = document.createElement('span');
+      countEl.className = 'pub-year-count';
+      countEl.textContent = entries.length + (entries.length === 1 ? ' paper' : ' papers');
+      summary.appendChild(countEl);
+
+      var chipsBox = document.createElement('div');
+      chipsBox.className = 'pub-year-chips';
+
+      var sorted = Array.from(counter.entries()).sort(function(a, b) {
+        if (b[1] !== a[1]) return b[1] - a[1];
+        return a[0].localeCompare(b[0]);
+      });
+
+      var activeTag = group.dataset.activeTag || '';
+
+      sorted.forEach(function(pair) {
+        var tag = pair[0];
+        var count = pair[1];
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'pub-year-chip';
+        chip.dataset.tag = tag;
+        if (tag === activeTag) chip.classList.add('active');
+
+        var label = document.createElement('span');
+        label.className = 'pub-year-chip-label';
+        label.textContent = tag;
+
+        var num = document.createElement('span');
+        num.className = 'pub-year-chip-count';
+        num.textContent = count;
+
+        chip.appendChild(label);
+        chip.appendChild(num);
+
+        chip.addEventListener('click', function() {
+          handleChipClick(group, tag);
+        });
+
+        chipsBox.appendChild(chip);
+      });
+
+      summary.appendChild(chipsBox);
+    });
+
+    reapplyHighlights();
+  }
+
+  function handleChipClick(group, tag) {
+    var current = group.dataset.activeTag || '';
+    if (current === tag) {
+      delete group.dataset.activeTag;
+    } else {
+      group.dataset.activeTag = tag;
+    }
+
+    group.querySelectorAll('.pub-year-chip').forEach(function(chip) {
+      chip.classList.toggle('active', chip.dataset.tag === (group.dataset.activeTag || ''));
+    });
+
+    applyHighlightForGroup(group);
+  }
+
+  function applyHighlightForGroup(group) {
+    var activeTag = group.dataset.activeTag || '';
+    var entries = group.querySelectorAll('.pub-entry');
+    if (!activeTag) {
+      entries.forEach(function(entry) {
+        entry.classList.remove('is-dim', 'is-hit');
+      });
+      return;
+    }
+    entries.forEach(function(entry) {
+      if (!isVisibleEntry(entry)) {
+        entry.classList.remove('is-dim', 'is-hit');
+        return;
+      }
+      var tags = parseTags(entry);
+      if (tags.indexOf(activeTag) !== -1) {
+        entry.classList.add('is-hit');
+        entry.classList.remove('is-dim');
+      } else {
+        entry.classList.add('is-dim');
+        entry.classList.remove('is-hit');
+      }
+    });
+  }
+
+  function reapplyHighlights() {
+    document.querySelectorAll('.pub-year-group').forEach(applyHighlightForGroup);
+  }
+
+  function clearAllChipHighlights() {
+    document.querySelectorAll('.pub-year-group').forEach(function(group) {
+      delete group.dataset.activeTag;
+    });
+    document.querySelectorAll('.pub-entry.is-dim, .pub-entry.is-hit').forEach(function(entry) {
+      entry.classList.remove('is-dim', 'is-hit');
+    });
+    document.querySelectorAll('.pub-year-chip.active').forEach(function(chip) {
+      chip.classList.remove('active');
+    });
+  }
+
+  renderPubTags();
+  recomputeYearSummaries();
 </script>
 
 </body>
