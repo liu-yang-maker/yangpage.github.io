@@ -41,12 +41,14 @@ nbproject/
 
 # ============================================================
 # AI assistants / Cursor / Claude local settings
-# (保留共享文档 CLAUDE.md，仅忽略本地配置)
 # ============================================================
 .claude/
 .cursor/
 .aider*
 .continue/
+CLAUDE.md
+AGENTS.md
+.cursorrules
 
 # ============================================================
 # Logs / temporary files
