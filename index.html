@@ -725,7 +725,7 @@
     <nav class="nav">
       <ul>
         <li><a href="https://liu-yang-maker.github.io/yangpage.github.io/">Home</a></li>
-        <li><a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Gallery</a></li>
+        <li><a data-link="photoWall">Gallery</a></li>
         <li><a href="mailto:liuyang2020@amss.ac.cn">Contact</a></li>
       </ul>
     </nav>
@@ -761,14 +761,14 @@
                       </div>
 
                       <p class="profile-love">
-                        与 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长
+                        与 <a data-link="photoWall">彤彤</a> 一起探索世界，一起成长
                       </p>
 
                       <div class="profile-links">
                         <a href="mailto:liuyang2020@amss.ac.cn">Email</a>
                         <a href="https://github.com/liu-yang-maker">Github</a>
                         <a href="https://github.com/datawhalechina">Datawhale</a>
-                        <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Personal</a>
+                        <a data-link="photoWall">Personal</a>
                       </div>
                     </td>
                     <!-- 右侧图片列 -->
@@ -840,7 +840,7 @@
             </div>
             <div class="news-item">
               <span class="news-date">2025.11</span>
-              <span class="news-text">Birthday and anniversary celebration with <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">Tong</a>.</span>
+              <span class="news-text">Birthday and anniversary celebration with <a data-link="photoWall">Tong</a>.</span>
             </div>
             <div class="news-item">
               <span class="news-date">2025.08</span>
@@ -1327,7 +1327,7 @@
 
             <div class="philosophy-card">
               <div class="philosophy-card-title">Love</div>
-              <p class="philosophy-card-text">与 <a href="https://liu-yang-maker.github.io/PhotoWall_TY_/">彤彤</a> 一起探索世界，一起成长。</p>
+              <p class="philosophy-card-text">与 <a data-link="photoWall">彤彤</a> 一起探索世界，一起成长。</p>
               <p class="philosophy-card-text">最好的时光，是并肩走过的每一步。</p>
             </div>
 
@@ -1340,6 +1340,17 @@
           </div>
 
   <script>
+  // 全局链接集中管理：改这里，全站 [data-link="xxx"] 的 <a> 都会同步更新
+  const SITE_LINKS = {
+    // photoWall: 'https://liu-yang-maker.github.io/PhotoWall_TY_/'
+    photoWall: 'https://github.com/liu-yang-maker'
+  };
+
+  document.querySelectorAll('a[data-link]').forEach(el => {
+    const key = el.getAttribute('data-link');
+    if (SITE_LINKS[key]) el.setAttribute('href', SITE_LINKS[key]);
+  });
+
   // Get the header
   var header = document.querySelector("header");
 
