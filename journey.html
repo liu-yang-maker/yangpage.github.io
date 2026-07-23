@@ -1,0 +1,1853 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<!--
+  ============================================================
+  Yang Liu · Journey · 人物经历卡通展示
+  ============================================================
+
+  这是一个自成一体的单文件页面：5 张可切换的 Q 版卡通图 + 6 个可点击热点 + 右侧内容面板。
+  内容来自主页 (index.html) 的 Philosophy / News / Work / Education / Community 板块。
+
+  舞台采用「卡通图 + 立体视差交互」：鼠标视差倾斜、悬浮呼吸动画、追光/光斑，
+  让一张平面图也有立体灵动感（轻量、加载快、完全可控）。
+  底部缩略图可在 5 个场景（演讲 / 写代码 / 毕业 / 旅行 / 生活）间切换，
+  每张图配一套热点坐标（见 JS 中的 AVATARS）。
+
+  ============================================================
+  ★ 如何替换 / 重新生成这张卡通图
+  ============================================================
+  1) 用 AI 图片生成器（如 GPT-4o / 即梦 / Midjourney）以
+     files/liu_presentation.jpg 为参考，生成一张 Q 版卡通图。
+  2) 把新图存为 files/liu_qversion_chibi.png（或改下面 <img class="avatar-img"> 的 src）。
+  3) 打开本页面，按 E 键进入热点调试模式：点击图片任意位置，
+     控制台会打印该点的「百分比坐标」，把 6 个热点的 left/top 微调到合适位置即可。
+
+  ============================================================
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Yang Liu · Journey</title>
+  <meta name="author" content="Yang Liu">
+  <meta name="description" content="Yang Liu 的人物经历卡通展示 —— 点击标签探索我的故事">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+  <style>
+    /* ============================================================
+       主站相同的 CSS 变量 + 明暗模式
+       ============================================================ */
+    :root {
+      --bg-color: #fafafa;
+      --text-color: #2d3748;
+      --link-color: #1a56a8;
+      --header-bg: #ffffff;
+      --section-bg: #f7f8fa;
+      --profile-bg: #ffffff;
+      --profile-text: #2d3748;
+      --accent: #1a365d;
+      --accent-light: rgba(26, 54, 93, 0.08);
+      --stage-bg-a: #eef2f7;
+      --stage-bg-b: #dae4f0;
+      --panel-border: rgba(26, 54, 93, 0.08);
+      --hotspot-color: #1a365d;
+      --hotspot-ring: rgba(26, 54, 93, 0.28);
+    }
+    .dark-mode {
+      --bg-color: #0f1419;
+      --text-color: #e2e8f0;
+      --link-color: #63b3ed;
+      --header-bg: #1a202c;
+      --section-bg: #2d3748;
+      --profile-bg: #1a202c;
+      --profile-text: #e2e8f0;
+      --accent: #63b3ed;
+      --accent-light: rgba(99, 179, 237, 0.1);
+      --stage-bg-a: #10151c;
+      --stage-bg-b: #1a2432;
+      --panel-border: rgba(99, 179, 237, 0.15);
+      --hotspot-color: #63b3ed;
+      --hotspot-ring: rgba(99, 179, 237, 0.35);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      transition: transform 0.3s ease, background-color 0.3s;
+    }
+
+    a { color: var(--link-color); }
+
+    /* ============================================================
+       浮动按钮：主题切换 / 返回顶部
+       ============================================================ */
+    .theme-toggle,
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--header-bg);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      font-size: 20px;
+    }
+    .theme-toggle { right: 20px; }
+    .back-to-top {
+      left: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; }
+
+    /* ============================================================
+       Hero
+       ============================================================ */
+    .journey-container {
+      max-width: 1200px;
+      margin: 90px auto 40px;
+      padding: 0 24px;
+    }
+    .journey-hero {
+      text-align: center;
+      padding: 12px 0 22px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+    .journey-hero h1 {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 6px;
+      letter-spacing: 0.5px;
+    }
+    .journey-hero .hero-sub {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.75;
+      margin: 0;
+    }
+    .journey-hero .hero-underline {
+      display: inline-block;
+      width: 44px;
+      height: 2px;
+      margin: 10px auto 0;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.5;
+    }
+
+    /* Info banner */
+    .journey-info-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 6px auto 18px;
+      padding: 9px 16px;
+      background: var(--accent-light);
+      border: 1px dashed var(--panel-border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-color);
+      opacity: 0.92;
+      max-width: 720px;
+    }
+    .journey-info-banner b { color: var(--accent); }
+    .journey-info-banner button {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .journey-info-banner button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    .journey-info-banner.dismissed { display: none; }
+
+    /* ============================================================
+       Stage: 卡通舞台 + 右侧面板
+       ============================================================ */
+    .journey-stage {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.9s ease 0.25s forwards;
+    }
+
+    .stage-scene {
+      position: relative;
+      background: linear-gradient(155deg, var(--stage-bg-a) 0%, var(--stage-bg-b) 100%);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* 内阴影 vignette，营造舞台纵深 */
+      box-shadow: inset 0 -40px 90px rgba(0,0,0,0.10), inset 0 30px 60px rgba(255,255,255,0.10);
+      /* 光斑跟随：由 JS 写入 --mx / --my（0-100%） */
+      --mx: 50%;
+      --my: 40%;
+    }
+    .dark-mode .stage-scene {
+      box-shadow: inset 0 -40px 90px rgba(0,0,0,0.45), inset 0 30px 60px rgba(99,179,237,0.05);
+    }
+    .stage-scene::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35) 0px, transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(0,0,0,0.05) 0px, transparent 45%);
+      pointer-events: none;
+    }
+    .dark-mode .stage-scene::before {
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(99,179,237,0.10) 0px, transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(0,0,0,0.35) 0px, transparent 45%);
+    }
+    /* 光斑层：跟随鼠标的柔光 */
+    .stage-scene::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 220px at var(--mx) var(--my),
+                  rgba(255,255,255,0.35), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: soft-light;
+    }
+    .stage-scene.spotlight-on::after { opacity: 1; }
+    .dark-mode .stage-scene::after {
+      background: radial-gradient(circle 240px at var(--mx) var(--my),
+                  rgba(99,179,237,0.28), transparent 70%);
+      mix-blend-mode: screen;
+    }
+
+    /* ============================================================
+       卡通形象舞台（立体视差容器）
+       ============================================================ */
+    .avatar-perspective {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      z-index: 2;
+    }
+    .avatar-parallax {
+      position: relative;
+      width: min(84%, 430px);
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    /* 人物身后的柔光「追光」，最远层，随呼吸缩放 */
+    .avatar-parallax::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      width: 78%;
+      height: 78%;
+      transform: translate(-50%, -50%) translateZ(-60px);
+      background: radial-gradient(circle at center,
+                  rgba(43,108,176,0.20), rgba(43,108,176,0.06) 45%, transparent 70%);
+      border-radius: 50%;
+      z-index: -2;
+      pointer-events: none;
+      animation: glowBreath 6s ease-in-out infinite;
+    }
+    .dark-mode .avatar-parallax::before {
+      background: radial-gradient(circle at center,
+                  rgba(99,179,237,0.28), rgba(99,179,237,0.08) 45%, transparent 70%);
+    }
+    @keyframes glowBreath {
+      0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) translateZ(-60px) scale(1); }
+      50%      { opacity: 1;    transform: translate(-50%, -50%) translateZ(-60px) scale(1.08); }
+    }
+    .avatar-float {
+      position: relative;
+      animation: floatY 6s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+    .avatar-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      user-select: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(0 22px 30px rgba(0,0,0,0.26));
+      transform: translateZ(30px) translateY(18px) scale(0.98);
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    /* 图片就绪 / 切换完成后显示（JS 加 .show） */
+    .avatar-img.show {
+      opacity: 1;
+      transform: translateZ(30px) translateY(0) scale(1);
+    }
+    /* 鼠标进入舞台时人物轻微放大 */
+    .stage-scene.spotlight-on .avatar-img.show {
+      transform: translateZ(30px) translateY(0) scale(1.02);
+    }
+    /* 脚下椭圆地面阴影，随悬浮同步缩放 */
+    .avatar-floor-shadow {
+      position: absolute;
+      left: 50%;
+      bottom: -4px;
+      width: 60%;
+      height: 26px;
+      transform: translateX(-50%) translateZ(-20px);
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.30), transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      filter: blur(2px);
+      animation: shadowPulse 6s ease-in-out infinite;
+    }
+    .dark-mode .avatar-floor-shadow {
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.55), transparent 70%);
+    }
+    @keyframes shadowPulse {
+      0%, 100% { transform: translateX(-50%) translateZ(-20px) scale(1);    opacity: 0.85; }
+      50%      { transform: translateX(-50%) translateZ(-20px) scale(0.82); opacity: 0.55; }
+    }
+
+    .stage-helper-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      font-size: 11.5px;
+      letter-spacing: 0.3px;
+      padding: 4px 12px;
+      color: var(--text-color);
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .dark-mode .stage-helper-hint {
+      background: rgba(26,32,44,0.55);
+    }
+
+    /* ============================================================
+       场景切换器：左右箭头 + 底部缩略图 + 场景小标题
+       ============================================================ */
+    .stage-arrow {
+      position: absolute;
+      top: 46%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--panel-border);
+      background: color-mix(in srgb, var(--profile-bg) 75%, transparent);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: var(--text-color);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.55;
+      transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .stage-arrow:hover {
+      opacity: 1;
+      background: var(--accent);
+      color: #fff;
+    }
+    .stage-arrow-prev { left: 12px; }
+    .stage-arrow-next { right: 12px; }
+    .stage-arrow-prev:hover { transform: translateY(-50%) translateX(-2px); }
+    .stage-arrow-next:hover { transform: translateY(-50%) translateX(2px); }
+
+    .stage-switcher {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .stage-caption {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: var(--text-color);
+      padding: 3px 12px;
+      background: color-mix(in srgb, var(--profile-bg) 70%, transparent);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      transition: opacity 0.25s ease;
+    }
+    .stage-thumbs {
+      display: flex;
+      gap: 8px;
+      padding: 6px 8px;
+      background: color-mix(in srgb, var(--profile-bg) 60%, transparent);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      pointer-events: auto;
+    }
+    .stage-thumb {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-size: cover;
+      background-position: top center;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0.6;
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+    .stage-thumb:hover { opacity: 1; transform: translateY(-2px); }
+    .stage-thumb.active {
+      opacity: 1;
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(26,54,93,0.25);
+    }
+
+    .stage-debug-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      color: #fff;
+      background: #d69e2e;
+      border-radius: 8px;
+      z-index: 3;
+      display: none;
+    }
+    .stage-debug-badge.on { display: inline-block; }
+
+    /* First-visit tip bubble */
+    .stage-tip-bubble {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      max-width: 220px;
+      padding: 8px 12px;
+      background: var(--profile-bg);
+      color: var(--text-color);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      font-size: 12.5px;
+      line-height: 1.5;
+      z-index: 3;
+      opacity: 0;
+      transform: translateY(-6px);
+      animation: tipShow 0.5s ease 1.2s forwards, tipHide 0.5s ease 7s forwards;
+      pointer-events: none;
+    }
+    @keyframes tipShow { to { opacity: 1; transform: translateY(0); } }
+    @keyframes tipHide { to { opacity: 0; transform: translateY(-6px); } }
+
+    /* ============================================================
+       Hotspots on the cartoon image (绝对定位 · 百分比)
+       每个 .hotspot 用内联 style="left:..%;top:..%;--z:..px;--hc:类别色"
+       定位并携带景深与类别色；圆点内嵌 emoji 图标，hover/active 浮出玻璃标签。
+       ============================================================ */
+    .hotspot {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transform: translate(-50%, -50%) translateZ(var(--z, 60px));
+      z-index: 5;
+      opacity: 0;
+      /* 类别色：默认蓝，靠内联 --hc 覆盖 */
+      --hc: #2b6cb0;
+      animation: hotspotIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      transition: left 0.5s cubic-bezier(0.22,1,0.36,1), top 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    /* 图片入场后，热点依次弹出 */
+    .hotspot:nth-of-type(1) { animation-delay: 0.85s; }
+    .hotspot:nth-of-type(2) { animation-delay: 0.95s; }
+    .hotspot:nth-of-type(3) { animation-delay: 1.05s; }
+    .hotspot:nth-of-type(4) { animation-delay: 1.15s; }
+    .hotspot:nth-of-type(5) { animation-delay: 1.25s; }
+    .hotspot:nth-of-type(6) { animation-delay: 1.35s; }
+    @keyframes hotspotIn {
+      from { opacity: 0; transform: translate(-50%, -50%) translateZ(var(--z, 60px)) scale(0.4); }
+      to   { opacity: 1; transform: translate(-50%, -50%) translateZ(var(--z, 60px)) scale(1); }
+    }
+    /* 圆点：类别色渐变 + 白描边 + 内嵌图标 */
+    .hotspot .hotspot-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at 35% 30%,
+                  color-mix(in srgb, var(--hc) 55%, white), var(--hc));
+      border: 2px solid rgba(255,255,255,0.95);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--hc) 28%, transparent),
+                  0 3px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      line-height: 1;
+    }
+    .hotspot .hotspot-dot::after {
+      content: attr(data-ic);
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));
+    }
+    /* 脉冲光圈（类别色） */
+    .hotspot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--hc);
+      opacity: 0.4;
+      animation: pulse 2.4s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse {
+      0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.5; }
+      70%  { transform: translate(-50%, -50%) scale(2.4); opacity: 0;   }
+      100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0;   }
+    }
+    /* 玻璃拟态标签 */
+    .hotspot .hotspot-label {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-4px);
+      white-space: nowrap;
+      padding: 5px 11px;
+      background: color-mix(in srgb, var(--profile-bg) 78%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--text-color);
+      border: 1px solid color-mix(in srgb, var(--hc) 45%, var(--panel-border));
+      border-left: 3px solid var(--hc);
+      border-radius: 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    /* 靠右的热点，标签翻到左侧，避免被舞台裁掉 */
+    .hotspot.flip-label .hotspot-label {
+      left: auto;
+      right: 28px;
+      border-left: 1px solid color-mix(in srgb, var(--hc) 45%, var(--panel-border));
+      border-right: 3px solid var(--hc);
+      transform: translateY(-50%) translateX(4px);
+    }
+    .hotspot:hover .hotspot-label,
+    .hotspot:focus .hotspot-label,
+    .hotspot.active .hotspot-label {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+    .hotspot:hover .hotspot-dot,
+    .hotspot:focus .hotspot-dot,
+    .hotspot.active .hotspot-dot {
+      transform: translate(-50%, -50%) scale(1.2);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--hc) 32%, transparent),
+                  0 4px 12px rgba(0,0,0,0.4);
+    }
+    .hotspot:hover, .hotspot:focus { z-index: 7; outline: none; }
+    .hotspot.active { z-index: 7; }
+    .hotspot.active::before { animation: none; opacity: 0; }
+
+    /* Poster (loading) */
+    .stage-poster {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-color);
+      opacity: 0.85;
+      background: transparent;
+    }
+    .stage-poster p {
+      font-size: 13px;
+      margin: 0;
+      opacity: 0.75;
+      letter-spacing: 0.3px;
+    }
+    .poster-spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--panel-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       Right-side content panel
+       ============================================================ */
+    .stage-panel {
+      position: relative;
+      background: var(--profile-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      overflow: hidden;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel-view {
+      position: absolute;
+      inset: 0;
+      padding: 26px 26px 22px;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .panel-view.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--panel-border);
+    }
+    .panel-icon {
+      width: 40px; height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .panel-header-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .panel-title {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 3px;
+    }
+    .panel-slogan {
+      font-size: 12.5px;
+      color: var(--text-color);
+      opacity: 0.7;
+      margin: 0;
+    }
+    .panel-close {
+      background: transparent;
+      border: 1px solid var(--panel-border);
+      color: var(--text-color);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .panel-close:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .panel-body { font-size: 14px; line-height: 1.7; }
+    .panel-loading { color: var(--text-color); opacity: 0.5; font-size: 13px; padding: 8px 2px; }
+    .panel-back-home {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--panel-border);
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-color);
+      opacity: 0.75;
+    }
+    .panel-back-home a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .panel-back-home a:hover { text-decoration: underline; }
+
+    /* Welcome view */
+    .panel-welcome-emoji {
+      font-size: 44px;
+      text-align: center;
+      margin: 4px 0 6px;
+    }
+    .panel-welcome h2 {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 22px;
+      color: var(--accent);
+      text-align: center;
+      margin: 0 0 8px;
+    }
+    .panel-welcome > p {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.85;
+      margin: 0 0 18px;
+    }
+    .panel-inline-dot {
+      display: inline-block;
+      width: 9px; height: 9px;
+      background: var(--hotspot-color);
+      border: 2px solid var(--profile-bg);
+      box-shadow: 0 0 0 3px var(--hotspot-ring);
+      border-radius: 50%;
+      transform: translateY(1px);
+      margin: 0 4px;
+    }
+    .panel-welcome-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .panel-welcome-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--section-bg);
+      border-radius: 10px;
+      font-size: 13.5px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .panel-welcome-list li:hover {
+      transform: translateX(3px);
+      background: var(--accent-light);
+    }
+    .panel-welcome-list .anchor-emoji {
+      font-size: 18px;
+      width: 26px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .panel-welcome-list .anchor-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* Philosophy view — reuse card look */
+    .panel-philosophy .philosophy-card {
+      background: var(--section-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+    .panel-philosophy .philosophy-card-title {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-philosophy .philosophy-card-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px; height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .panel-philosophy .philosophy-card-text {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-color);
+      margin: 0 0 6px;
+    }
+    .panel-philosophy .philosophy-card-emphasis {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .panel-philosophy .philosophy-card-quote {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--accent);
+      margin: 8px 0 4px;
+    }
+    .panel-philosophy .philosophy-card-translation {
+      font-size: 12.5px;
+      color: var(--text-color);
+      opacity: 0.75;
+      margin: 0;
+    }
+    .panel-philosophy .philosophy-naruto-img {
+      width: 72px;
+      float: right;
+      margin: 0 0 6px 10px;
+      border-radius: 8px;
+      opacity: 0.9;
+    }
+
+    /* News view — timeline */
+    .panel-news .news-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--panel-border);
+    }
+    .panel-news .news-item:last-child { border-bottom: 0; }
+    .panel-news .news-date {
+      flex-shrink: 0;
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 3px 8px;
+      border-radius: 8px;
+      height: fit-content;
+      letter-spacing: 0.3px;
+    }
+    .panel-news .news-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+    .panel-news .news-text strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Work view — card list */
+    .panel-work .intern-item {
+      background: var(--section-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease;
+    }
+    .panel-work .intern-item:hover { transform: translateX(3px); }
+    .panel-work .intern-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .panel-work .intern-company {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .panel-work .intern-badges { display: flex; gap: 4px; }
+    .panel-work .intern-year,
+    .panel-work .intern-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+    .panel-work .intern-year {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .panel-work .intern-tag {
+      background: #edf2f7;
+      color: #4a5568;
+    }
+    .dark-mode .panel-work .intern-tag {
+      background: #2d3748;
+      color: #cbd5e0;
+    }
+    .panel-work .intern-desc {
+      font-size: 12.5px;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Education view — timeline */
+    .panel-education .edu-timeline {
+      position: relative;
+      padding-left: 20px;
+    }
+    .panel-education .edu-timeline::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--panel-border);
+    }
+    .panel-education .edu-item {
+      position: relative;
+      padding: 4px 0 14px;
+    }
+    .panel-education .edu-item::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 8px;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border: 2px solid var(--profile-bg);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--accent-light);
+    }
+    .panel-education .edu-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .panel-education .edu-school {
+      font-size: 12.5px;
+      color: var(--text-color);
+      opacity: 0.85;
+    }
+    .panel-education .edu-year {
+      font-size: 11.5px;
+      color: var(--text-color);
+      opacity: 0.6;
+      margin-top: 1px;
+    }
+
+    /* Community view — grid */
+    .panel-community .community-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .panel-community .community-card {
+      display: block;
+      padding: 14px;
+      background: var(--section-bg);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .panel-community .community-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(26,54,93,0.14);
+    }
+    .panel-community .community-card-title {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .panel-community .community-card-desc {
+      font-size: 12px;
+      color: var(--text-color);
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       Modal — swap tutorial
+       ============================================================ */
+    .journey-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .journey-modal-overlay.open { display: flex; }
+    .journey-modal {
+      max-width: 560px;
+      width: 100%;
+      background: var(--profile-bg);
+      color: var(--text-color);
+      border-radius: 14px;
+      padding: 26px 28px;
+      max-height: 82vh;
+      overflow-y: auto;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      animation: modalIn 0.28s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .journey-modal h3 {
+      font-family: 'Source Serif 4', 'Georgia', serif;
+      font-size: 20px;
+      color: var(--accent);
+      margin: 0 0 6px;
+    }
+    .journey-modal .modal-sub {
+      font-size: 13px;
+      color: var(--text-color);
+      opacity: 0.75;
+      margin: 0 0 16px;
+    }
+    .journey-modal ol { padding-left: 20px; margin: 0 0 14px; }
+    .journey-modal ol li {
+      margin-bottom: 12px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .journey-modal code {
+      background: var(--section-bg);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+    }
+    .journey-modal .modal-alt {
+      background: var(--section-bg);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--text-color);
+      margin: 0 0 18px;
+    }
+    .journey-modal .modal-alt b { color: var(--accent); }
+    .journey-modal-close {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter 0.2s;
+      font-family: inherit;
+    }
+    .journey-modal-close:hover { filter: brightness(1.1); }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .journey-footer {
+      text-align: center;
+      padding: 30px 20px 60px;
+      font-size: 12px;
+      color: var(--text-color);
+      opacity: 0.55;
+    }
+    .journey-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       Animations
+       ============================================================ */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 900px) {
+      .journey-container { margin-top: 78px; padding: 0 14px; }
+      .journey-hero h1 { font-size: 26px; }
+      .journey-stage {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .stage-scene { min-height: 460px; padding: 12px 0 84px; }
+      .avatar-parallax {
+        width: min(70%, 300px);
+        /* 触屏关闭视差倾斜，避免抖动 */
+        transform: none !important;
+      }
+      .stage-panel { min-height: 380px; }
+      .panel-view { padding: 20px 18px; }
+      .panel-community .community-grid { grid-template-columns: 1fr; }
+      .stage-tip-bubble { display: none; }
+      .stage-helper-hint { display: none; }
+      .stage-switcher { bottom: 14px; }
+      .stage-arrow { top: 42%; }
+    }
+
+    /* 尊重系统「减少动态效果」偏好 */
+    @media (prefers-reduced-motion: reduce) {
+      .avatar-float,
+      .avatar-floor-shadow,
+      .avatar-parallax::before { animation: none; }
+      .avatar-parallax { transition: none; }
+      .hotspot::before { animation: none; }
+      .avatar-img { transition: opacity 0.3s ease; transform: translateZ(30px); }
+      .avatar-img.show { transform: translateZ(30px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">Yang's Homepage</a>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a data-link="photoWall">Gallery</a></li>
+        <li><a href="journey.html" class="nav-active">Journey</a></li>
+        <li><a href="mailto:liuyang2020@amss.ac.cn">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="journey-container">
+
+    <section class="journey-hero">
+      <h1>The Journey · 一段旅程</h1>
+      <p class="hero-sub">点亮卡通形象身上的光点，认识不太一样的我</p>
+      <div class="hero-underline"></div>
+    </section>
+
+    <!-- Info banner: 说明 + 教程入口 -->
+    <div class="journey-info-banner" id="infoBanner">
+      <span>这张 <b>Q 版卡通图</b> 由 AI 以我的演讲照生成，想换成你自己的？</span>
+      <button type="button" id="openTutorialBtn">查看教程</button>
+      <button type="button" id="dismissBannerBtn" aria-label="隐藏该提示">关闭</button>
+    </div>
+
+    <!-- Cartoon Stage -->
+    <div class="journey-stage">
+      <div class="stage-scene" id="stageScene">
+        <span class="stage-debug-badge" id="debugBadge">EDIT MODE · 按 E 退出</span>
+        <div class="stage-tip-bubble" id="tipBubble">
+          移动鼠标看我转一转，点身上的光点 →
+        </div>
+
+        <!-- 上一张 / 下一张 -->
+        <button class="stage-arrow stage-arrow-prev" id="prevAvatar" aria-label="上一张卡通图">‹</button>
+        <button class="stage-arrow stage-arrow-next" id="nextAvatar" aria-label="下一张卡通图">›</button>
+
+        <div class="avatar-perspective">
+          <!-- 立体视差容器：随鼠标 rotateX/rotateY -->
+          <div class="avatar-parallax" id="avatarParallax">
+            <div class="avatar-float">
+              <div class="avatar-floor-shadow"></div>
+              <img class="avatar-img" id="avatarImg"
+                   src="files/liu_cartoon_talk.png"
+                   alt="Yang Liu 卡通形象" draggable="false">
+
+              <!-- ============================================================
+                   HOTSPOTS —— 绝对定位在图片上（坐标百分比 + 景深 --z + 类别色 --hc）。
+                   left/top 由 JS 依据当前图的 AVATARS[i].spots 动态设置；
+                   按 E 键进入调试模式，点击图片可在控制台复制精确坐标。
+                   ============================================================ -->
+              <button class="hotspot" data-category="philosophy"
+                      style="--z:82px;--hc:#5a67d8"
+                      aria-label="Philosophy · 我的信念">
+                <div class="hotspot-dot" data-ic="🧠"></div>
+                <div class="hotspot-label">Philosophy · 信念</div>
+              </button>
+
+              <button class="hotspot" data-category="news"
+                      style="--z:70px;--hc:#dd6b20"
+                      aria-label="News · 最新动态">
+                <div class="hotspot-dot" data-ic="📰"></div>
+                <div class="hotspot-label">News · 最新动态</div>
+              </button>
+
+              <button class="hotspot" data-category="love"
+                      style="--z:64px;--hc:#e53e8c"
+                      aria-label="Love · 与彤彤">
+                <div class="hotspot-dot" data-ic="💛"></div>
+                <div class="hotspot-label">Love · 与彤彤</div>
+              </button>
+
+              <button class="hotspot" data-category="work"
+                      style="--z:58px;--hc:#0d9488"
+                      aria-label="Work · 工作经历">
+                <div class="hotspot-dot" data-ic="💼"></div>
+                <div class="hotspot-label">Work · 工作 / 实习</div>
+              </button>
+
+              <button class="hotspot" data-category="education"
+                      style="--z:46px;--hc:#38a169"
+                      aria-label="Education · 教育经历">
+                <div class="hotspot-dot" data-ic="🎓"></div>
+                <div class="hotspot-label">Education · 教育</div>
+              </button>
+
+              <button class="hotspot" data-category="community"
+                      style="--z:52px;--hc:#805ad5"
+                      aria-label="Community · 社群与链接">
+                <div class="hotspot-dot" data-ic="🌐"></div>
+                <div class="hotspot-label">Community · 社群</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 场景切换：缩略图 + 当前场景小标题 -->
+        <div class="stage-switcher">
+          <div class="stage-caption" id="stageCaption">在会议上演讲</div>
+          <div class="stage-thumbs" id="stageThumbs" role="tablist" aria-label="切换卡通场景"></div>
+        </div>
+
+        <div class="stage-helper-hint">移动鼠标看立体感 · 点光点看故事 · 下方切换场景</div>
+      </div>
+
+      <!-- ============================================================
+           Right-side content panel
+           ============================================================ -->
+      <aside class="stage-panel" id="stagePanel" aria-live="polite">
+
+        <!-- Welcome -->
+        <div class="panel-view panel-welcome active" data-view="welcome">
+          <div class="panel-welcome-emoji">👋</div>
+          <h2>嗨，这就是我</h2>
+          <p>点亮我身上的 <span class="panel-inline-dot"></span> 光点，听我讲讲这些故事。</p>
+          <ul class="panel-welcome-list">
+            <li data-goto="philosophy">
+              <span class="anchor-emoji">🧠</span>
+              <span><span class="anchor-title">Philosophy</span>我信什么，以及我的忍道</span>
+            </li>
+            <li data-goto="love">
+              <span class="anchor-emoji">💛</span>
+              <span><span class="anchor-title">Love</span>和彤彤，把世界慢慢走遍</span>
+            </li>
+            <li data-goto="work">
+              <span class="anchor-emoji">💼</span>
+              <span><span class="anchor-title">Work</span>腾讯·字节·AMD·智谱，一路折腾大模型</span>
+            </li>
+            <li data-goto="community">
+              <span class="anchor-emoji">🌐</span>
+              <span><span class="anchor-title">Community</span>写开源、带社群、交朋友</span>
+            </li>
+            <li data-goto="education">
+              <span class="anchor-emoji">🎓</span>
+              <span><span class="anchor-title">Education</span>数学出身，一步步走到 AI</span>
+            </li>
+            <li data-goto="news">
+              <span class="anchor-emoji">📰</span>
+              <span><span class="anchor-title">News</span>最近，我在忙这些</span>
+            </li>
+          </ul>
+          <div class="panel-back-home">
+            这里的一切，都来自我的 <a href="index.html">主页</a>
+          </div>
+        </div>
+
+        <!-- Philosophy -->
+        <div class="panel-view panel-philosophy" data-view="philosophy">
+          <div class="panel-header">
+            <span class="panel-icon">🧠</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">Philosophy</h3>
+              <p class="panel-slogan">孤独探索的背后，是不肯低头的信念</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div data-sync="philosophy"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html#philosophy">在主页查看 Philosophy →</a>
+          </div>
+        </div>
+
+        <!-- Love (alias of philosophy 之 Love 卡片，快捷入口) -->
+        <div class="panel-view panel-philosophy" data-view="love">
+          <div class="panel-header">
+            <span class="panel-icon">💛</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">Love</h3>
+              <p class="panel-slogan">与彤彤并肩，把世界一点点走遍</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div data-sync="love"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html">回到主页 →</a>
+          </div>
+        </div>
+
+        <!-- News -->
+        <div class="panel-view panel-news" data-view="news">
+          <div class="panel-header">
+            <span class="panel-icon">📰</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">News</h3>
+              <p class="panel-slogan">最近，我在忙这些</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div data-sync="news"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html#news">在主页查看更多 News →</a>
+          </div>
+        </div>
+
+        <!-- Work -->
+        <div class="panel-view panel-work" data-view="work">
+          <div class="panel-header">
+            <span class="panel-icon">💼</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">Work Experience</h3>
+              <p class="panel-slogan">从数学证明到大模型，一直在造东西</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div data-sync="work"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html#work">在主页查看 Work Experience →</a>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="panel-view panel-education" data-view="education">
+          <div class="panel-header">
+            <span class="panel-icon">🎓</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">Education</h3>
+              <p class="panel-slogan">数学出身，一步步走到 AI</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div class="edu-timeline" data-sync="education"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html#education">在主页查看 Education →</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div class="panel-view panel-community" data-view="community">
+          <div class="panel-header">
+            <span class="panel-icon">🌐</span>
+            <div class="panel-header-text">
+              <h3 class="panel-title">Community &amp; Links</h3>
+              <p class="panel-slogan">写开源、带社群、交朋友</p>
+            </div>
+            <button class="panel-close" aria-label="返回欢迎页" data-close>×</button>
+          </div>
+          <div class="panel-body">
+            <div class="community-grid" data-sync="community"><p class="panel-loading">正在从主页同步…</p></div>
+          </div>
+          <div class="panel-back-home">
+            <a href="index.html">回到主页 →</a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <!-- Swap tutorial modal -->
+    <div class="journey-modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="journey-modal">
+        <h3 id="modalTitle">换成你自己的卡通形象</h3>
+        <p class="modal-sub">用 AI 图片生成器就能做，改一处 <code>src</code> 即可替换。</p>
+        <ol>
+          <li>
+            用 AI 图片生成器（<a href="https://chatgpt.com/" target="_blank" rel="noopener">GPT-4o</a> / <a href="https://jimeng.jianying.com/" target="_blank" rel="noopener">即梦</a> / <a href="https://www.midjourney.com/" target="_blank" rel="noopener">Midjourney</a> 等），以你的照片
+            <code>files/liu_presentation.jpg</code> 为参考，提示词里写明「Q 版 / chibi / 卡通 / 干净柔和背景 / 保留眼镜等特征」，生成一张竖版卡通图。
+          </li>
+          <li>
+            把新图保存进 <code>files/</code>，然后在本页 JS 的 <code>AVATARS</code> 数组里添加一项（<code>src</code> 指向新图、写上 <code>caption</code> 场景名）即可加入切换器。
+          </li>
+          <li>
+            刷新页面 → 按 <code>E</code> 键进入 <b>热点调试模式</b>：点击图片任意位置，控制台会打印该点的 <code>left / top 百分比</code>，把该图那一套
+            <code>spots</code> 坐标微调到合适位置即可。
+          </li>
+        </ol>
+        <div class="modal-alt">
+          <b>想更进一步做成可旋转的立体模型？</b>
+          可把卡通图喂给 <a href="https://www.meshy.ai/" target="_blank" rel="noopener">Meshy AI</a>（Image to 3D）·
+          <a href="https://hyperhuman.deemos.com/rodin" target="_blank" rel="noopener">Rodin</a> ·
+          <a href="https://github.com/TencentARC/InstantMesh" target="_blank" rel="noopener">InstantMesh</a> 生成模型文件。
+        </div>
+        <button class="journey-modal-close" type="button" id="closeModalBtn">好的，我知道了</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="journey-footer">
+    © 2026 Yang Liu · <a href="index.html">Back to Home</a> · <a href="index.html#news">News</a>
+  </footer>
+
+  <script>
+    /* ============================================================
+       全局 SITE_LINKS —— 与 index.html 保持同步
+       ============================================================ */
+    const SITE_LINKS = {
+      photoWall: 'https://github.com/liu-yang-maker'
+    };
+    // 解析给定范围内的 data-link 占位链接（默认整个文档），注入后可对新内容再次调用
+    function resolveLinks(root = document) {
+      root.querySelectorAll('a[data-link]').forEach(el => {
+        const key = el.getAttribute('data-link');
+        if (SITE_LINKS[key]) el.setAttribute('href', SITE_LINKS[key]);
+      });
+    }
+    resolveLinks();
+
+    /* ============================================================
+       内容同步：运行时从 index.html 抓取各板块，注入右侧面板
+       —— index.html 是唯一内容源，journey 只保留面板外壳与文案。
+       需经 http(s) 访问（GitHub Pages 正常；本地用服务器预览）。
+       fetch 失败则保留占位，不兜底。
+       ============================================================ */
+    async function syncFromHome() {
+      let doc;
+      try {
+        const res = await fetch('index.html');
+        doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      } catch (e) {
+        console.warn('[Journey] 无法从 index.html 同步内容（需通过 http 服务器访问）：', e);
+        return;
+      }
+
+      const put = (sel, srcEl) => {
+        const mount = document.querySelector(sel);
+        if (mount && srcEl) { mount.innerHTML = srcEl.innerHTML; resolveLinks(mount); }
+      };
+      put('[data-sync="news"]',       doc.querySelector('.news-list'));
+      put('[data-sync="work"]',       doc.querySelector('.intern-list'));
+      put('[data-sync="education"]',  doc.querySelector('.edu-timeline'));
+      put('[data-sync="philosophy"]', doc.querySelector('.philosophy-grid'));
+
+      // Love：取 philosophy-grid 里标题为 Love 的卡片
+      const loveCard = [...doc.querySelectorAll('.philosophy-grid .philosophy-card')]
+        .find(c => c.querySelector('.philosophy-card-title')?.textContent.trim() === 'Love');
+      const loveMount = document.querySelector('[data-sync="love"]');
+      if (loveMount && loveCard) { loveMount.innerHTML = loveCard.outerHTML; resolveLinks(loveMount); }
+
+      // Community：由 index 的 profile-links 生成卡片（排除 Journey 按钮）
+      const meta = { // 图标/描述为呈现层，按 label 匹配；index 新增链接无 meta 则用默认
+        'Datawhale': { icon:'🐳', desc:'中文开源 AI 社群，参与教程与技术分享。' },
+        'Github':    { icon:'💻', desc:'我的代码仓库，图/组合优化与大模型开源项目。' },
+        'Personal':  { icon:'🖼️', desc:'我和彤彤的照片墙 —— 一段段真实的记忆。' },
+        'Email':     { icon:'✉️', desc:'liuyang2020@amss.ac.cn · 合作、聊天都欢迎。' },
+      };
+      const links = [...doc.querySelectorAll('.profile-links a')]
+        .filter(a => !a.classList.contains('profile-links-3d'));
+      const cm = document.querySelector('[data-sync="community"]');
+      if (cm && links.length) {
+        cm.innerHTML = links.map(a => {
+          const label = a.textContent.trim();
+          const m = meta[label] || { icon:'🔗', desc:'' };
+          const href = a.getAttribute('href') || '';
+          const dl = a.getAttribute('data-link');
+          const attrs = (dl ? `data-link="${dl}"` : `href="${href}"`) +
+            (/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : '');
+          return `<a class="community-card" ${attrs}>
+            <div class="community-card-title"><span>${m.icon}</span> ${label}</div>
+            ${m.desc ? `<p class="community-card-desc">${m.desc}</p>` : ''}</a>`;
+        }).join('');
+        resolveLinks(cm);
+      }
+    }
+    syncFromHome();
+
+    /* ============================================================
+       Header 滚动隐藏
+       ============================================================ */
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 20) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+    }, { passive: true });
+
+    /* ============================================================
+       主题切换 + 返回顶部（沿用 index.html 的实现）
+       ============================================================ */
+    const themeToggle = document.createElement('div');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.setAttribute('role', 'button');
+    themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+    themeToggle.innerHTML = '🌓';
+    document.body.appendChild(themeToggle);
+
+    const backToTop = document.createElement('div');
+    backToTop.className = 'back-to-top';
+    backToTop.setAttribute('role', 'button');
+    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.innerHTML = '⬆️';
+    document.body.appendChild(backToTop);
+
+    backToTop.addEventListener('click', () =>
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    );
+
+    function updateBackToTopVisibility() {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    }
+    updateBackToTopVisibility();
+    window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+      themeToggle.innerHTML = isDarkMode ? '☀️' : '🌙';
+    });
+
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      themeToggle.innerHTML = '☀️';
+    }
+
+    /* ============================================================
+       Panel 切换：点热点 → 显示对应 view
+       ============================================================ */
+    const panel = document.getElementById('stagePanel');
+    const views = panel.querySelectorAll('.panel-view');
+    const hotspots = document.querySelectorAll('.hotspot');
+
+    function showView(name) {
+      views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
+      hotspots.forEach(h => h.classList.toggle('active', h.dataset.category === name));
+      // 在移动端切换时把面板滚进视野
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    hotspots.forEach(h => {
+      h.addEventListener('click', () => {
+        const cat = h.dataset.category;
+        if (cat) showView(cat);
+      });
+    });
+
+    // Welcome 页面里的 "锚点条" 也支持点击
+    document.querySelectorAll('.panel-welcome-list li[data-goto]').forEach(li => {
+      li.addEventListener('click', () => showView(li.dataset.goto));
+      li.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showView(li.dataset.goto); }
+      });
+      li.setAttribute('role', 'button');
+      li.setAttribute('tabindex', '0');
+    });
+
+    // Close 按钮 → 回 welcome
+    panel.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => showView('welcome'));
+    });
+
+    /* ============================================================
+       Info banner 显隐（LocalStorage 持久化）
+       ============================================================ */
+    const banner = document.getElementById('infoBanner');
+    if (localStorage.getItem('journeyBannerDismissed') === 'true') {
+      banner.classList.add('dismissed');
+    }
+    document.getElementById('dismissBannerBtn').addEventListener('click', () => {
+      banner.classList.add('dismissed');
+      localStorage.setItem('journeyBannerDismissed', 'true');
+    });
+
+    /* ============================================================
+       Modal（换模型教程）
+       ============================================================ */
+    const modalOverlay = document.getElementById('modalOverlay');
+    document.getElementById('openTutorialBtn').addEventListener('click', () => {
+      modalOverlay.classList.add('open');
+    });
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      modalOverlay.classList.remove('open');
+    });
+    modalOverlay.addEventListener('click', e => {
+      if (e.target === modalOverlay) modalOverlay.classList.remove('open');
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+        modalOverlay.classList.remove('open');
+      }
+    });
+
+    /* ============================================================
+       立体视差交互：鼠标视差倾斜 + 光斑跟随
+       - .avatar-parallax 随光标做 rotateX / rotateY（热点分层 translateZ 产生景深）
+       - .stage-scene 的 --mx / --my 驱动柔光光斑
+       触屏 / prefers-reduced-motion 下自动关闭倾斜。
+       ============================================================ */
+    const stageScene = document.getElementById('stageScene');
+    const parallax = document.getElementById('avatarParallax');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouch = window.matchMedia('(max-width: 900px)').matches ||
+                    ('ontouchstart' in window);
+    const MAX_TILT = 10; // 最大倾斜角度
+
+    function onStageMove(ev) {
+      const rect = stageScene.getBoundingClientRect();
+      const px = (ev.clientX - rect.left) / rect.width;   // 0..1
+      const py = (ev.clientY - rect.top) / rect.height;   // 0..1
+      // 光斑跟随
+      stageScene.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      stageScene.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+      // 视差倾斜（触屏 / 减弱动效时跳过）
+      if (!isTouch && !reduceMotion) {
+        const rotY = (px - 0.5) * 2 * MAX_TILT;    // 左右 -> Y 轴
+        const rotX = -(py - 0.5) * 2 * MAX_TILT;   // 上下 -> X 轴
+        parallax.style.transform =
+          `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+      }
+    }
+
+    stageScene.addEventListener('mouseenter', () => stageScene.classList.add('spotlight-on'));
+    stageScene.addEventListener('mousemove', onStageMove);
+    stageScene.addEventListener('mouseleave', () => {
+      stageScene.classList.remove('spotlight-on');
+      if (!isTouch && !reduceMotion) {
+        parallax.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      }
+    });
+
+    /* ============================================================
+       热点坐标调试模式：按 E 切换。开启后点击图片任意位置，
+       控制台打印该点相对图片的「百分比坐标」，方便你换图后
+       把 6 个热点的 style="left:..%;top:..%" 微调到合适位置。
+       ============================================================ */
+    let editMode = false;
+    const debugBadge = document.getElementById('debugBadge');
+    const avatarImg = document.getElementById('avatarImg');
+
+    function toggleEditMode() {
+      editMode = !editMode;
+      debugBadge.classList.toggle('on', editMode);
+      console.log(editMode
+        ? '%c[Journey] 热点调试模式开启 —— 点击卡通图，百分比坐标会打印在这里。'
+        : '%c[Journey] 已退出调试模式。',
+        'color:#d69e2e;font-weight:600');
+    }
+
+    document.addEventListener('keydown', e => {
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+      if (e.key === 'e' || e.key === 'E') toggleEditMode();
+    });
+
+    avatarImg && avatarImg.addEventListener('click', ev => {
+      if (!editMode) return;
+      const rect = avatarImg.getBoundingClientRect();
+      const left = ((ev.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const top  = ((ev.clientY - rect.top) / rect.height * 100).toFixed(1);
+      console.log(
+        `%c[Journey] 命中点（当前图 ${AVATARS[currentAvatar].id}）： {x:${left}, y:${top}}`,
+        'color:#2b6cb0;font-weight:600'
+      );
+    });
+
+    /* ============================================================
+       卡通场景切换器：5 张图 + 每图独立热点坐标（spots）
+       切换时 crossfade 换 src，并按该图坐标重定位 6 个热点。
+       坐标为百分比，可按 E 键调试模式逐张微调。
+       ============================================================ */
+    const AVATARS = [
+      { id:'talk', src:'files/liu_cartoon_talk.png', caption:'在会议上演讲',
+        spots:{ philosophy:{x:48,y:16}, news:{x:52,y:31}, love:{x:41,y:41},
+                work:{x:33,y:41}, education:{x:45,y:82}, community:{x:61,y:44,flip:true} } },
+      { id:'code', src:'files/liu_cartoon_code.png', caption:'写代码 · 做科研',
+        spots:{ philosophy:{x:47,y:27}, work:{x:52,y:82}, news:{x:66,y:64,flip:true},
+                love:{x:36,y:58}, community:{x:16,y:80}, education:{x:29,y:50} } },
+      { id:'grad', src:'files/liu_cartoon_grad.png', caption:'博士毕业',
+        spots:{ philosophy:{x:50,y:12}, education:{x:60,y:47,flip:true}, news:{x:30,y:38},
+                work:{x:45,y:46}, love:{x:47,y:62}, community:{x:47,y:85} } },
+      { id:'travel', src:'files/liu_cartoon_travel.png', caption:'旅行 · 探索世界',
+        spots:{ philosophy:{x:46,y:20}, love:{x:30,y:36}, news:{x:41,y:53},
+                community:{x:60,y:44,flip:true}, work:{x:63,y:61,flip:true}, education:{x:44,y:82} } },
+      { id:'life', src:'files/liu_cartoon_life.png', caption:'生活 · 忍道',
+        spots:{ philosophy:{x:47,y:27}, love:{x:40,y:52}, work:{x:34,y:66},
+                news:{x:55,y:66,flip:true}, community:{x:62,y:56,flip:true}, education:{x:47,y:86} } },
+    ];
+
+    const thumbsWrap = document.getElementById('stageThumbs');
+    const captionEl = document.getElementById('stageCaption');
+    const hotspotByCat = {};
+    hotspots.forEach(h => { hotspotByCat[h.dataset.category] = h; });
+    let currentAvatar = 0;
+
+    function applySpots(spots) {
+      Object.keys(spots).forEach(cat => {
+        const h = hotspotByCat[cat];
+        if (!h) return;
+        const s = spots[cat];
+        h.style.left = s.x + '%';
+        h.style.top = s.y + '%';
+        h.classList.toggle('flip-label', !!s.flip);
+      });
+    }
+
+    function setAvatar(i, opts) {
+      opts = opts || {};
+      i = (i + AVATARS.length) % AVATARS.length;
+      currentAvatar = i;
+      const a = AVATARS[i];
+      thumbsWrap.querySelectorAll('.stage-thumb').forEach((t, idx) =>
+        t.classList.toggle('active', idx === i));
+      captionEl.style.opacity = '0';
+
+      const swap = () => {
+        avatarImg.src = a.src;
+        applySpots(a.spots);
+        if (avatarImg.complete) avatarImg.classList.add('show');
+        captionEl.textContent = a.caption;
+        captionEl.style.opacity = '1';
+      };
+
+      if (opts.instant) {
+        swap();
+      } else {
+        avatarImg.classList.remove('show'); // 淡出旧图
+        setTimeout(swap, 220);
+      }
+    }
+
+    // 图片就绪 -> 淡入
+    avatarImg.addEventListener('load', () => avatarImg.classList.add('show'));
+
+    // 构建缩略图
+    AVATARS.forEach((a, i) => {
+      const t = document.createElement('button');
+      t.className = 'stage-thumb';
+      t.style.backgroundImage = `url("${a.src}")`;
+      t.setAttribute('role', 'tab');
+      t.setAttribute('aria-label', a.caption);
+      t.title = a.caption;
+      t.addEventListener('click', () => setAvatar(i));
+      thumbsWrap.appendChild(t);
+    });
+
+    // 左右箭头
+    document.getElementById('prevAvatar').addEventListener('click', () => setAvatar(currentAvatar - 1));
+    document.getElementById('nextAvatar').addEventListener('click', () => setAvatar(currentAvatar + 1));
+
+    // 键盘左右切换（不在输入框时）
+    document.addEventListener('keydown', e => {
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+      if (e.key === 'ArrowLeft') setAvatar(currentAvatar - 1);
+      if (e.key === 'ArrowRight') setAvatar(currentAvatar + 1);
+    });
+
+    // 初始化第 0 张（HTML 中 img 已是 talk）
+    setAvatar(0, { instant: true });
+    if (avatarImg.complete) avatarImg.classList.add('show');
+  </script>
+
+</body>
+</html>

@@ -713,6 +713,66 @@
         font-size: 10px;
       }
     }
+
+    /* ============================================================
+       Journey 入口按钮 —— profile-links 内的胶囊 + NEW 徽章
+       ============================================================ */
+    .profile-links-3d {
+      position: relative;
+      display: inline-flex !important;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px 4px 10px !important;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #fff !important;
+      background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%) !important;
+      border: 1px solid rgba(26, 54, 93, 0.35) !important;
+      border-radius: 14px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(26, 54, 93, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .profile-links-3d:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.32) !important;
+      color: #fff !important;
+    }
+    .profile-links-3d .cube-icon {
+      width: 12px;
+      height: 12px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.65) 100%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      opacity: 0.95;
+      transition: transform 0.4s ease;
+    }
+    .profile-links-3d:hover .cube-icon {
+      transform: rotate(90deg);
+    }
+    .profile-links-3d-badge {
+      display: inline-block;
+      margin-left: 2px;
+      padding: 0 5px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #1a365d;
+      background: #fef7cd;
+      border-radius: 8px;
+      line-height: 14px;
+    }
+    .dark-mode .profile-links-3d {
+      background: linear-gradient(135deg, #2b6cb0 0%, #63b3ed 100%) !important;
+      border-color: rgba(99, 179, 237, 0.4) !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+    .dark-mode .profile-links-3d-badge {
+      background: #fbd38d;
+      color: #1a202c;
+    }
   </style>
 </head>
 
@@ -726,6 +786,7 @@
       <ul>
         <li><a href="https://liu-yang-maker.github.io/yangpage.github.io/">Home</a></li>
         <li><a data-link="photoWall">Gallery</a></li>
+        <li><a href="journey.html">Journey</a></li>
         <li><a href="mailto:liuyang2020@amss.ac.cn">Contact</a></li>
       </ul>
     </nav>
@@ -769,6 +830,11 @@
                         <a href="https://github.com/liu-yang-maker">Github</a>
                         <a href="https://github.com/datawhalechina">Datawhale</a>
                         <a data-link="photoWall">Personal</a>
+                        <a href="journey.html" class="profile-links-3d" aria-label="Journey — 我的人物志">
+                          <span class="cube-icon" aria-hidden="true"></span>
+                          <span class="profile-links-3d-label">Journey</span>
+                          <span class="profile-links-3d-badge">NEW</span>
+                        </a>
                       </div>
                     </td>
                     <!-- 右侧图片列 -->
@@ -783,7 +849,7 @@
                         </div>
                       </div>
                       
-                      <!-- ========== 第二张图片：与彤彤的合照（暂时隐藏，取消下面这段注释即可恢复） ==========
+                      <!-- 第二张图片 -->
                       <div>
                         <a href="files/liu_and_tong.jpeg">
                           <img style="width:100%;max-width:100%" alt="second photo" src="files/liu_and_tong.jpeg" class="prof-image">
@@ -792,7 +858,6 @@
                           With Tong
                         </div>
                       </div>
-                      ========== 合照 block 结束 ========== -->
                     </td>
                   </tr>
                 </tbody>
