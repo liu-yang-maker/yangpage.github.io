@@ -157,42 +157,6 @@
       opacity: 0.5;
     }
 
-    /* Info banner */
-    .journey-info-banner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 6px auto 18px;
-      padding: 9px 16px;
-      background: var(--accent-light);
-      border: 1px dashed var(--panel-border);
-      border-radius: 10px;
-      font-size: 13px;
-      color: var(--text-color);
-      opacity: 0.92;
-      max-width: 720px;
-    }
-    .journey-info-banner b { color: var(--accent); }
-    .journey-info-banner button {
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
-    .journey-info-banner button:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-    .journey-info-banner.dismissed { display: none; }
-
     /* ============================================================
        Stage: 卡通舞台 + 右侧面板
        ============================================================ */
@@ -1050,84 +1014,6 @@
     }
 
     /* ============================================================
-       Modal — swap tutorial
-       ============================================================ */
-    .journey-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .journey-modal-overlay.open { display: flex; }
-    .journey-modal {
-      max-width: 560px;
-      width: 100%;
-      background: var(--profile-bg);
-      color: var(--text-color);
-      border-radius: 14px;
-      padding: 26px 28px;
-      max-height: 82vh;
-      overflow-y: auto;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-      animation: modalIn 0.28s ease;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(12px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .journey-modal h3 {
-      font-family: 'Source Serif 4', 'Georgia', serif;
-      font-size: 20px;
-      color: var(--accent);
-      margin: 0 0 6px;
-    }
-    .journey-modal .modal-sub {
-      font-size: 13px;
-      color: var(--text-color);
-      opacity: 0.75;
-      margin: 0 0 16px;
-    }
-    .journey-modal ol { padding-left: 20px; margin: 0 0 14px; }
-    .journey-modal ol li {
-      margin-bottom: 12px;
-      font-size: 13.5px;
-      line-height: 1.7;
-    }
-    .journey-modal code {
-      background: var(--section-bg);
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-family: 'SF Mono', Menlo, Consolas, monospace;
-    }
-    .journey-modal .modal-alt {
-      background: var(--section-bg);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 12.5px;
-      color: var(--text-color);
-      margin: 0 0 18px;
-    }
-    .journey-modal .modal-alt b { color: var(--accent); }
-    .journey-modal-close {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: filter 0.2s;
-      font-family: inherit;
-    }
-    .journey-modal-close:hover { filter: brightness(1.1); }
-
-    /* ============================================================
        Footer
        ============================================================ */
     .journey-footer {
@@ -1313,11 +1199,11 @@
             </li>
             <li data-goto="work">
               <span class="anchor-emoji">💼</span>
-              <span><span class="anchor-title">Work</span>腾讯·字节·智谱·百度，一路折腾大模型</span>
+              <span><span class="anchor-title">Work</span>腾讯·字节·AMD·智谱，一路折腾大模型</span>
             </li>
             <li data-goto="community">
               <span class="anchor-emoji">🌐</span>
-              <span><span class="anchor-title">Community</span>写开源、交朋友</span>
+              <span><span class="anchor-title">Community</span>写开源、带社群、交朋友</span>
             </li>
             <li data-goto="education">
               <span class="anchor-emoji">🎓</span>
@@ -1442,34 +1328,6 @@
         </div>
 
       </aside>
-    </div>
-
-    <!-- Swap tutorial modal -->
-    <div class="journey-modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="journey-modal">
-        <h3 id="modalTitle">换成你自己的卡通形象</h3>
-        <p class="modal-sub">用 AI 图片生成器就能做，改一处 <code>src</code> 即可替换。</p>
-        <ol>
-          <li>
-            用 AI 图片生成器（<a href="https://chatgpt.com/" target="_blank" rel="noopener">GPT-4o</a> / <a href="https://jimeng.jianying.com/" target="_blank" rel="noopener">即梦</a> / <a href="https://www.midjourney.com/" target="_blank" rel="noopener">Midjourney</a> 等），以你的照片
-            <code>files/liu_presentation.jpg</code> 为参考，提示词里写明「Q 版 / chibi / 卡通 / 干净柔和背景 / 保留眼镜等特征」，生成一张竖版卡通图。
-          </li>
-          <li>
-            把新图保存进 <code>files/</code>，然后在本页 JS 的 <code>AVATARS</code> 数组里添加一项（<code>src</code> 指向新图、写上 <code>caption</code> 场景名）即可加入切换器。
-          </li>
-          <li>
-            刷新页面 → 按 <code>E</code> 键进入 <b>热点调试模式</b>：点击图片任意位置，控制台会打印该点的 <code>left / top 百分比</code>，把该图那一套
-            <code>spots</code> 坐标微调到合适位置即可。
-          </li>
-        </ol>
-        <div class="modal-alt">
-          <b>想更进一步做成可旋转的立体模型？</b>
-          可把卡通图喂给 <a href="https://www.meshy.ai/" target="_blank" rel="noopener">Meshy AI</a>（Image to 3D）·
-          <a href="https://hyperhuman.deemos.com/rodin" target="_blank" rel="noopener">Rodin</a> ·
-          <a href="https://github.com/TencentARC/InstantMesh" target="_blank" rel="noopener">InstantMesh</a> 生成模型文件。
-        </div>
-        <button class="journey-modal-close" type="button" id="closeModalBtn">好的，我知道了</button>
-      </div>
     </div>
 
   </main>
@@ -1639,37 +1497,6 @@
     // Close 按钮 → 回 welcome
     panel.querySelectorAll('[data-close]').forEach(btn => {
       btn.addEventListener('click', () => showView('welcome'));
-    });
-
-    /* ============================================================
-       Info banner 显隐（LocalStorage 持久化）
-       ============================================================ */
-    const banner = document.getElementById('infoBanner');
-    if (localStorage.getItem('journeyBannerDismissed') === 'true') {
-      banner.classList.add('dismissed');
-    }
-    document.getElementById('dismissBannerBtn').addEventListener('click', () => {
-      banner.classList.add('dismissed');
-      localStorage.setItem('journeyBannerDismissed', 'true');
-    });
-
-    /* ============================================================
-       Modal（换模型教程）
-       ============================================================ */
-    const modalOverlay = document.getElementById('modalOverlay');
-    document.getElementById('openTutorialBtn').addEventListener('click', () => {
-      modalOverlay.classList.add('open');
-    });
-    document.getElementById('closeModalBtn').addEventListener('click', () => {
-      modalOverlay.classList.remove('open');
-    });
-    modalOverlay.addEventListener('click', e => {
-      if (e.target === modalOverlay) modalOverlay.classList.remove('open');
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
-        modalOverlay.classList.remove('open');
-      }
     });
 
     /* ============================================================
