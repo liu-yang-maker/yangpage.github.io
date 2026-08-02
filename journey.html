@@ -1030,6 +1030,200 @@
     }
 
     /* ============================================================
+       模式切换（3D | 卡通）与 3D 舞台
+       ============================================================ */
+    .stage-mode {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      gap: 2px;
+      padding: 3px;
+      background: color-mix(in srgb, var(--profile-bg) 82%, transparent);
+      border: 1px solid var(--panel-border);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 6;
+    }
+    .stage-mode button {
+      border: 0;
+      background: transparent;
+      color: var(--text-color);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      padding: 5px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    }
+    .stage-mode button:hover { opacity: 1; }
+    .stage-mode button.active { background: var(--accent); color: #fff; opacity: 1; }
+
+    .stage-cartoon, .stage-3d { position: absolute; inset: 0; }
+    .stage-cartoon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage-cartoon[hidden], .stage-3d[hidden] { display: none; }
+
+    /* 3D 模式：iframe（journey3d 子应用）+ 底部分类 chip */
+    .stage-3d {
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+    }
+    .stage-3d-frame {
+      flex: 1;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      display: block;
+    }
+    .stage-3d-chips {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px 6px;
+      z-index: 4;
+    }
+    .stage-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--panel-border);
+      background: color-mix(in srgb, var(--profile-bg) 78%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--text-color);
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    .stage-chip .chip-ic { font-size: 14px; line-height: 1; }
+    .stage-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--hc);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .stage-chip.active {
+      background: var(--hc);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 18px color-mix(in srgb, var(--hc) 45%, transparent);
+    }
+    .stage-3d-hint {
+      position: absolute;
+      left: 14px;
+      top: 12px;
+      transform: none;
+      font-size: 11.5px;
+      letter-spacing: 0.3px;
+      padding: 4px 12px;
+      color: var(--text-color);
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .dark-mode .stage-3d-hint { background: rgba(26,32,44,0.55); }
+
+    /* 3D 互动控制台：动作 / 卫衣颜色 / 背景 */
+    .stage-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 2px 16px 16px;
+      z-index: 4;
+    }
+    .ctl-group { display: flex; align-items: center; gap: 10px; }
+    .ctl-label {
+      flex: 0 0 auto;
+      width: 30px;
+      text-align: right;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-color);
+      opacity: 0.55;
+    }
+    .ctl-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .act-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--panel-border);
+      background: color-mix(in srgb, var(--profile-bg) 78%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--text-color);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+    .act-btn .act-ic { font-size: 13px; line-height: 1; }
+    .act-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+    .act-btn:active { transform: translateY(0) scale(0.96); }
+    .act-btn.playing {
+      background: var(--accent);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 42%, transparent);
+    }
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--panel-border);
+      background: var(--sw, #ccc);
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+    .swatch:hover { transform: scale(1.14); }
+    .swatch.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+    .swatch-reset {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, var(--profile-bg) 82%, transparent);
+      color: var(--text-color);
+      font-size: 13px;
+    }
+
+    /* ============================================================
        Animations
        ============================================================ */
     @keyframes fadeUp {
@@ -1059,6 +1253,21 @@
       .stage-helper-hint { display: none; }
       .stage-switcher { bottom: 14px; }
       .stage-arrow { top: 42%; }
+      .stage-3d-chips { padding: 8px 10px 4px; gap: 6px; }
+      .stage-chip { font-size: 11.5px; padding: 6px 10px; }
+      .stage-3d-hint { display: none; }
+      .stage-mode button { padding: 5px 13px; }
+      .stage-controls { padding: 2px 10px 12px; gap: 6px; }
+      .ctl-label { width: 26px; font-size: 10px; }
+      .ctl-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .ctl-row::-webkit-scrollbar { display: none; }
+      .act-btn { font-size: 11px; padding: 5px 9px; flex: 0 0 auto; }
+      .swatch { flex: 0 0 auto; }
     }
 
     /* 尊重系统「减少动态效果」偏好 */
@@ -1101,6 +1310,14 @@
     <!-- Cartoon Stage -->
     <div class="journey-stage">
       <div class="stage-scene" id="stageScene">
+        <!-- 模式切换：3D 人物 / 卡通形象 -->
+        <div class="stage-mode" id="stageMode" role="tablist" aria-label="切换展示模式">
+          <button type="button" data-mode="3d" role="tab" aria-selected="true">3D</button>
+          <button type="button" data-mode="cartoon" role="tab" aria-selected="false">卡通</button>
+        </div>
+
+        <!-- 卡通模式 -->
+        <div class="stage-cartoon" id="stageCartoon">
         <span class="stage-debug-badge" id="debugBadge">EDIT MODE · 按 E 退出</span>
         <div class="stage-tip-bubble" id="tipBubble">
           移动鼠标看我转一转，点身上的光点 →
@@ -1176,6 +1393,59 @@
         </div>
 
         <div class="stage-helper-hint">移动鼠标看立体感 · 点光点看故事 · 下方切换场景</div>
+        </div><!-- /#stageCartoon -->
+
+        <!-- 3D 模式：嵌入 journey3d 子应用 + 浮动分类入口 -->
+        <div class="stage-3d" id="stage3d" hidden>
+          <iframe class="stage-3d-frame" id="stage3dFrame" title="3D 人物展示"
+                  loading="lazy" scrolling="no"></iframe>
+          <div class="stage-3d-chips" id="stage3dChips" aria-label="点亮我的经历">
+            <button class="stage-chip" type="button" data-category="philosophy" style="--hc:#5a67d8"><span class="chip-ic">🧠</span>Philosophy</button>
+            <button class="stage-chip" type="button" data-category="love" style="--hc:#e53e8c"><span class="chip-ic">💛</span>Love</button>
+            <button class="stage-chip" type="button" data-category="news" style="--hc:#dd6b20"><span class="chip-ic">📰</span>News</button>
+            <button class="stage-chip" type="button" data-category="work" style="--hc:#0d9488"><span class="chip-ic">💼</span>Work</button>
+            <button class="stage-chip" type="button" data-category="education" style="--hc:#38a169"><span class="chip-ic">🎓</span>Education</button>
+            <button class="stage-chip" type="button" data-category="community" style="--hc:#805ad5"><span class="chip-ic">🌐</span>Community</button>
+          </div>
+          <!-- 互动控制台：动作 / 卫衣颜色 / 背景 -->
+          <div class="stage-controls" id="stageControls" aria-label="人物互动控制台">
+            <div class="ctl-group">
+              <span class="ctl-label">动作</span>
+              <div class="ctl-row" id="ctlActions">
+                <button class="act-btn" type="button" data-action="Goodbye"><span class="act-ic">👋</span>挥手</button>
+                <button class="act-btn" type="button" data-action="Clapping"><span class="act-ic">👏</span>鼓掌</button>
+                <button class="act-btn" type="button" data-action="Jump"><span class="act-ic">🤸</span>跳一下</button>
+                <button class="act-btn" type="button" data-action="Thinking"><span class="act-ic">🤔</span>思考</button>
+                <button class="act-btn" type="button" data-action="Relax"><span class="act-ic">😌</span>放松</button>
+                <button class="act-btn" type="button" data-action="Surprised"><span class="act-ic">😮</span>惊讶</button>
+              </div>
+            </div>
+            <div class="ctl-group">
+              <span class="ctl-label">卫衣</span>
+              <div class="ctl-row" id="ctlOutfit">
+                <button class="swatch swatch-reset active" type="button" data-outfit="" title="默认" aria-label="默认颜色">↺</button>
+                <button class="swatch" type="button" data-outfit="#2dd4bf" title="青" aria-label="青色" style="--sw:#2dd4bf"></button>
+                <button class="swatch" type="button" data-outfit="#fb7185" title="珊瑚" aria-label="珊瑚色" style="--sw:#fb7185"></button>
+                <button class="swatch" type="button" data-outfit="#60a5fa" title="天蓝" aria-label="天蓝色" style="--sw:#60a5fa"></button>
+                <button class="swatch" type="button" data-outfit="#f59e0b" title="琥珀" aria-label="琥珀色" style="--sw:#f59e0b"></button>
+                <button class="swatch" type="button" data-outfit="#a78bfa" title="紫" aria-label="紫色" style="--sw:#a78bfa"></button>
+                <button class="swatch" type="button" data-outfit="#334155" title="炭灰" aria-label="炭灰色" style="--sw:#334155"></button>
+              </div>
+            </div>
+            <div class="ctl-group">
+              <span class="ctl-label">背景</span>
+              <div class="ctl-row" id="ctlBg">
+                <button class="swatch swatch-reset active" type="button" data-bg="" title="默认" aria-label="默认背景">↺</button>
+                <button class="swatch" type="button" data-bg="mint" title="薄荷" aria-label="薄荷背景" style="--sw:linear-gradient(#a7d7c5,#f0ede0)"></button>
+                <button class="swatch" type="button" data-bg="sunset" title="晚霞" aria-label="晚霞背景" style="--sw:linear-gradient(#f6b4a0,#f7e9d8)"></button>
+                <button class="swatch" type="button" data-bg="ocean" title="海洋" aria-label="海洋背景" style="--sw:linear-gradient(#8fb8e8,#e6eef5)"></button>
+                <button class="swatch" type="button" data-bg="lilac" title="紫丁香" aria-label="紫丁香背景" style="--sw:linear-gradient(#c3b3e6,#efeaf6)"></button>
+                <button class="swatch" type="button" data-bg="mono" title="素雅" aria-label="素雅背景" style="--sw:linear-gradient(#c9cdd2,#eef0f2)"></button>
+              </div>
+            </div>
+          </div>
+          <div class="stage-3d-hint">拖动转视角 · 滚轮拉近拉远 · 点分类切镜头</div>
+        </div>
       </div>
 
       <!-- ============================================================
@@ -1454,6 +1724,7 @@
       const isDarkMode = document.body.classList.contains('dark-mode');
       localStorage.setItem('darkMode', isDarkMode);
       themeToggle.innerHTML = isDarkMode ? '☀️' : '🌙';
+      postTheme(); // 把主题同步给 3D iframe
     });
 
     if (localStorage.getItem('darkMode') === 'true') {
@@ -1471,6 +1742,8 @@
     function showView(name) {
       views.forEach(v => v.classList.toggle('active', v.dataset.view === name));
       hotspots.forEach(h => h.classList.toggle('active', h.dataset.category === name));
+      document.querySelectorAll('.stage-chip').forEach(c =>
+        c.classList.toggle('active', c.dataset.category === name));
       // 在移动端切换时把面板滚进视野
       if (window.matchMedia('(max-width: 900px)').matches) {
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1498,6 +1771,98 @@
     panel.querySelectorAll('[data-close]').forEach(btn => {
       btn.addEventListener('click', () => showView('welcome'));
     });
+
+    /* ============================================================
+       3D | 卡通 模式切换 + iframe（journey3d 子应用）主题联动
+       - 3D 模式：懒加载 journey3d/dist，铺满左列；周围浮 6 个分类 chip
+         直接调 showView（无需跨帧即可开右侧面板）。
+       - 主题：src 带 ?theme=dark；运行时切主题用 postMessage 通知子应用。
+       ============================================================ */
+    const stage3d = document.getElementById('stage3d');
+    const stageCartoon = document.getElementById('stageCartoon');
+    const stageMode = document.getElementById('stageMode');
+    const stage3dFrame = document.getElementById('stage3dFrame');
+    const modeButtons = stageMode.querySelectorAll('button');
+    let frameLoaded = false;
+
+    function isDark() { return document.body.classList.contains('dark-mode'); }
+    function frameSrc() { return 'journey3d/dist/index.html' + (isDark() ? '?theme=dark' : ''); }
+    function ensureFrame() {
+      if (!frameLoaded) { stage3dFrame.src = frameSrc(); frameLoaded = true; }
+    }
+    function postTheme() {
+      try {
+        stage3dFrame.contentWindow &&
+          stage3dFrame.contentWindow.postMessage({ type: 'theme', dark: isDark() }, '*');
+      } catch (e) { /* iframe 尚未就绪，忽略 */ }
+    }
+    // 向 3D 子应用下发互动命令（动作 / 卫衣色 / 背景色）
+    function postAvatar(msg) {
+      try {
+        stage3dFrame.contentWindow && stage3dFrame.contentWindow.postMessage(msg, '*');
+      } catch (e) { /* iframe 尚未就绪，忽略 */ }
+    }
+
+    function setStageMode(mode) {
+      const is3d = mode === '3d';
+      stage3d.hidden = !is3d;
+      stageCartoon.hidden = is3d;
+      modeButtons.forEach(b => {
+        const on = b.dataset.mode === mode;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (is3d) ensureFrame();
+      localStorage.setItem('journeyStageMode', mode);
+    }
+    modeButtons.forEach(b => b.addEventListener('click', () => setStageMode(b.dataset.mode)));
+
+    // 浮动分类 chip → 打开右侧面板 + 切到该分类的镜头 + 联动一个应景手势
+    const CHIP_GESTURE = {
+      philosophy: 'Thinking', love: 'Clapping', news: 'Goodbye',
+      work: 'Thinking', education: 'Relax', community: 'LookAround',
+    };
+    document.querySelectorAll('.stage-chip').forEach(c =>
+      c.addEventListener('click', () => {
+        showView(c.dataset.category);
+        postAvatar({ type: 'avatar-focus', category: c.dataset.category });
+        const g = CHIP_GESTURE[c.dataset.category];
+        if (g) postAvatar({ type: 'avatar-action', name: g });
+      }));
+
+    // 控制台：动作按钮
+    document.querySelectorAll('#ctlActions .act-btn').forEach(b =>
+      b.addEventListener('click', () => {
+        postAvatar({ type: 'avatar-action', name: b.dataset.action });
+        b.classList.add('playing');
+        setTimeout(() => b.classList.remove('playing'), 900);
+      }));
+    // 控制台：卫衣颜色
+    const outfitSwatches = document.querySelectorAll('#ctlOutfit .swatch');
+    outfitSwatches.forEach(b =>
+      b.addEventListener('click', () => {
+        postAvatar({ type: 'avatar-outfit', hex: b.dataset.outfit });
+        outfitSwatches.forEach(x => x.classList.toggle('active', x === b));
+      }));
+    // 控制台：背景
+    const bgSwatches = document.querySelectorAll('#ctlBg .swatch');
+    bgSwatches.forEach(b =>
+      b.addEventListener('click', () => {
+        postAvatar({ type: 'avatar-bg', preset: b.dataset.bg });
+        bgSwatches.forEach(x => x.classList.toggle('active', x === b));
+      }));
+
+    // 子应用就绪 → 推送当前主题（覆盖加载竞态）
+    window.addEventListener('message', e => {
+      if (e.data && e.data.type === 'journey3d-ready') postTheme();
+    });
+
+    // 初始模式：?mode= 深链 > 记忆的上次选择 > 默认 3D
+    const modeParam = new URLSearchParams(location.search).get('mode');
+    const initialMode = (modeParam === '3d' || modeParam === 'cartoon')
+      ? modeParam
+      : (localStorage.getItem('journeyStageMode') || '3d');
+    setStageMode(initialMode);
 
     /* ============================================================
        立体视差交互：鼠标视差倾斜 + 光斑跟随
