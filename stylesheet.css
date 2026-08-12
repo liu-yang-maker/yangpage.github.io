@@ -659,6 +659,17 @@ university {
   letter-spacing: 0.3px;
 }
 
+/* 年份胶囊里的季度标记：2025 | Q2。用分隔线而非独立胶囊，
+   让它读作年份的次级限定，不与右侧的身份标签抢位置。 */
+.intern-year .term {
+  margin-left: 5px;
+  padding-left: 5px;
+  border-left: 1px solid currentColor;
+  font-size: 0.85em;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
 .intern-tag {
   display: inline-block;
   padding: 2px 10px;
