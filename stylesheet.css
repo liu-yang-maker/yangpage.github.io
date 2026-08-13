@@ -1121,6 +1121,33 @@ university {
     margin: 0;
   }
 
+  .bio-year {
+    display: inline-block;
+    padding: 0 6px;
+    margin: 0 1px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.55;
+    color: rgba(26, 54, 93, 0.82);
+    background-color: rgba(26, 54, 93, 0.07);
+    border-radius: 4px;
+    vertical-align: baseline;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .bio-years {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    vertical-align: baseline;
+  }
+
+  .bio-years .bio-year {
+    margin: 0;
+  }
+
   .bio-divider {
     width: 50px;
     height: 1.5px;
