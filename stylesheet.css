@@ -479,6 +479,32 @@ university {
   letter-spacing: 0.3px;
 }
 
+.pub-venue .award-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 6px;
+  padding: 1px 7px 1px 6px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  color: #8a5a12;
+  background: linear-gradient(180deg, rgba(214, 168, 70, 0.22) 0%, rgba(214, 168, 70, 0.1) 100%);
+  border: 1px solid rgba(184, 134, 40, 0.28);
+  border-radius: 3px;
+  vertical-align: middle;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.pub-venue .award-tag::before {
+  content: '★';
+  font-size: 9px;
+  line-height: 1;
+  opacity: 0.85;
+}
+
 .pub-links {
   font-size: 12.5px;
   margin-top: 4px;
