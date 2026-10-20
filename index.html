@@ -784,6 +784,74 @@
       background: #fbd38d;
       color: #1a202c;
     }
+
+    .hiring-callout {
+      margin: 0 0 12px;
+      padding: 10px 14px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #1a202c;
+      background: rgba(26, 54, 93, 0.05);
+      border-left: 3px solid #1a365d;
+      border-radius: 4px;
+    }
+    .hiring-callout a {
+      font-weight: 600;
+    }
+    .hiring-zh {
+      display: block;
+      margin-top: 4px;
+      color: #4a5568;
+    }
+    .dark-mode .hiring-callout {
+      color: #e2e8f0;
+      background: rgba(99, 179, 237, 0.08);
+      border-left-color: #63b3ed;
+    }
+    .dark-mode .hiring-zh {
+      color: #a0aec0;
+    }
+
+    .research-block {
+      margin: 4px 0 22px;
+      padding: 14px 18px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #4a5568;
+      background: #f7f8fa;
+      border: 1px solid rgba(26, 54, 93, 0.06);
+      border-radius: 6px;
+    }
+    .research-lead {
+      margin: 0 0 6px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a202c;
+    }
+    .research-block p {
+      margin: 0 0 8px;
+    }
+    .research-block p:last-child {
+      margin-bottom: 0;
+    }
+    .research-block strong {
+      color: #1a202c;
+    }
+    .research-block a {
+      font-weight: 600;
+    }
+    .dark-mode .research-block {
+      color: #a0aec0;
+      background: #1a202c;
+      border-color: rgba(99, 179, 237, 0.1);
+    }
+    .dark-mode .research-lead,
+    .dark-mode .research-block strong {
+      color: #e2e8f0;
+    }
   </style>
 </head>
 
@@ -820,7 +888,7 @@
                       <div class="bio-section">
                         <div class="bio-block">
                           <span class="bio-lang">EN</span>
-                          <p class="bio-text">Hi, I'm Yang Liu. My research focuses on large language models (Foundation Models and Supply Chain Applications) and robotics.</p>
+                          <p class="bio-text">Hi, I'm Yang Liu. I'm a researcher at Supply Chain Tech Team Y, JD.com. My research focuses on large language models (Foundation Models and Supply Chain Applications) and robotics.</p>
                           <p class="bio-text">I got my Ph.D. from the Academy of Mathematics and Systems Science, Chinese Academy of Sciences (AMSS, CAS), where I was fortunate to be advised by Chuan Zhou. Before that, I received a B.S. in Mathematics and Applied Mathematics from the Honors Program at Xi'an Jiaotong University in 2020, and conducted research visits at the University of Alberta in 2018, Michigan State University in 2019, and Peking University in 2020 & 2024.</p>
                           <p class="bio-text">I was a member of technical staff on the Hunyuan post-training team at Tencent, working on long-context and multi-turn capabilities in LLMs and agents; a co-founder at Nexus Lab, Peking University, researching robotics and world models; and a research intern at Tencent Hunyuan, ByteDance (Seed and TikTok), AMD, Zhipu AI, and Baidu, working on large language models, agents, and multimodal models.</p>
                           <p class="bio-text"><strong>Goal:</strong> LLMs that improve everyone's life.</p>
@@ -828,13 +896,18 @@
                         <div class="bio-divider"></div>
                         <div class="bio-block">
                           <span class="bio-lang">中</span>
-                          <p class="bio-text">我是刘洋，研究方向为大语言模型与机器人。</p>
+                          <p class="bio-text">我是刘洋，现于京东 Supply Chain Tech Team Y 从事研究。研究方向为大语言模型与机器人。</p>
                           <p class="bio-text">我于中国科学院数学与系统科学研究院（AMSS, CAS）获得博士学位，有幸师从周川研究员。此前，我于 2020 年毕业自西安交通大学数学试验班（Honors Program）获得学士学位，并曾在阿尔伯塔大学、密歇根州立大学和北京大学进行学术访问。</p>
                           <p class="bio-text">我曾任腾讯混元后训练团队成员，从事大模型与智能体的长上下文及多轮对话能力；北京大学 Nexus Lab 联合创办人，从事机器人与世界模型研究；以及曾在腾讯混元、字节（Seed 与 TikTok）、AMD、智谱 AI、百度等机构担任研究实习生，从事大模型、智能体与多模态模型等相关研究。我曾担任中国科学院数学学院学生会主席，曾入选京东TGT、腾讯青云、字节TopSeed、阿里星、美团北斗、华为天才少年计划等。</p>
                           <!-- <p class="bio-text">我曾担任中国科学院数学学院学生会主席，曾入选京东TGT、腾讯青云、字节TopSeed、阿里星、美团北斗、华为天才少年计划等。</p> -->
                           <p class="bio-text"><strong>目标：</strong>实现AGI，改善每个人的生活。</p>
                         </div>
                       </div>
+
+                      <p class="hiring-callout">
+                        🔥 I am actively looking for research interns to work with me on LLM/Agent applications at Supply Chain Tech Team Y, JD.com! If you are interested, feel free to <a href="mailto:liuyang2020@amss.ac.cn">drop me an email</a> with your CV. Research collaborations are also very welcome!
+                        <span class="hiring-zh">正在招收研究实习生，一起做大模型与智能体应用。有兴趣请附简历发邮件，科研合作也非常欢迎。</span>
+                      </p>
 
                       <p class="profile-love">
                         与 <a data-link="photoWall">彤彤</a> 一起探索世界，一起成长，我爱你！
@@ -879,6 +952,21 @@
               </table>
               <!--News-->
 
+          <table class="section-table">
+            <tbody>
+              <tr>
+                <td class="section-heading">
+                  Research
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="research-block">
+            <p>Most of what I do falls into three lines:</p>
+            <p><strong>Supply Chain Decision Agents:</strong> Graph neural networks and language-model agents for combinatorial optimization, inventory control, and other supply-chain decisions, as in <a href="https://ieeexplore.ieee.org/document/10415703" target="_blank" rel="noopener">Decision-focused GNNs</a> | <a href="https://arxiv.org/abs/2602.01090" target="_blank" rel="noopener">Hard Constraints</a> | <a href="https://arxiv.org/abs/2609.22350" target="_blank" rel="noopener">LNS Segmentation</a> | <a href="https://arxiv.org/abs/2609.19760" target="_blank" rel="noopener">SabreAgent</a> | <a href="https://www.preprints.org/frontend/manuscript/dcb284ec130ff6328ff0424b6754fd4f/download_pub" target="_blank" rel="noopener">ScoAI</a>. My Ph.D. thesis studies graph neural networks and large language models for combinatorial optimization.</p>
+            <p><strong>Reliable Long-Horizon Agents:</strong> Credit assignment, memory, safety, and deployment harnesses for agents that act over many steps, as in <a href="https://arxiv.org/abs/2609.12424" target="_blank" rel="noopener">GACA</a> | <a href="https://arxiv.org/abs/2608.29605" target="_blank" rel="noopener">Hindsight Memory</a> | <a href="https://arxiv.org/abs/2608.27141" target="_blank" rel="noopener">Safety Does Not Compose</a> | <a href="https://arxiv.org/abs/2604.13630" target="_blank" rel="noopener">SafeHarness</a>.</p>
+            <p><strong>World Models and Embodied Agents:</strong> Models of how the world changes, and agents that act in a physical environment, including repairing beliefs when sensing fails, as in <a href="https://arxiv.org/abs/2608.15309" target="_blank" rel="noopener">Physiological World Models</a> | <a href="https://arxiv.org/abs/2609.28973" target="_blank" rel="noopener">AquaMend</a> | <a href="https://nexus-embodied-ai.com" target="_blank" rel="noopener">Nexus Lab</a>.</p>
+          </div>
 
           <table class="section-table">
             <tbody>
